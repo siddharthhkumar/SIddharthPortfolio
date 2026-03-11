@@ -78,7 +78,6 @@ export default function About() {
               <h4>Gautam Buddha University</h4>
               <p>B.Tech in Information Technology</p>
               <p style={{ fontSize: '0.76rem', color: 'var(--sub)' }}>Greater Noida · Sept 2022 – July 2026</p>
-              <div className={styles.cgpaTag}>✦ CGPA: 7.68 / 10</div>
             </div>
           </div>
 
