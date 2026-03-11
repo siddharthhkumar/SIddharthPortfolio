@@ -1,0 +1,228 @@
+.contactSection {
+  padding: 90px 56px;
+  background: var(--bg2);
+  border-radius: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.71rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: 60px;
+}
+
+.stitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.ctGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.ctLede {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.28rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.ctSub {
+  font-size: 0.9rem;
+  color: var(--sub);
+  font-weight: 300;
+  line-height: 1.75;
+  margin-bottom: 30px;
+}
+
+.ctSub strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.ctLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.clink {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 17px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.clink:hover {
+  border-color: rgba(129, 140, 248, 0.38);
+  background: rgba(129, 140, 248, 0.05);
+  transform: translateX(5px);
+}
+
+.ciIco {
+  width: 38px;
+  height: 38px;
+  background: rgba(129, 140, 248, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.ciInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.ciLabel {
+  font-size: 0.66rem;
+  color: var(--sub);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.ciVal {
+  font-size: 0.86rem;
+  font-weight: 500;
+}
+
+.ctForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fg {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.flabel {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.66rem;
+  color: var(--sub);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.finput,
+.ftextarea {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.89rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: none;
+}
+
+.finput:focus,
+.ftextarea:focus {
+  border-color: rgba(129, 140, 248, 0.45);
+  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.09);
+}
+
+.ftextarea {
+  min-height: 120px;
+}
+
+.fsend {
+  padding: 13px 26px;
+  background: var(--accent);
+  color: #07070f;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  box-shadow: 0 0 28px rgba(129, 140, 248, 0.28);
+}
+
+.fsend:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 48px rgba(129, 140, 248, 0.5);
+}
+
+@media (max-width: 1200px) {
+  .contactSection {
+    padding: 90px 40px;
+  }
+
+  .ctGrid {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 960px) {
+  .contactSection {
+    padding: 70px 24px;
+  }
+
+  .ctGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contactSection {
+    padding: 60px 18px;
+  }
+
+  .stitle {
+    font-size: 1.7rem;
+  }
+
+  .ctLede {
+    font-size: 1rem;
+  }
+}

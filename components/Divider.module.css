@@ -1,0 +1,7 @@
+.divider {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(129, 140, 248, 0.15), transparent);
+  width: 100%;
+}

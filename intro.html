@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siddharth Kumar — Business & Research Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#060609;--bg2:#0c0c12;--bg3:#111119;
+  --accent:#818cf8;--accent2:#34d399;--accent3:#fb923c;--gold:#f0c070;
+  --text:#eeeef5;--sub:#9898b8;--faint:#3a3a5a;
+  --border:rgba(129,140,248,.14);--glass:rgba(129,140,248,.05);
+}
+:root {
+  --bg:#060609;--bg2:#0c0c12;--bg3:#111119;
+  --accent:#818cf8;--accent2:#34d399;--accent3:#fb923c;--gold:#f0c070;
+  --text:#eeeef5;--sub:#9898b8;--faint:#3a3a5a;
+  --border:rgba(129,140,248,.14);--glass:rgba(129,140,248,.05);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E")}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--accent),var(--accent2));border-radius:2px}
+#cur{width:8px;height:8px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform .08s;mix-blend-mode:screen}
+#cur-ring{width:32px;height:32px;border:1px solid rgba(129,140,248,.45);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transition:width .2s,height .2s,border-color .2s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:18px 56px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(6,6,9,.8);border-bottom:1px solid rgba(129,140,248,.07)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;letter-spacing:-.02em;text-decoration:none;background:linear-gradient(135deg,#c7caff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{list-style:none;display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--sub);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--text)}.nav-links a:hover::after,.nav-links a.active::after{width:100%}.nav-links a.active{color:var(--text)}
+.nav-hire{padding:7px 18px;border:1px solid rgba(129,140,248,.4);border-radius:6px;color:var(--accent)!important;font-size:.78rem!important;transition:background .2s!important}
+.nav-hire:hover{background:rgba(129,140,248,.12)!important}.nav-hire::after{display:none!important}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:600}
+.ham span{display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;transition:.3s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+
+/* SECTIONS */
+section{padding:110px 56px;max-width:1180px;margin:0 auto}
+.tag{display:inline-flex;align-items:center;gap:9px;font-family:'Fira Code',monospace;font-size:.71rem;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.tag::before{content:'';width:18px;height:1px;background:var(--accent)}
+h2.stitle{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,2.9rem);font-weight:900;letter-spacing:-.025em;line-height:1.08;margin-bottom:60px}
+h2.stitle em{font-style:italic;color:var(--accent)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .72s ease,transform .72s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.divider{max-width:1180px;margin:0 auto;height:1px;background:linear-gradient(to right,transparent,rgba(129,140,248,.15),transparent)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;justify-items:center;padding:120px 56px;position:relative;overflow:hidden}
+.mesh{position:absolute;inset:0;z-index:0}
+.mesh-orb{position:absolute;border-radius:50%;filter:blur(110px);opacity:.13;animation:flt 15s ease-in-out infinite alternate}
+.m1{width:700px;height:700px;background:radial-gradient(var(--accent),transparent 70%);top:-15%;left:-10%}
+.m2{width:500px;height:500px;background:radial-gradient(var(--accent2),transparent 70%);bottom:0;right:5%;animation-delay:-8s;opacity:.09}
+.m3{width:280px;height:280px;background:radial-gradient(var(--gold),transparent 70%);top:35%;left:52%;opacity:.07;animation-delay:-4s}
+@keyframes flt{0%{transform:translate(0,0) scale(1)}100%{transform:translate(28px,22px) scale(1.09)}}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(129,140,248,.1) 1px,transparent 1px);background-size:42px 42px}
+.hero-body{position:relative;z-index:1;max-width:100%;width:100%;}
+.hero-pill{display:inline-flex;align-items:center;gap:9px;padding:6px 16px 6px 10px;background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.24);border-radius:100px;font-family:'Fira Code',monospace;font-size:.7rem;color:var(--accent);margin-bottom:36px;animation:fuP .9s .1s both}
+.pulse{width:7px;height:7px;background:var(--accent2);border-radius:50%;animation:blk 2s infinite}
+@keyframes blk{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(52,211,153,.4)}50%{opacity:.6;box-shadow:0 0 0 5px rgba(52,211,153,0)}}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,6.5rem);font-weight:900;letter-spacing:-.04em;line-height:.95;margin-bottom:26px;animation:fuP .9s .2s both}
+.hero-name .l1{display:block;color:var(--text)}
+.hero-name .l2{display:block;font-style:italic;background:linear-gradient(135deg,#c7caff 20%,var(--accent2) 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:26px;animation:fuP .9s .3s both}
+.chip{padding:5px 14px;border-radius:100px;font-size:.76rem;font-weight:600;letter-spacing:.02em}
+.c1{background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.3);color:#c7caff}
+.c2{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.28);color:#6ee7b7}
+.c3{background:rgba(240,192,112,.07);border:1px solid rgba(240,192,112,.28);color:var(--gold)}
+.hero-sub{font-size:clamp(.93rem,1.6vw,1.08rem);color:var(--sub);font-weight:300;max-width:490px;margin-bottom:44px;animation:fuP .9s .4s both;line-height:1.78}
+.hero-sub strong{color:var(--text);font-weight:600}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:50px;animation:fuP .9s .5s both}
+.bp{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:var(--accent);color:#08081a;font-weight:700;font-size:.87rem;border-radius:8px;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 0 28px rgba(129,140,248,.3)}
+.bp:hover{transform:translateY(-3px);box-shadow:0 0 46px rgba(129,140,248,.55)}
+.bs{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;background:transparent;color:var(--text);font-weight:500;font-size:.87rem;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,.1);transition:all .2s}
+.bs:hover{border-color:rgba(129,140,248,.45);background:rgba(129,140,248,.06);transform:translateY(-3px)}
+.bg{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;background:transparent;color:var(--sub);font-weight:500;font-size:.87rem;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,.06);transition:all .2s}
+.bg:hover{color:var(--text);border-color:rgba(255,255,255,.18);transform:translateY(-3px)}
+.hero-soc{display:flex;gap:11px;animation:fuP .9s .6s both}
+.soc{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.09);border-radius:8px;color:var(--sub);text-decoration:none;transition:all .2s}
+.soc:hover{border-color:var(--accent);color:var(--accent);background:rgba(129,140,248,.07);transform:translateY(-3px)}
+.hero-panel{position:relative;flex:0 0 auto;animation:fuP .9s .7s both;display:flex;align-items:center;justify-content:center;width:100%;max-width:420px}
+.hero-cover{width:100%;max-width:380px;height:480px;border-radius:24px;overflow:hidden;border:2px solid rgba(129,140,248,.3);background:linear-gradient(145deg,rgba(15,15,25,.95),rgba(37,37,60,.95));box-shadow:0 28px 80px rgba(0,0,0,.6);position:relative;flex-shrink:0;aspect-ratio:auto 380/480}
+.hero-cover img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05) contrast(1.02)}
+.hero-cover-badge{position:absolute;left:14px;bottom:14px;padding:6px 11px;border-radius:999px;font-size:.7rem;font-weight:500;background:rgba(6,6,12,.85);color:#e5e7ff;border:1px solid rgba(129,140,248,.6);backdrop-filter:blur(8px);display:inline-flex;gap:6px;align-items:center}
+.hero-cover-badge span{font-family:'Fira Code',monospace;font-size:.65rem;color:#a5b4fc;text-transform:uppercase;letter-spacing:.08em}
+.scroll-ind{position:fixed;bottom:48px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;animation:fuP .9s .9s both}
+.scroll-ind span{font-family:'Fira Code',monospace;font-size:.63rem;color:var(--faint);letter-spacing:.12em}
+.sb{width:1px;height:44px;background:linear-gradient(var(--accent),transparent);animation:sAn 2.2s ease-in-out infinite}
+@keyframes sAn{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.5)}}
+@keyframes fuP{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-lead{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;font-style:italic;color:var(--accent);margin-bottom:20px;line-height:1.5}
+.ap{color:#a0a0c0;font-size:.97rem;font-weight:300;margin-bottom:18px;line-height:1.85}
+.ap strong{color:var(--text);font-weight:600}
+.lor-snip{margin-top:26px;padding:22px 24px;background:linear-gradient(135deg,rgba(240,192,112,.06),rgba(129,140,248,.04));border:1px solid rgba(240,192,112,.22);border-radius:12px}
+.lor-q{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:#ddd0b0;line-height:1.7;margin-bottom:11px}
+.lor-a{font-family:'Fira Code',monospace;font-size:.69rem;color:var(--gold);letter-spacing:.04em}
+.about-right{display:flex;flex-direction:column;gap:15px}
+.edu-box{padding:22px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:14px;display:flex;gap:15px;align-items:flex-start;transition:border-color .3s}
+.edu-box:hover{border-color:rgba(129,140,248,.35)}
+.edu-ico{width:42px;height:42px;background:rgba(129,140,248,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.edu-info h4{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:4px}
+.edu-info p{font-size:.79rem;color:var(--sub)}
+.cgpa-tag{display:inline-flex;align-items:center;gap:5px;margin-top:6px;padding:3px 10px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.22);border-radius:4px;font-size:.74rem;color:var(--accent2);font-weight:600}
+.ic{padding:20px 22px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:12px;transition:all .3s;cursor:default}
+.ic:hover{border-color:rgba(129,140,248,.35);transform:translateX(5px)}
+.ic-top{display:flex;align-items:center;gap:10px;margin-bottom:7px}
+.ic-top h4{font-weight:700;font-size:.9rem}
+.ic p{font-size:.8rem;color:var(--sub);line-height:1.55}
+
+/* ABOUT PROFILE CARD */
+.about-profile{padding:22px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:16px;display:flex;align-items:center;gap:18px;backdrop-filter:blur(14px);transition:all .3s}
+.about-profile:hover{border-color:rgba(129,140,248,.4);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.55)}
+.ap-avatar{width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid rgba(129,140,248,.6);flex-shrink:0;box-shadow:0 0 0 4px rgba(129,140,248,.18)}
+.ap-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.ap-info h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;letter-spacing:-.02em;margin-bottom:3px}
+.ap-role{font-size:.78rem;color:var(--accent2);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.ap-meta{font-size:.78rem;color:var(--sub);line-height:1.5}
+.ap-meta strong{color:var(--text);font-weight:600}
+
+.about-gallery{margin-top:32px;display:flex;gap:14px;flex-wrap:nowrap;overflow-x:auto;padding-bottom:8px}
+.about-gallery::-webkit-scrollbar{height:4px}
+.about-gallery::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:999px}
+.ag-item{position:relative;flex:0 0 200px;height:140px;border-radius:14px;overflow:hidden;border:1px solid rgba(129,140,248,.2);background:#111119;cursor:default;transition:transform .3s,box-shadow .3s,border-color .3s}
+.ag-item img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.1)}
+.ag-item span{position:absolute;left:10px;bottom:8px;font-size:.7rem;font-weight:500;color:#f9fafb;background:rgba(0,0,0,.6);padding:3px 7px;border-radius:999px;backdrop-filter:blur(4px)}
+.ag-item:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(0,0,0,.6);border-color:rgba(129,140,248,.6)}
+
+/* SKILLS */
+#skills{background:var(--bg2);border-radius:28px}
+.sk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.sk-card{padding:26px 28px;background:rgba(255,255,255,.018);border:1px solid var(--border);border-radius:16px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .3s}
+.sk-card:nth-child(1)::before{background:linear-gradient(90deg,var(--accent),transparent)}
+.sk-card:nth-child(2)::before{background:linear-gradient(90deg,var(--accent2),transparent)}
+.sk-card:nth-child(3)::before{background:linear-gradient(90deg,var(--gold),transparent)}
+.sk-card:nth-child(4)::before{background:linear-gradient(90deg,var(--accent3),transparent)}
+.sk-card:hover::before{opacity:1}
+.sk-card:hover{border-color:rgba(129,140,248,.3);box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.sk-head{display:flex;align-items:center;gap:11px;margin-bottom:18px}
+.sk-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.si1{background:rgba(129,140,248,.1)}.si2{background:rgba(52,211,153,.1)}.si3{background:rgba(240,192,112,.1)}.si4{background:rgba(251,146,60,.1)}
+.sk-head h3{font-weight:700;font-size:.9rem}
+.sk-tags{display:flex;flex-wrap:wrap;gap:7px}
+.sk-tag{padding:4px 11px;border-radius:5px;font-family:'Fira Code',monospace;font-size:.73rem;background:rgba(255,255,255,.034);border:1px solid rgba(255,255,255,.07);color:#b0b0d0;transition:all .2s;cursor:default}
+.sk-tag:hover{background:rgba(129,140,248,.14);border-color:rgba(129,140,248,.35);color:#c7caff;transform:translateY(-2px)}
+
+/* PROJECTS */
+.pj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:22px}
+.pj-card{background:rgba(255,255,255,.018);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:border-color .3s,transform .3s,box-shadow .3s}
+.pj-card:hover{border-color:rgba(129,140,248,.38);transform:translateY(-7px);box-shadow:0 22px 64px rgba(0,0,0,.45)}
+.pj-card::after{content:'';position:absolute;inset:0;background:radial-gradient(350px at var(--mx,50%) var(--my,50%),rgba(129,140,248,.07),transparent 70%);opacity:0;transition:opacity .4s;pointer-events:none}
+.pj-card:hover::after{opacity:1}
+.pj-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:13px}
+.pj-num{font-family:'Fira Code',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.1em}
+.pj-badge{padding:3px 9px;border-radius:4px;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.b-feat{background:rgba(240,192,112,.1);border:1px solid rgba(240,192,112,.3);color:var(--gold)}
+.b-res{background:rgba(129,140,248,.1);border:1px solid rgba(129,140,248,.3);color:#c7caff}
+.b-live{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.25);color:var(--accent2)}
+.b-sys{background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);color:var(--accent3)}
+.pj-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.pj-desc{font-size:.82rem;color:var(--sub);line-height:1.65;margin-bottom:15px;flex-grow:1}
+.pj-feats{display:flex;flex-direction:column;gap:5px;margin-bottom:16px}
+.pj-feat{display:flex;align-items:flex-start;gap:7px;font-size:.79rem;color:#9898b8;line-height:1.5}
+.pj-feat::before{content:'▸';color:var(--accent2);font-size:.68rem;flex-shrink:0;margin-top:2px}
+.pj-stack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px}
+.s-tag{padding:3px 9px;border-radius:4px;font-family:'Fira Code',monospace;font-size:.68rem;background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.18);color:#a5b4fc}
+.pj-links{display:flex;gap:8px;margin-top:auto}
+.plink{display:inline-flex;align-items:center;gap:5px;padding:7px 13px;border-radius:6px;font-size:.76rem;font-weight:600;text-decoration:none;transition:.2s;border:1px solid}
+.plink-p{background:rgba(129,140,248,.1);border-color:rgba(129,140,248,.28);color:#c7caff}
+.plink-p:hover{background:rgba(129,140,248,.22);border-color:var(--accent)}
+.plink-s{background:transparent;border-color:rgba(255,255,255,.08);color:var(--sub)}
+.plink-s:hover{border-color:rgba(255,255,255,.22);color:var(--text)}
+.pj-card.wide{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);border-radius:28px}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px}
+.exp-card{padding:24px 26px;background:rgba(255,255,255,.018);border:1px solid var(--border);border-radius:14px;position:relative;transition:all .3s}
+.exp-card:hover{border-color:rgba(129,140,248,.38);transform:translateY(-4px);box-shadow:0 12px 44px rgba(0,0,0,.35)}
+.exp-card.cur::before,.exp-card.res::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:14px 14px 0 0}
+.exp-card.cur::before{background:linear-gradient(90deg,var(--accent2),transparent)}
+.exp-card.res::before{background:linear-gradient(90deg,var(--accent),transparent)}
+.exp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:5px;flex-wrap:wrap}
+.exp-role{font-family:'Playfair Display',serif;font-size:1.03rem;font-weight:700;letter-spacing:-.01em}
+.exp-per{font-family:'Fira Code',monospace;font-size:.67rem;padding:3px 9px;border-radius:4px;flex-shrink:0;white-space:nowrap}
+.ep-now{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--accent2)}
+.ep-past{background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.18);color:#a5b4fc}
+.exp-org{font-size:.82rem;font-weight:600;margin-bottom:11px}
+.og{color:var(--accent2)}.ob{color:var(--accent)}.oo{color:var(--gold)}.oor{color:var(--accent3)}
+.exp-ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.exp-ul li{font-size:.79rem;color:#9898b8;display:flex;align-items:flex-start;gap:7px;line-height:1.55}
+.exp-ul li::before{content:'→';color:var(--accent);font-size:.73rem;flex-shrink:0;margin-top:1px}
+
+/* ACHIEVEMENTS */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px}
+.ach-card{padding:24px;background:rgba(255,255,255,.018);border:1px solid var(--border);border-radius:14px;transition:all .3s;position:relative;overflow:hidden}
+.ach-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(129,140,248,.04),transparent);opacity:0;transition:opacity .3s}
+.ach-card:hover::after{opacity:1}
+.ach-card:hover{border-color:rgba(129,140,248,.35);transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.3)}
+.ach-ico{font-size:1.9rem;margin-bottom:12px}
+.ach-card h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:7px}
+.ach-card p{font-size:.8rem;color:var(--sub);line-height:1.6}
+.ach-stat{display:inline-flex;align-items:center;gap:5px;margin-top:11px;padding:4px 11px;border-radius:5px;font-size:.73rem;font-weight:700}
+.as-g{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.22);color:var(--accent2)}
+.as-o{background:rgba(240,192,112,.07);border:1px solid rgba(240,192,112,.22);color:var(--gold)}
+.as-b{background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.22);color:#c7caff}
+
+.lor-show{margin-top:50px;padding:32px 36px;background:linear-gradient(135deg,rgba(240,192,112,.05),rgba(129,140,248,.04));border:1px solid rgba(240,192,112,.2);border-radius:18px;position:relative;overflow:hidden}
+.lor-show::before{content:'\201C';position:absolute;top:-10px;left:20px;font-family:'Playfair Display',serif;font-size:8rem;color:rgba(240,192,112,.1);line-height:1}
+.lor-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:start}
+.lor-txt{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#ddd0b0;line-height:1.72;margin-bottom:16px}
+.lor-sig strong{font-size:.87rem;color:var(--text);font-weight:600;display:block}
+.lor-sig span{font-size:.76rem;color:var(--sub)}
+.lor-badges{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.lbg{padding:5px 12px;border-radius:6px;font-family:'Fira Code',monospace;font-size:.68rem;text-align:center;white-space:nowrap}
+.lb-g{background:rgba(240,192,112,.08);border:1px solid rgba(240,192,112,.25);color:var(--gold)}
+.lb-b{background:rgba(129,140,248,.08);border:1px solid rgba(129,140,248,.25);color:#c7caff}
+
+.certs-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.cert{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;background:rgba(255,255,255,.022);border:1px solid var(--border);border-radius:8px;font-size:.79rem;color:#c0c0e0;transition:all .2s}
+.cert:hover{border-color:rgba(129,140,248,.38);color:var(--text)}
+
+/* CONTACT */
+#contact{background:var(--bg2);border-radius:28px}
+.ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
+.ct-lede{font-family:'Playfair Display',serif;font-size:1.28rem;font-style:italic;font-weight:700;color:var(--accent);margin-bottom:14px;line-height:1.4}
+.ct-sub{font-size:.9rem;color:var(--sub);font-weight:300;line-height:1.75;margin-bottom:30px}
+.ct-sub strong{color:var(--text);font-weight:600}
+.ct-links{display:flex;flex-direction:column;gap:11px}
+.clink{display:flex;align-items:center;gap:14px;padding:13px 17px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:11px;text-decoration:none;color:var(--text);transition:all .2s}
+.clink:hover{border-color:rgba(129,140,248,.38);background:rgba(129,140,248,.05);transform:translateX(5px)}
+.ci-ico{width:38px;height:38px;background:rgba(129,140,248,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.ci-info{display:flex;flex-direction:column}
+.ci-label{font-size:.66rem;color:var(--sub);text-transform:uppercase;letter-spacing:.07em}
+.ci-val{font-size:.86rem;font-weight:500}
+.ct-form{display:flex;flex-direction:column;gap:14px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.flabel{font-family:'Fira Code',monospace;font-size:.66rem;color:var(--sub);text-transform:uppercase;letter-spacing:.08em}
+.finput,.ftextarea{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:12px 15px;color:var(--text);font-family:'Outfit',sans-serif;font-size:.89rem;outline:none;transition:border-color .2s,box-shadow .2s;resize:none}
+.finput:focus,.ftextarea:focus{border-color:rgba(129,140,248,.45);box-shadow:0 0 0 3px rgba(129,140,248,.09)}
+.ftextarea{min-height:120px}
+.fsend{padding:13px 26px;background:var(--accent);color:#07070f;border:none;border-radius:8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;box-shadow:0 0 28px rgba(129,140,248,.28)}
+.fsend:hover{transform:translateY(-3px);box-shadow:0 0 48px rgba(129,140,248,.5)}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,.05);padding:28px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+footer p{font-size:.78rem;color:var(--sub)}
+.fl{display:flex;gap:18px}
+.fl a{font-size:.78rem;color:var(--sub);text-decoration:none;transition:color .2s}
+.fl a:hover{color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:1200px){
+  section{padding:90px 40px}
+  #hero{grid-template-columns:1fr;gap:50px;padding:100px 40px}
+  .hero-cover{max-width:360px;height:450px}
+  .scroll-ind{bottom:36px}
+}
+@media(max-width:960px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(6,6,9,.97);justify-content:center;align-items:center;gap:28px;z-index:550}
+  .nav-links.open a{font-size:1.4rem}
+  .ham{display:flex}
+  section{padding:70px 24px}
+  #hero{padding:80px 24px;padding-top:120px;gap:40px}
+  .hero-cover{max-width:300px;height:380px}
+  .about-grid,.ct-grid{grid-template-columns:1fr;gap:50px}
+  .sk-grid{grid-template-columns:1fr}
+  .pj-card.wide{grid-column:1;grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:1fr}
+  .lor-inner{grid-template-columns:1fr}
+  .lor-badges{align-items:flex-start}
+  footer{padding:24px;flex-direction:column;text-align:center}
+}
+@media(max-width:640px){
+  section{padding:60px 18px}
+  #hero{padding:70px 18px;padding-top:100px}
+  .hero-name{font-size:clamp(2.2rem,10vw,3.5rem)}
+  h2.stitle{font-size:1.7rem}
+  .hero-cover{max-width:260px;height:340px}
+  .hero-btns{flex-direction:column}
+  .bp,.bs,.bg{width:100%;justify-content:center}
+  .ach-grid{grid-template-columns:1fr}
+  .about-gallery{gap:10px}
+  .ag-item{flex:0 0 160px;height:110px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo">SK.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#contact" class="nav-hire">Contact</a></li>
+  </ul>
+  <div class="ham" id="ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="mesh">
+    <div class="dots"></div>
+    <div class="mesh-orb m1"></div><div class="mesh-orb m2"></div><div class="mesh-orb m3"></div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-pill"><div class="pulse"></div> Open to Business &amp; Data Analyst roles</div>
+    <h1 class="hero-name"><span class="l1">Siddharth</span><span class="l2">Kumar</span></h1>
+    <div class="hero-chips">
+      <span class="chip c1">Business Analyst</span>
+      <span class="chip c2">Research Analyst</span>
+      <span class="chip c3">AIS2C2 2025 Author</span>
+    </div>
+    <p class="hero-sub">Transforming <strong>complex data</strong> into decisions that matter. An early-career business analyst and community leader, I combine KPI dashboards, recruitment funnels and ML research with hands-on experience running large tech communities.</p>
+    <div class="hero-btns">
+      <a href="https://www.linkedin.com/in/siddharth-kumar-0938ab245/" target="_blank" class="bp">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        Connect on LinkedIn
+      </a>
+      <a href="#projects" class="bs">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        View My Work
+      </a>
+      <a href="#contact" class="bg">Get in Touch</a>
+    </div>
+    <div class="hero-soc">
+      <a href="https://www.linkedin.com/in/siddharth-kumar-0938ab245/" target="_blank" class="soc" title="LinkedIn">
+        <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/siddharthhkumar" target="_blank" class="soc" title="GitHub">
+        <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+      </a>
+      <a href="https://www.instagram.com/siddharthh__k/" target="_blank" class="soc" title="Instagram">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="hero-cover">
+      <img src="Podium Photo.jpeg" alt="Cover photo of Siddharth Kumar speaking at an event"/>
+      <div class="hero-cover-badge">
+        <span>Business &amp; Data Analyst</span> · Community Builder
+      </div>
+    </div>
+  </div>
+  <div class="scroll-ind"><div class="sb"></div><span>SCROLL</span></div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="tag">Who I Am</div>
+  <h2 class="stitle reveal">About <em>Me</em></h2>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-lead">"Data without context is noise. I turn it into clarity — and communities."</p>
+      <p class="ap">I'm <strong>Siddharth Kumar</strong>, a final-year B.Tech IT student at Gautam Buddha University and an aspiring <strong>Business / Data Analyst</strong>. I specialise in converting complex data into clear, executive-ready insights using SQL, Power BI, Python, and Excel. Most recently, I worked as a <strong>Business Analyst Intern at Top Talent Bridge LLP</strong> (Mar 2026).</p>
+      <p class="ap">Across multiple internships, I've improved logistics operations at <strong>Gaint Logistics</strong>, authored a <strong>research paper presented at AIS2C2 International Conference 2025</strong> on ML-based stress classification, and built dashboards for HR attrition, sports analytics, and recruitment funnels. My work always starts from one question: <em>what decision does this data need to support?</em></p>
+      <p class="ap">Beyond the dashboard, I'm a <strong>community leader and builder</strong> — running 500+ attendee hackathons as GDG Management Lead, leading the MLSA GBU chapter, and founding Mirage, GBU's audio-visual society. These responsibilities shaped my personal brand at the intersection of <strong>business analysis, storytelling, and community leadership</strong>, and led to a university <strong>Letter of Recommendation</strong> from the Cultural Council Chairperson.</p>
+      <div class="about-gallery">
+        <div class="ag-item">
+          <img src="Podium Photo.jpeg" alt="Siddharth speaking at a podium"/>
+          <span>Speaking &amp; hosting</span>
+        </div>
+        <div class="ag-item">
+          <img src="Mirage AV.jpeg" alt="Mirage audio-visual event"/>
+          <span>Community leadership</span>
+        </div>
+        <div class="ag-item">
+          <img src="GDG INFO SESSION.jpeg" alt="GDG info session on campus"/>
+          <span>Events &amp; festivals</span>
+        </div>
+      </div>
+
+      <div class="lor-snip">
+        <div class="lor-q">"Siddharth has demonstrated outstanding technical expertise and creative vision… His discipline, creativity, and technical proficiency will enable him to excel in all his future endeavors."</div>
+        <div class="lor-a">— Dr. Shakti Sahi · Chairperson, Cultural Council · Gautam Buddha University · Aug 2025</div>
+      </div>
+    </div>
+    <div class="about-right reveal d2">
+      <div class="about-profile">
+        <div class="ap-avatar">
+          <img src="Podium Photo.jpeg" alt="Siddharth Kumar speaking at an event"/>
+        </div>
+        <div class="ap-info">
+          <div class="ap-role">Business & Research Analyst</div>
+          <h3>Siddharth Kumar</h3>
+          <div class="ap-meta">
+            Based in <strong>Noida / Lucknow</strong> · Final-year <strong>B.Tech IT</strong> ·
+            Open to <strong>Business Analyst</strong> &amp; <strong>Data Analyst</strong> roles.
+          </div>
+        </div>
+      </div>
+      <div class="edu-box">
+        <div class="edu-ico">EDU</div>
+        <div class="edu-info">
+          <h4>Gautam Buddha University</h4>
+          <p>B.Tech in Information Technology</p>
+          <p style="font-size:.76rem;color:var(--sub)">Greater Noida · Sept 2022 – July 2026</p>
+          <div class="cgpa-tag">✦ CGPA: 7.68 / 10</div>
+        </div>
+      </div>
+      <div class="ic">
+        <div class="ic-top"><h4>Business &amp; Data Analysis</h4></div>
+        <p>KPI dashboards, stakeholder reporting, funnel analysis — translating business questions into data-backed answers.</p>
+      </div>
+      <div class="ic">
+        <div class="ic-top"><h4>Published Researcher</h4></div>
+        <p>Lead author of ML-based stress classification research presented at AIS2C2 2025 international conference.</p>
+      </div>
+      <div class="ic">
+        <div class="ic-top"><h4>Community Leadership</h4></div>
+        <p>2.5 years leading GDG & MLSA GBU chapters — managing 500+ attendee events, speakers, and operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="tag">Technical Arsenal</div>
+  <h2 class="stitle reveal">Skills & <em>Tools</em></h2>
+  <div class="sk-grid">
+    <div class="sk-card reveal d1">
+      <div class="sk-head"><div class="sk-ico si1">📊</div><h3>Data & Business Analysis</h3></div>
+      <div class="sk-tags">
+        <span class="sk-tag">SQL</span><span class="sk-tag">Microsoft Excel</span><span class="sk-tag">Power BI</span>
+        <span class="sk-tag">Tableau</span><span class="sk-tag">KPI Tracking</span><span class="sk-tag">Pivot Tables</span>
+        <span class="sk-tag">VLOOKUP / XLOOKUP</span><span class="sk-tag">Funnel Analysis</span><span class="sk-tag">Forecasting</span>
+      </div>
+    </div>
+    <div class="sk-card reveal d2">
+      <div class="sk-head"><div class="sk-ico si2">🐍</div><h3>Programming & Research</h3></div>
+      <div class="sk-tags">
+        <span class="sk-tag">Python</span><span class="sk-tag">Pandas</span><span class="sk-tag">NumPy</span>
+        <span class="sk-tag">Scikit-learn</span><span class="sk-tag">Feature Engineering</span><span class="sk-tag">EDA</span>
+        <span class="sk-tag">Statistical Analysis</span><span class="sk-tag">ML Model Evaluation</span>
+      </div>
+    </div>
+    <div class="sk-card reveal d3">
+      <div class="sk-head"><div class="sk-ico si3">🎯</div><h3>Business Strategy</h3></div>
+      <div class="sk-tags">
+        <span class="sk-tag">Requirements Gathering</span><span class="sk-tag">Stakeholder Mgmt</span>
+        <span class="sk-tag">Root Cause Analysis</span><span class="sk-tag">Process Mapping</span>
+        <span class="sk-tag">Agile / Scrum</span><span class="sk-tag">Revenue Tracking</span><span class="sk-tag">Market Analysis</span>
+      </div>
+    </div>
+    <div class="sk-card reveal d4">
+      <div class="sk-head"><div class="sk-ico si4">🛠️</div><h3>Tools & Platforms</h3></div>
+      <div class="sk-tags">
+        <span class="sk-tag">GitHub</span><span class="sk-tag">Google Sheets</span><span class="sk-tag">Google Cloud</span>
+        <span class="sk-tag">VS Code</span><span class="sk-tag">Next.js</span><span class="sk-tag">FastAPI</span>
+        <span class="sk-tag">Vercel</span><span class="sk-tag">Notion</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="tag">What I've Built</div>
+  <h2 class="stitle reveal">Selected <em>Projects</em></h2>
+  <div class="pj-grid">
+
+    <div class="pj-card wide reveal">
+      <div>
+        <div class="pj-top"><div class="pj-num">01 / RESEARCH</div><span class="pj-badge b-res">📄 Conference Paper</span></div>
+        <div class="pj-title">ML Stress Level Classification</div>
+        <p class="pj-desc">Authored and presented at AIS2C2 2025 International Conference. Designed an analytical framework classifying stress levels using psychological (USS-21) and lifestyle behavioral data across supervised ML models.</p>
+        <div class="pj-feats">
+          <div class="pj-feat">Integrated multi-source psychological + lifestyle datasets</div>
+          <div class="pj-feat">Feature engineering & comparative ML model evaluation</div>
+          <div class="pj-feat">Statistical hypothesis validation on survey data</div>
+          <div class="pj-feat">Lead author — presented at AIS2C2 2025</div>
+        </div>
+        <div class="pj-stack"><span class="s-tag">Python</span><span class="s-tag">Scikit-learn</span><span class="s-tag">Pandas</span><span class="s-tag">Statistical Analysis</span></div>
+        <div class="pj-links"><a href="https://github.com/siddharthhkumar" target="_blank" class="plink plink-p">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a></div>
+      </div>
+      <div>
+        <div class="pj-top"><div class="pj-num">02 / PEOPLE ANALYTICS</div><span class="pj-badge b-feat">⭐ Featured</span></div>
+        <div class="pj-title">HR Attrition Analysis Dashboard</div>
+        <p class="pj-desc">Root cause analysis on employee data uncovering key drivers of attrition — salary, tenure, job roles — visualized in Power BI to support data-driven workforce planning.</p>
+        <div class="pj-feats">
+          <div class="pj-feat">Identified "at-risk" employee segments by tenure & role</div>
+          <div class="pj-feat">Interactive Power BI retention & trend dashboard</div>
+          <div class="pj-feat">SQL-driven data extraction and transformation</div>
+        </div>
+        <div class="pj-stack"><span class="s-tag">Python</span><span class="s-tag">SQL</span><span class="s-tag">Power BI</span><span class="s-tag">People Analytics</span></div>
+        <div class="pj-links"><a href="https://github.com/siddharthhkumar" target="_blank" class="plink plink-p">GitHub</a></div>
+      </div>
+    </div>
+
+    <div class="pj-card reveal d1">
+      <div class="pj-top"><div class="pj-num">03 / SPORTS ANALYTICS</div><span class="pj-badge b-live">📈 Dashboard</span></div>
+      <div class="pj-title">Football Performance Analytics</div>
+      <p class="pj-desc">Performance metrics dashboard comparing Expected Goals (xG) vs Actual Goals, revealing player efficiency and attacking conversion rates through SQL-backed Power BI visualizations.</p>
+      <div class="pj-feats">
+        <div class="pj-feat">xG vs Actual Goals deviation analysis</div>
+        <div class="pj-feat">Player efficiency & conversion rate trends</div>
+        <div class="pj-feat">SQL match data pipeline + Power BI visuals</div>
+      </div>
+      <div class="pj-stack"><span class="s-tag">Power BI</span><span class="s-tag">SQL</span><span class="s-tag">Data Viz</span></div>
+      <div class="pj-links"><a href="https://github.com/siddharthhkumar" target="_blank" class="plink plink-p">GitHub</a></div>
+    </div>
+
+    <div class="pj-card reveal d2">
+      <div class="pj-top"><div class="pj-num">04 / LOGISTICS</div><span class="pj-badge b-live">🏢 Internship</span></div>
+      <div class="pj-title">Logistics KPI Operations Dashboard</div>
+      <p class="pj-desc">Built during internship at Gaint Logistics — SQL-driven bottleneck identification and daily delivery KPI dashboards achieving 100% executive reporting accuracy.</p>
+      <div class="pj-feats">
+        <div class="pj-feat">Cost reduction & bottleneck SQL analysis</div>
+        <div class="pj-feat">Daily delivery KPI tracking dashboard</div>
+        <div class="pj-feat">100% executive reporting accuracy</div>
+      </div>
+      <div class="pj-stack"><span class="s-tag">SQL</span><span class="s-tag">Excel</span><span class="s-tag">Power BI</span></div>
+      <div class="pj-links"><a href="https://github.com/siddharthhkumar" target="_blank" class="plink plink-p">GitHub</a></div>
+    </div>
+
+    <div class="pj-card reveal d3">
+      <div class="pj-top"><div class="pj-num">05 / DATABASE</div><span class="pj-badge b-sys">🏥 System</span></div>
+      <div class="pj-title">Hospital Management Database</div>
+      <p class="pj-desc">Designed a structured relational database at Mectoi Technologies — covering patient records, hospital modules, schema design and backend integration.</p>
+      <div class="pj-feats">
+        <div class="pj-feat">Full relational schema from documentation</div>
+        <div class="pj-feat">Patient records & management modules</div>
+        <div class="pj-feat">Backend integration & documentation</div>
+      </div>
+      <div class="pj-stack"><span class="s-tag">SQL</span><span class="s-tag">Database Design</span><span class="s-tag">Backend</span></div>
+      <div class="pj-links"><a href="https://github.com/siddharthhkumar" target="_blank" class="plink plink-p">GitHub</a></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="tag">Where I've Worked</div>
+  <h2 class="stitle reveal">Work <em>Experience</em></h2>
+  <div class="exp-grid">
+
+    <div class="exp-card reveal">
+      <div class="exp-head"><div class="exp-role">Business Analyst Intern</div><span class="exp-per ep-past">Mar 2026</span></div>
+      <div class="exp-org og">Top Talent Bridge LLP · Gurgaon (Remote)</div>
+      <ul class="exp-ul">
+        <li>End-to-end recruitment lifecycle data analysis — lead gen through final placement</li>
+        <li>Monitor KPIs: conversion rates, TAT, sourcing effectiveness & placement ratios</li>
+        <li>Build Excel & Google Sheets performance dashboards with advanced formulas, Pivot Tables & XLOOKUP</li>
+        <li>Recruitment funnel analysis — identifying bottlenecks and recommending optimizations</li>
+        <li>Revenue tracking, forecasting models, and competitor/market analysis</li>
+      </ul>
+    </div>
+
+    <div class="exp-card res reveal d1">
+      <div class="exp-head"><div class="exp-role">Research Analyst — AIS2C2 2025</div><span class="exp-per ep-past">Aug – Dec 2025</span></div>
+      <div class="exp-org ob">Gautam Buddha University · Conference Publication</div>
+      <ul class="exp-ul">
+        <li>Designed ML-based stress classification analytical framework</li>
+        <li>Integrated USS-21 psychological + lifestyle data for predictive modeling</li>
+        <li>Feature engineering, model evaluation & comparative ML analysis</li>
+        <li>Lead author — paper presented at AIS2C2 International Conference 2025</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d2">
+      <div class="exp-head"><div class="exp-role">Data Analyst Intern</div><span class="exp-per ep-past">Jun – Jul 2025</span></div>
+      <div class="exp-org og">Gaint Logistics Private Limited · Remote</div>
+      <ul class="exp-ul">
+        <li>SQL logistics analysis identifying bottlenecks & cost reduction opportunities</li>
+        <li>Power BI dashboards tracking daily delivery KPIs for management</li>
+        <li>Streamlined data pipelines — 100% accuracy for executive reviews</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d3">
+      <div class="exp-head"><div class="exp-role">Management Lead</div><span class="exp-per ep-past">Sep 2024 – Jun 2025</span></div>
+      <div class="exp-org ob">GDG on Campus · Gautam Buddha University</div>
+      <ul class="exp-ul">
+        <li>Led team organizing large-scale technical hackathons and workshops</li>
+        <li>Managed logistics for 500+ attendee campus events end-to-end</li>
+        <li>Coordinated developers, speakers, and corporate sponsors</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d1">
+      <div class="exp-head"><div class="exp-role">Head Manager — MLSA</div><span class="exp-per ep-past">Jan 2023 – May 2025</span></div>
+      <div class="exp-org ob">Microsoft Learn Student Ambassador · GBU Chapter</div>
+      <ul class="exp-ul">
+        <li>Led MLSA GBU chapter for 2.5 years driving Microsoft tech adoption</li>
+        <li>Organized technical sessions, workshops, and community events</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d2">
+      <div class="exp-head"><div class="exp-role">Founder & General Secretary</div><span class="exp-per ep-past">Jun 2024 – Apr 2025</span></div>
+      <div class="exp-org oo">Mirage — Audio Visual Society · GBU</div>
+      <ul class="exp-ul">
+        <li>Founded GBU's film & photography society — earned university LOR</li>
+        <li>Managed AV operations at Abhivyanjana — GBU Annual Cultural Fest</li>
+        <li>Led creative team for photography, video documentation & media</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d3">
+      <div class="exp-head"><div class="exp-role">Junior Software Engineer Intern</div><span class="exp-per ep-past">Jun – Jul 2024</span></div>
+      <div class="exp-org oor">Mectoi Technologies Pvt. Ltd. · Lucknow</div>
+      <ul class="exp-ul">
+        <li>Developed hospital management database from documentation</li>
+        <li>Relational schema design and backend integration</li>
+      </ul>
+    </div>
+
+    <div class="exp-card reveal d4">
+      <div class="exp-head"><div class="exp-role">Social Media Manager</div><span class="exp-per ep-past">Apr – May 2024</span></div>
+      <div class="exp-org oor">Glitch TechFest · GBU</div>
+      <ul class="exp-ul">
+        <li>Managed all social channels for GBU's flagship tech festival</li>
+        <li>Content strategy to drive event attendance and engagement</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="tag">Recognition & Impact</div>
+  <h2 class="stitle reveal">Achievements &amp; <em>Awards</em></h2>
+  <div class="ach-grid">
+    <div class="ach-card reveal">
+      <div class="ach-ico">Conf</div>
+      <h3>AIS2C2 International Conference 2025</h3>
+      <p>Authored and presented ML-based stress classification research at an international academic conference representing GBU as lead author.</p>
+      <div class="ach-stat as-b">📜 Lead Author · Published</div>
+    </div>
+    <div class="ach-card reveal d1">
+      <div class="ach-ico">Prog</div>
+      <h3>McKinsey Forward Program</h3>
+      <p>Completed McKinsey's competitive program — structured problem-solving, analytical thinking, and professional business communication.</p>
+      <div class="ach-stat as-o">✦ 2025 Graduate</div>
+    </div>
+    <div class="ach-card reveal d2">
+      <div class="ach-ico">DA</div>
+      <h3>Deloitte Data Analytics Simulation</h3>
+      <p>Client reporting and Tableau dashboarding experience through Deloitte's official job simulation — applied real consulting workflows.</p>
+      <div class="ach-stat as-b">✅ Completed 2025</div>
+    </div>
+    <div class="ach-card reveal d3">
+      <div class="ach-ico">Cloud</div>
+      <h3>Google Cloud Study Jam Leader</h3>
+      <p>Led student cohort through Google Cloud learning pathways, earning team certifications in cloud fundamentals and Generative AI.</p>
+      <div class="ach-stat as-g">🎖️ Group Leader</div>
+    </div>
+    <div class="ach-card reveal d1">
+      <div class="ach-ico">Media</div>
+      <h3>Community Instagram Growth</h3>
+      <p>Grew a community page to 2,500+ followers with 1M+ organic reach through structured content strategy and consistent engagement.</p>
+      <div class="ach-stat as-g">👥 2,500+ · 1M+ Reach</div>
+    </div>
+    <div class="ach-card reveal d2">
+      <div class="ach-ico">AI</div>
+      <h3>Generative AI Jam</h3>
+      <p>Completed Google's intensive Generative AI workshop series, gaining hands-on experience with modern AI tooling and applications.</p>
+      <div class="ach-stat as-b">🏅 Completed</div>
+    </div>
+  </div>
+
+  <!-- LOR Showcase -->
+  <div class="lor-show reveal" style="margin-top:50px">
+    <div class="lor-inner">
+      <div>
+        <div class="tag" style="margin-bottom:14px">University Letter of Recommendation</div>
+        <div class="lor-txt">"Siddharth has demonstrated outstanding technical expertise and creative vision… His commitment and attention to detail helped enhance the overall presentation and visibility of the fest. I confidently recommend Mr. Siddharth Kumar for future academic, technical, or professional opportunities."</div>
+        <div class="lor-sig">
+          <strong>Dr. Shakti Sahi</strong>
+          <span>Chairperson, Cultural Council · Gautam Buddha University · August 04, 2025</span>
+        </div>
+      </div>
+      <div class="lor-badges">
+        <div class="lbg lb-g">GBU · Official LOR</div>
+        <div class="lbg lb-b">Cultural Council</div>
+        <div class="lbg lb-g">Aug 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Certs -->
+  <div class="reveal" style="margin-top:46px">
+    <div class="tag">Certifications</div>
+    <div class="certs-row">
+      <div class="cert">🔐 Google Cybersecurity Foundation</div>
+      <div class="cert">☁️ Google Cloud Data Analyst</div>
+      <div class="cert">🤖 Python Using Artificial Intelligence</div>
+      <div class="cert">📊 Office Master — Power BI</div>
+      <div class="cert">📈 Microsoft Excel Using AI</div>
+      <div class="cert">🧠 McKinsey Forward Program</div>
+      <div class="cert">📉 Deloitte Data Analytics Simulation</div>
+      <div class="cert">🌐 Google Generative AI</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="tag">Let's Talk</div>
+  <h2 class="stitle reveal">Get In <em>Touch</em></h2>
+  <div class="ct-grid">
+    <div class="reveal">
+      <div class="ct-lede">Open to BA / Data Analyst roles, research collaborations &amp; freelance analytics work.</div>
+      <p class="ct-sub">I'm actively seeking <strong>Business Analyst</strong> and <strong>Data Analyst</strong> opportunities — internships, entry-level roles, or project-based work. If you have data that needs turning into insight, let's connect.</p>
+      <div class="ct-links">
+        <a href="mailto:siddharthk1500@gmail.com" class="clink">
+          <div class="ci-ico">Mail</div>
+          <div class="ci-info"><span class="ci-label">Email</span><span class="ci-val">siddharthk1500@gmail.com</span></div>
+        </a>
+        <a href="tel:+916202969798" class="clink">
+          <div class="ci-ico">Call</div>
+          <div class="ci-info"><span class="ci-label">Phone</span><span class="ci-val">+91 6202969798</span></div>
+        </a>
+        <a href="https://www.linkedin.com/in/siddharth-kumar-0938ab245/" target="_blank" class="clink">
+          <div class="ci-ico">In</div>
+          <div class="ci-info"><span class="ci-label">LinkedIn</span><span class="ci-val">linkedin.com/in/siddharth-kumar-0938ab245</span></div>
+        </a>
+        <a href="https://github.com/siddharthhkumar" target="_blank" class="clink">
+          <div class="ci-ico">GH</div>
+          <div class="ci-info"><span class="ci-label">GitHub</span><span class="ci-val">github.com/siddharthhkumar</span></div>
+        </a>
+        <a href="https://www.instagram.com/siddharthh__k/" target="_blank" class="clink">
+          <div class="ci-ico">IG</div>
+          <div class="ci-info"><span class="ci-label">Instagram</span><span class="ci-val">@siddharthh__k</span></div>
+        </a>
+        <div class="clink" style="cursor:default">
+          <div class="ci-ico">Loc</div>
+          <div class="ci-info"><span class="ci-label">Location</span><span class="ci-val">Noida / Lucknow, Uttar Pradesh, India</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="ct-form">
+        <div class="fg"><label class="flabel">Your Name</label><input type="text" class="finput" placeholder="Jane Smith"/></div>
+        <div class="fg"><label class="flabel">Email</label><input type="email" class="finput" placeholder="jane@company.com"/></div>
+        <div class="fg"><label class="flabel">Subject</label><input type="text" class="finput" placeholder="BA Internship / Collaboration / Project..."/></div>
+        <div class="fg"><label class="flabel">Message</label><textarea class="ftextarea" placeholder="Tell me about the opportunity..."></textarea></div>
+        <button class="fsend" onclick="sendMsg(this)">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Siddharth Kumar · Business & Research Analyst · Greater Noida, India</p>
+  <div class="fl">
+    <a href="https://www.linkedin.com/in/siddharth-kumar-0938ab245/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/siddharthhkumar" target="_blank">GitHub</a>
+    <a href="mailto:siddharthk1500@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx-4+'px';cur.style.top=my-4+'px'});
+(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx-16+'px';ring.style.top=ry-16+'px';requestAnimationFrame(a)})();
+document.querySelectorAll('a,button,.sk-tag,.pj-card,.exp-card,.ach-card,.ic').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='46px';ring.style.height='46px';ring.style.borderColor='rgba(129,140,248,.7)'});
+  el.addEventListener('mouseleave',()=>{ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(129,140,248,.45)'});
+});
+
+// HAMBURGER
+const ham=document.getElementById('ham'),nl=document.getElementById('navLinks');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');nl.classList.toggle('open')});
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ham.classList.remove('open');nl.classList.remove('open')}));
+
+// REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')})},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ACTIVE NAV
+const navAs=document.querySelectorAll('.nav-links a[href^="#"]');
+const sObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){navAs.forEach(a=>{a.classList.remove('active');if(a.getAttribute('href')==='#'+x.target.id)a.classList.add('active')})}})},{threshold:.35});
+document.querySelectorAll('section[id]').forEach(s=>sObs.observe(s));
+
+// PROJECT SPOTLIGHT
+document.querySelectorAll('.pj-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')});
+});
+
+// FORM
+function sendMsg(btn){
+  const o=btn.innerHTML;
+  btn.innerHTML='<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!';
+  btn.style.background='var(--accent2)';btn.style.color='#07170f';
+  setTimeout(()=>{btn.innerHTML=o;btn.style.background='';btn.style.color=''},3000);
+}
+</script>
+</body>
+</html>

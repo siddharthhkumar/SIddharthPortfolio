@@ -1,0 +1,242 @@
+.projectsSection {
+  padding: 90px 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.71rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: 60px;
+}
+
+.stitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.pjGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 22px;
+}
+
+.pjCard {
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.pjCard:hover {
+  border-color: rgba(129, 140, 248, 0.38);
+  transform: translateY(-7px);
+  box-shadow: 0 22px 64px rgba(0, 0, 0, 0.45);
+}
+
+.pjCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(350px at var(--mx, 50%) var(--my, 50%), rgba(129, 140, 248, 0.07), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.pjCard:hover::after {
+  opacity: 1;
+}
+
+.pjCard.wide {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.pjTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.pjNum {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.pjBadge {
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(240, 192, 112, 0.1);
+  border: 1px solid rgba(240, 192, 112, 0.3);
+  color: var(--gold);
+}
+
+.pjTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.pjDesc {
+  font-size: 0.82rem;
+  color: var(--sub);
+  line-height: 1.65;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.pjFeats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.pjFeat {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 0.79rem;
+  color: #9898b8;
+  line-height: 1.5;
+}
+
+.pjFeat::before {
+  content: '▸';
+  color: var(--accent2);
+  font-size: 0.68rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pjStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.sTag {
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.68rem;
+  background: rgba(129, 140, 248, 0.08);
+  border: 1px solid rgba(129, 140, 248, 0.18);
+  color: #a5b4fc;
+}
+
+.pjLinks {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.plinkP,
+.plinkS {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
+  border: 1px solid;
+}
+
+.plinkP {
+  background: rgba(129, 140, 248, 0.1);
+  border-color: rgba(129, 140, 248, 0.28);
+  color: #c7caff;
+}
+
+.plinkP:hover {
+  background: rgba(129, 140, 248, 0.22);
+  border-color: var(--accent);
+}
+
+.plinkS {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--sub);
+}
+
+.plinkS:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--text);
+}
+
+@media (max-width: 1200px) {
+  .projectsSection {
+    padding: 90px 40px;
+  }
+
+  .pjCard.wide {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 960px) {
+  .projectsSection {
+    padding: 70px 24px;
+  }
+
+  .pjCard.wide {
+    grid-column: 1;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .projectsSection {
+    padding: 60px 18px;
+  }
+
+  .stitle {
+    font-size: 1.7rem;
+  }
+}

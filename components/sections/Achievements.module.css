@@ -1,0 +1,132 @@
+.achSection {
+  padding: 90px 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.71rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: 60px;
+}
+
+.stitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.achGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  gap: 18px;
+}
+
+.achCard {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.achCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.04), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.achCard:hover::after {
+  opacity: 1;
+}
+
+.achCard:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.3);
+}
+
+.achIco {
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+}
+
+.achCard h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+
+.achCard p {
+  font-size: 0.8rem;
+  color: var(--sub);
+  line-height: 1.6;
+}
+
+.achStat {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 11px;
+  padding: 4px 11px;
+  border-radius: 5px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  color: var(--accent2);
+}
+
+@media (max-width: 1200px) {
+  .achSection {
+    padding: 90px 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  .achSection {
+    padding: 70px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .achSection {
+    padding: 60px 18px;
+  }
+
+  .stitle {
+    font-size: 1.7rem;
+  }
+
+  .achGrid {
+    grid-template-columns: 1fr;
+  }
+}

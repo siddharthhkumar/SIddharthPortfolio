@@ -1,0 +1,138 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  padding: 18px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(20px);
+  background: rgba(6, 6, 9, 0.8);
+  border-bottom: 1px solid rgba(129, 140, 248, 0.07);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  background: linear-gradient(135deg, #c7caff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navLinks a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--sub);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.navLinks a:hover {
+  color: var(--text);
+}
+
+.navLinks a:hover::after {
+  width: 100%;
+}
+
+.navHire {
+  padding: 7px 18px;
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  border-radius: 6px;
+  color: var(--accent) !important;
+  font-size: 0.78rem !important;
+  transition: background 0.2s !important;
+}
+
+.navHire:hover {
+  background: rgba(129, 140, 248, 0.12) !important;
+}
+
+.navHire::after {
+  display: none !important;
+}
+
+.ham {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 600;
+}
+
+.ham span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.ham.open span:nth-child(1) {
+  transform: rotate(45deg) translate(4.5px, 4.5px);
+}
+
+.ham.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.ham.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(4.5px, -4.5px);
+}
+
+@media (max-width: 960px) {
+  .nav {
+    padding: 16px 24px;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .navLinks.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 6, 9, 0.97);
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    z-index: 550;
+  }
+
+  .navLinks.open a {
+    font-size: 1.4rem;
+  }
+
+  .ham {
+    display: flex;
+  }
+}

@@ -1,0 +1,168 @@
+.skillsSection {
+  padding: 90px 56px;
+  background: var(--bg2);
+  border-radius: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.71rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: 60px;
+}
+
+.stitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.skGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.skCard {
+  padding: 26px 28px;
+  background: rgba(255, 255, 255, 0.018);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.skCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skCard:nth-child(1)::before {
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.skCard:nth-child(2)::before {
+  background: linear-gradient(90deg, var(--accent2), transparent);
+}
+
+.skCard:nth-child(3)::before {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.skCard:nth-child(4)::before {
+  background: linear-gradient(90deg, var(--accent3), transparent);
+}
+
+.skCard:hover::before {
+  opacity: 1;
+}
+
+.skCard:hover {
+  border-color: rgba(129, 140, 248, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+}
+
+.skHead {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 18px;
+}
+
+.skIco {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  background: rgba(129, 140, 248, 0.1);
+}
+
+.skHead h3 {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.skTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.skTag {
+  padding: 4px 11px;
+  border-radius: 5px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.73rem;
+  background: rgba(255, 255, 255, 0.034);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #b0b0d0;
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.skTag:hover {
+  background: rgba(129, 140, 248, 0.14);
+  border-color: rgba(129, 140, 248, 0.35);
+  color: #c7caff;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+  .skillsSection {
+    padding: 90px 40px;
+  }
+}
+
+@media (max-width: 960px) {
+  .skillsSection {
+    padding: 70px 24px;
+  }
+
+  .skGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .skillsSection {
+    padding: 60px 18px;
+  }
+
+  .stitle {
+    font-size: 1.7rem;
+  }
+}

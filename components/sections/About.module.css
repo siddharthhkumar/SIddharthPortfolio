@@ -1,0 +1,376 @@
+.aboutSection {
+  padding: 90px 56px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.71rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.tag::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.8vw, 2.9rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  margin-bottom: 60px;
+}
+
+.stitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+  width: 100%;
+}
+
+.reveal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aboutLead {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ap {
+  color: #a0a0c0;
+  font-size: 0.97rem;
+  font-weight: 300;
+  margin: 0;
+  line-height: 1.85;
+}
+
+.ap strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.aboutGallery {
+  margin-top: 0;
+  display: flex;
+  gap: 14px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.aboutGallery::-webkit-scrollbar {
+  height: 4px;
+}
+
+.aboutGallery::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  border-radius: 999px;
+}
+
+.agItem {
+  position: relative;
+  flex: 0 0 200px;
+  height: 140px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  background: #111119;
+  cursor: default;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.agItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.1);
+}
+
+.agItem span {
+  position: absolute;
+  left: 10px;
+  bottom: 8px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #f9fafb;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 3px 7px;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+.agItem:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  border-color: rgba(129, 140, 248, 0.6);
+}
+
+.lorSnip {
+  margin-top: 0;
+  padding: 24px;
+  background: linear-gradient(135deg, rgba(240, 192, 112, 0.06), rgba(129, 140, 248, 0.04));
+  border: 1px solid rgba(240, 192, 112, 0.22);
+  border-radius: 12px;
+}
+
+.lorQ {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #ddd0b0;
+  line-height: 1.7;
+  margin: 0;
+  margin-bottom: 11px;
+}
+
+.lorA {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.69rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.aboutRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.aboutProfile {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  backdrop-filter: blur(14px);
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.aboutProfile:hover {
+  border-color: rgba(129, 140, 248, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.apAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(129, 140, 248, 0.6);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.18);
+}
+
+.apAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.apInfo h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.apRole {
+  font-size: 0.78rem;
+  color: var(--accent2);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.apMeta {
+  font-size: 0.78rem;
+  color: var(--sub);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.apMeta strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.eduBox {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.eduBox:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+.eduIco {
+  width: 42px;
+  height: 42px;
+  background: rgba(129, 140, 248, 0.1);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.eduInfo h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.eduInfo p {
+  font-size: 0.79rem;
+  color: var(--sub);
+  margin: 0;
+}
+
+.cgpaTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 6px;
+  padding: 3px 10px;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  border-radius: 4px;
+  font-size: 0.74rem;
+  color: var(--accent2);
+  font-weight: 600;
+}
+
+.ic {
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: all 0.3s;
+  cursor: default;
+  width: 100%;
+}
+
+.ic:hover {
+  border-color: rgba(129, 140, 248, 0.35);
+  transform: translateX(5px);
+}
+
+.icTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.icTop h4 {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.ic p {
+  font-size: 0.8rem;
+  color: var(--sub);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .aboutSection {
+    padding: 90px 40px;
+  }
+
+  .aboutGrid {
+    gap: 50px;
+  }
+}
+
+@media (max-width: 960px) {
+  .aboutSection {
+    padding: 70px 24px;
+  }
+
+  .aboutGrid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 640px) {
+  .aboutSection {
+    padding: 60px 18px;
+  }
+
+  .stitle {
+    font-size: 1.7rem;
+  }
+
+  .aboutGallery {
+    gap: 10px;
+  }
+
+  .agItem {
+    flex: 0 0 160px;
+    height: 110px;
+  }
+}
