@@ -43,9 +43,9 @@
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 70px;
+  align-items: stretch;
   width: 100%;
 }
 
