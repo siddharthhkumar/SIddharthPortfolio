@@ -1,17 +1,12 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import styles from './Contact.module.css'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = function(e) {
     e.preventDefault()
     alert('Thank you for your message! I will get back to you soon.')
     setFormData({ name: '', email: '', subject: '', message: '' })
@@ -19,15 +14,14 @@ export default function Contact() {
 
   return (
     <section id="contact" className={styles.contactSection}>
-      <div className={styles.tag}>Let's Talk</div>
-      <h2 className={styles.stitle}>
-        Get In <em>Touch</em>
-      </h2>
+      <div className={styles.tag}>Let us Talk</div>
+      <h2 className={styles.stitle}>Get In <em>Touch</em></h2>
       <div className={styles.ctGrid}>
+
         <div>
-          <div className={styles.ctLede}>Open to BA / Data Analyst roles, research collaborations &amp; freelance analytics work.</div>
+          <div className={styles.ctLede}>Open to BA / Data Analyst roles, research collaborations and freelance analytics work.</div>
           <p className={styles.ctSub}>
-            I'm actively seeking <strong>Business Analyst</strong> and <strong>Data Analyst</strong> opportunities — internships, entry-level roles, or project-based work. If you have data that needs turning into insight, let's connect.
+            I am actively seeking <strong>Business Analyst</strong> and <strong>Data Analyst</strong> opportunities, internships, entry-level roles, or project-based work. If you have data that needs turning into insight, let us connect.
           </p>
           <div className={styles.ctLinks}>
             <a href="mailto:siddharthk1500@gmail.com" className={styles.clink}>
@@ -79,43 +73,24 @@ export default function Contact() {
           <form className={styles.ctForm} onSubmit={handleSubmit}>
             <div className={styles.fg}>
               <label className={styles.flabel}>Your Name</label>
-              <input type="text" className={styles.finput} placeholder="Jane Smith" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} required />
+              <input type="text" className={styles.finput} placeholder="Your name" value={formData.name} onChange={function(e) { setFormData({...formData, name: e.target.value}) }} required />
             </div>
             <div className={styles.fg}>
               <label className={styles.flabel}>Email</label>
-              <input
-                type="email"
-                className={styles.finput}
-                placeholder="jane@company.com"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-              />
+              <input type="email" className={styles.finput} placeholder="your@email.com" value={formData.email} onChange={function(e) { setFormData({...formData, email: e.target.value}) }} required />
             </div>
             <div className={styles.fg}>
               <label className={styles.flabel}>Subject</label>
-              <input
-                type="text"
-                className={styles.finput}
-                placeholder="BA Internship / Collaboration / Project..."
-                value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                required
-              />
+              <input type="text" className={styles.finput} placeholder="BA Internship / Collaboration / Project..." value={formData.subject} onChange={function(e) { setFormData({...formData, subject: e.target.value}) }} required />
             </div>
             <div className={styles.fg}>
               <label className={styles.flabel}>Message</label>
-              <textarea className={styles.ftextarea} placeholder="Tell me about the opportunity..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} required></textarea>
+              <textarea className={styles.ftextarea} placeholder="Tell me about the opportunity..." value={formData.message} onChange={function(e) { setFormData({...formData, message: e.target.value}) }} required></textarea>
             </div>
-            <button type="submit" className={styles.fsend}>
-              <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22 2 15 22 11 13 2 9 22 2" />
-              </svg>
-              Send Message
-            </button>
+            <button type="submit" className={styles.fsend}>Send Message</button>
           </form>
         </div>
+
       </div>
     </section>
   )
