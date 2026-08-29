@@ -42,9 +42,9 @@
 /* ── The statement ──────────────────────────────────────── */
 
 .statement {
-  font-size: clamp(2.4rem, 7vw, 6.2rem);
-  max-width: 15ch;
-  margin-bottom: 52px;
+  font-size: clamp(2.3rem, 5.6vw, 5rem);
+  max-width: 17ch;
+  margin-bottom: 56px;
 }
 
 .line {
@@ -59,7 +59,7 @@
 /* ── Support ────────────────────────────────────────────── */
 
 .support {
-  max-width: 52ch;
+  max-width: 54ch;
 }
 
 /* The work, listed. Each line is a thing that happened, so they are set as

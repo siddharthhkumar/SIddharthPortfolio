@@ -5,8 +5,11 @@
   opacity: 0;
   transition: opacity 1.6s var(--ease);
   /* Held off the type. The object supports the statement, never competes. */
-  -webkit-mask-image: radial-gradient(74% 84% at 76% 46%, #000 10%, transparent 76%);
-  mask-image: radial-gradient(74% 84% at 76% 46%, #000 10%, transparent 76%);
+  /* One mask layer. Two layers with mask-composite behaved inconsistently
+     between the -webkit- and standard syntaxes and nulled the whole thing out.
+     A single ellipse, weighted right, keeps the object out of the text column. */
+  -webkit-mask-image: radial-gradient(46% 62% at 78% 46%, #000 30%, transparent 76%);
+  mask-image: radial-gradient(46% 62% at 78% 46%, #000 30%, transparent 76%);
 }
 
 .ready {

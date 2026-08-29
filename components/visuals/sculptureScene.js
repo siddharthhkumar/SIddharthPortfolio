@@ -147,6 +147,9 @@ export async function createSculpture(canvas, options = {}) {
   const ndc = new THREE.Vector2(-2, -2)
   const projected = new THREE.Vector3()
 
+  let offsetX = 4.6
+  let lastFade = -1
+
   const resize = () => {
     measureSpan()
     const rect = canvas.getBoundingClientRect()
@@ -156,6 +159,9 @@ export async function createSculpture(canvas, options = {}) {
     renderer.setSize(width, height, false)
     camera.aspect = width / height
     camera.position.z = width < 900 ? 21 : width < 1250 ? 18 : 16
+    // Sits further right on wide screens, where the text column is narrower
+    // relative to the viewport.
+    offsetX = width < 1100 ? 1.8 : width < 1500 ? 2.9 : 3.6
     camera.updateProjectionMatrix()
   }
 
@@ -167,17 +173,15 @@ export async function createSculpture(canvas, options = {}) {
     ndc.y = -((e.clientY - rect.top) / rect.height) * 2 + 1
   }
 
-  // The object lives across the hero and the atlas. Its travel is measured
-  // from where the atlas actually ends rather than from a guessed multiple of
-  // the viewport, so it is still on screen when a discipline is chosen.
-  let span = window.innerHeight * 2
+  // The object belongs to the hero. It used to persist into the atlas so that
+  // choosing a discipline visibly re-formed it — but bright geometry sitting
+  // behind small figures made them unreadable, and the atlas already carries a
+  // drawn plate that responds to the same hover, legibly. So it leaves with
+  // the hero.
+  let span = window.innerHeight * 0.85
 
   const measureSpan = () => {
-    const atlas = document.getElementById('practice')
-    span = atlas
-      ? atlas.offsetTop + atlas.offsetHeight - window.innerHeight * 0.35
-      : window.innerHeight * 2
-    span = Math.max(window.innerHeight, span)
+    span = Math.max(360, window.innerHeight * 0.85)
   }
 
   const onScroll = () => {
@@ -247,8 +251,18 @@ export async function createSculpture(canvas, options = {}) {
     wireGeo.attributes.position.needsUpdate = true
 
 
-    // Full presence for the first two thirds of the travel, then it goes.
-    const fade = easedScroll < 0.62 ? 1 : Math.max(0, 1 - (easedScroll - 0.62) / 0.34)
+    // Gone well before the atlas arrives.
+    //
+    // The fade has to happen on the canvas, not on the materials: the six
+    // forms are opaque MeshStandardMaterial, so fading material opacity left
+    // them fully visible and sitting on top of the atlas figures.
+    const fade = Math.max(0, 1 - easedScroll * 1.35)
+    if (fade !== lastFade) {
+      canvas.style.opacity = fade.toFixed(3)
+      lastFade = fade
+    }
+    // Nothing to draw once it has gone.
+    if (fade <= 0.001) return
     wireMat.opacity = 0.16 * fade
 
     // Hover test, cheap: six meshes, once a frame.
