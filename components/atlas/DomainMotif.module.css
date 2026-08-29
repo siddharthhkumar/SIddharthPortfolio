@@ -1,6 +1,6 @@
 .plate {
   position: sticky;
-  top: 132px;
+  top: 148px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -49,8 +49,7 @@
 .trend,
 .headline,
 .progress,
-.lineLive,
-.idleRing {
+.lineLive {
   fill: none;
   stroke-linecap: square;
 }
@@ -64,12 +63,6 @@
 .axis {
   stroke: var(--ink);
   stroke-width: 1;
-}
-
-.idleRing {
-  stroke: var(--ink);
-  stroke-width: 1;
-  opacity: 0.35;
 }
 
 /* Marks and strokes that carry the accent */
@@ -225,6 +218,40 @@
   }
 }
 
+/* ── Resting state ──────────────────────────────────────── */
+
+.resting {
+  position: sticky;
+  top: 148px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.restingLabel {
+  font-size: 0.688rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-ghost);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.restingText {
+  font-size: 0.938rem;
+  line-height: 1.68;
+  color: var(--paper-dim);
+}
+
+.restingCue {
+  font-size: 0.688rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
 /* ── Caption ────────────────────────────────────────────── */
 
 .caption {
@@ -245,15 +272,10 @@
   color: var(--paper);
 }
 
-.capCovers,
-.capIdle {
+.capCovers {
   font-size: 0.688rem;
   color: var(--paper-ghost);
   margin-left: auto;
-}
-
-.capIdle {
-  margin-left: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

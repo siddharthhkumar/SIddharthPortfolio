@@ -48,11 +48,25 @@ export default function WorldFrame({ domain, lede, children, light = false }) {
         {/* The title is set by each world — the frame only positions it. */}
         <div className={styles.title}>{children.title}</div>
 
-        {lede && (
-          <Reveal variant="rise" delay={180}>
-            <p className={styles.lede}>{lede}</p>
+        {/* The masthead was a single column inside a much wider measure, which
+            left roughly half the page empty on every world. The right rail
+            carries what the discipline actually covers, so the width is used
+            rather than padded. */}
+        <div className={styles.headGrid}>
+          {lede && (
+            <Reveal variant="rise" delay={180}>
+              <p className={styles.lede}>{lede}</p>
+            </Reveal>
+          )}
+
+          <Reveal variant="rise" delay={260} as="ul" className={styles.rail}>
+            {domain.covers.map((c) => (
+              <li key={c} className={styles.railItem}>
+                <span className={styles.railLabel}>{c}</span>
+              </li>
+            ))}
           </Reveal>
-        )}
+        </div>
       </header>
 
       {children.body}

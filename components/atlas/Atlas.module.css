@@ -272,6 +272,9 @@
 
 .plate {
   min-width: 0;
+  /* Stretch to the row list so the sticky child has travel; without this it
+     scrolled up under the fixed bar. */
+  align-self: stretch;
 }
 
 /* ── Responsive ─────────────────────────────────────────── */

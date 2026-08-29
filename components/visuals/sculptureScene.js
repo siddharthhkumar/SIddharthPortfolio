@@ -44,18 +44,22 @@ export async function createSculpture(canvas, options = {}) {
   scene.add(root)
 
   // ── Light: a key, a soft fill, a cold rim ────────────────
-  const key = new THREE.DirectionalLight(0xfff4e6, 2.4)
-  key.position.set(5, 7, 6)
+  const key = new THREE.DirectionalLight(0xfff2e0, 2.1)
+  key.position.set(6, 8, 5)
   scene.add(key)
 
-  const fill = new THREE.HemisphereLight(0x9fb4c8, 0x0a0a0c, 0.55)
+  // Low fill and almost no ambient: the previous values washed every face to
+  // the same value, which is why the forms looked like flat card.
+  const fill = new THREE.HemisphereLight(0x8fa6bd, 0x070709, 0.28)
   scene.add(fill)
 
-  const rim = new THREE.DirectionalLight(0xbcd4ff, 1.1)
-  rim.position.set(-7, -2, -5)
+  // A hard cold rim is what separates one form from the next against a near
+  // black ground.
+  const rim = new THREE.DirectionalLight(0xa8c6ff, 2.2)
+  rim.position.set(-8, -1, -6)
   scene.add(rim)
 
-  scene.add(new THREE.AmbientLight(0xffffff, 0.12))
+  scene.add(new THREE.AmbientLight(0xffffff, 0.04))
 
   // ── Deterministic noise, so the composition is authored ──
   let seed = 20260907
@@ -76,17 +80,28 @@ export async function createSculpture(canvas, options = {}) {
     new THREE.BoxGeometry(0.22, 2.1, 1.5, 1, seg, seg), // Content — a column
   ]
 
-  const material = (hex) =>
-    new THREE.MeshStandardMaterial({
-      color: new THREE.Color(hex),
-      roughness: 0.62,
-      metalness: 0.22,
-      flatShading: false,
-    })
+  // Six finishes, not one. Alternating between a near-matte stone and a
+  // softly polished metal gives the composition internal contrast — some
+  // forms absorb the key light, others carry a highlight along an edge.
+  const FINISH = [
+    { roughness: 0.78, metalness: 0.04 },
+    { roughness: 0.28, metalness: 0.62 },
+    { roughness: 0.62, metalness: 0.18 },
+    { roughness: 0.34, metalness: 0.5 },
+    { roughness: 0.85, metalness: 0.02 },
+    { roughness: 0.42, metalness: 0.38 },
+  ]
 
-  const NEUTRAL = '#8d8b87'
+  const NEUTRAL = '#6e6b66'
   const forms = geometries.map((geo, i) => {
-    const mesh = new THREE.Mesh(geo, material(NEUTRAL))
+    const mesh = new THREE.Mesh(
+      geo,
+      new THREE.MeshStandardMaterial({
+        color: new THREE.Color(NEUTRAL),
+        roughness: FINISH[i].roughness,
+        metalness: FINISH[i].metalness,
+      })
+    )
     mesh.userData.index = i
     root.add(mesh)
     return mesh
@@ -235,7 +250,7 @@ export async function createSculpture(canvas, options = {}) {
       const accent = accentColors[i] || neutral
       tmpColor.copy(neutral).lerp(accent, current[i].lit * 0.85)
       m.material.color.copy(tmpColor)
-      m.material.roughness = 0.62 - current[i].lit * 0.16
+      m.material.roughness = FINISH[i].roughness - current[i].lit * 0.14
     }
 
     // Wires follow the forms.

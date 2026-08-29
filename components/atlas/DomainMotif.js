@@ -14,10 +14,26 @@ import styles from './DomainMotif.module.css'
 export default function DomainMotif({ domain }) {
   const motif = domain?.motif
 
+  // No domain under consideration: no empty box. The column says something
+  // instead.
+  if (!domain) {
+    return (
+      <aside className={styles.resting}>
+        <p className={`mono ${styles.restingLabel}`}>How these connect</p>
+        <p className={styles.restingText}>
+          The order is roughly how it happened. Technology first, then data,
+          then the business behind the numbers. Products came from wanting to
+          decide what got built. Audiences taught the rest.
+        </p>
+        <p className={`mono ${styles.restingCue}`}>Consider one &mdash;</p>
+      </aside>
+    )
+  }
+
   return (
     <figure
       className={styles.plate}
-      style={domain ? { '--d-accent': domain.accent } : undefined}
+      style={{ '--d-accent': domain.accent }}
       aria-hidden="true"
     >
       <div className={styles.frame}>
@@ -28,20 +44,13 @@ export default function DomainMotif({ domain }) {
           {motif === 'frames' && <Frames />}
           {motif === 'page' && <Page />}
           {motif === 'plate' && <Plate />}
-          {!motif && <Idle />}
         </svg>
       </div>
 
       <figcaption className={styles.caption}>
-        {domain ? (
-          <>
-            <span className={`mono ${styles.capIndex}`}>{domain.numeral}</span>
-            <span className={styles.capLabel}>{domain.label}</span>
-            <span className={`mono ${styles.capCovers}`}>{domain.covers.length} areas</span>
-          </>
-        ) : (
-          <span className={`mono ${styles.capIdle}`}>Consider a discipline</span>
-        )}
+        <span className={`mono ${styles.capIndex}`}>{domain.numeral}</span>
+        <span className={styles.capLabel}>{domain.label}</span>
+        <span className={`mono ${styles.capCovers}`}>{domain.covers.length} areas</span>
       </figcaption>
     </figure>
   )
@@ -168,17 +177,6 @@ function Plate() {
         />
       ))}
       <line x1="30" y1="124" x2="96" y2="124" className={styles.hair} />
-    </g>
-  )
-}
-
-/* ── Idle — the frame, waiting ──────────────────────────── */
-function Idle() {
-  return (
-    <g className={styles.draw}>
-      <line x1="24" y1="75" x2="176" y2="75" className={styles.hair} />
-      <line x1="100" y1="24" x2="100" y2="126" className={styles.hair} />
-      <circle cx="100" cy="75" r="26" className={styles.idleRing} />
     </g>
   )
 }
