@@ -1,0 +1,98 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.dot,
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: transform;
+}
+
+.on {
+  opacity: 1;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  z-index: 2;
+}
+
+.ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: transparent;
+  transition: width 0.42s var(--ease), height 0.42s var(--ease),
+    background-color 0.42s var(--ease), border-color 0.42s var(--ease), opacity 0.3s ease;
+}
+
+/* Over any ordinary interactive element — a small, quiet swell. */
+.touch {
+  width: 44px;
+  height: 44px;
+  border-color: var(--rule-mid);
+}
+
+/* Labelled states. The ring becomes a solid disc carrying a word. */
+.view,
+.enter,
+.open,
+.resume,
+.paper,
+.expand,
+.read,
+.email {
+  width: 84px;
+  height: 84px;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.read,
+.paper {
+  width: 92px;
+  height: 92px;
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.688rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  animation: labelIn 0.36s var(--ease) both;
+}
+
+@keyframes labelIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* When the ring is a filled disc the accent dot would muddy it. */
+.view ~ .dot,
+.open ~ .dot {
+  opacity: 0;
+}

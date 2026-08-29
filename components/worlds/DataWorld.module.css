@@ -1,0 +1,282 @@
+/* Everything in this world sits on a visible measure. */
+.plane {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(to right, rgba(var(--accent-rgb), 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(var(--accent-rgb), 0.035) 1px, transparent 1px);
+  background-size: 88px 88px;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 78%);
+  mask-image: linear-gradient(to bottom, #000, transparent 78%);
+}
+
+.title {
+  font-family: var(--font-mono), monospace;
+  font-size: clamp(2.6rem, 9vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+}
+
+.sectionLabel {
+  display: block;
+  font-size: 0.688rem;
+  color: var(--accent);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+}
+
+.capBay,
+.workBay {
+  position: relative;
+  z-index: 1;
+  padding-top: 76px;
+  padding-bottom: 0;
+}
+
+.workBay {
+  padding-bottom: 40px;
+}
+
+/* ── Instruments: a register, not chips ─────────────────── */
+
+.caps {
+  list-style: none;
+}
+
+.cap {
+  display: grid;
+  grid-template-columns: 44px 190px minmax(0, 1fr);
+  gap: 24px;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background-color 0.35s var(--ease), padding-left 0.45s var(--ease);
+}
+
+.cap:hover {
+  background: rgba(var(--accent-rgb), 0.04);
+  padding-left: 12px;
+}
+
+.capIndex {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+}
+
+.capName {
+  font-size: 1rem;
+  color: var(--paper);
+  letter-spacing: -0.01em;
+}
+
+.capNote {
+  font-size: 0.875rem;
+  color: var(--paper-faint);
+}
+
+/* ── Analyses ───────────────────────────────────────────── */
+
+.analyses {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 52px 44px;
+  margin-top: 40px;
+}
+
+.analysis {
+  min-width: 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.aHead {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aSubject {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+
+.aContext {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+}
+
+/* ── The pipeline ───────────────────────────────────────── */
+
+.pipe {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.pipeItem {
+  position: relative;
+  min-width: 0;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  padding: 0 6px 0 0;
+  text-align: left;
+}
+
+.tick {
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--rule-strong);
+  background: var(--ink);
+  position: relative;
+  z-index: 1;
+  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease),
+    transform 0.35s var(--ease);
+}
+
+.nodeDone .tick {
+  border-color: var(--accent);
+}
+
+.nodeOn .tick {
+  border-color: var(--accent);
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+.nodeLabel {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  transition: color 0.35s var(--ease);
+  letter-spacing: 0.05em;
+}
+
+.nodeOn .nodeLabel {
+  color: var(--accent);
+}
+
+.wire {
+  position: absolute;
+  left: 9px;
+  top: 4px;
+  width: 100%;
+  height: 1px;
+  background: var(--rule-mid);
+  z-index: 0;
+}
+
+/* ── Readout ────────────────────────────────────────────── */
+
+.readout {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 20px;
+  background: rgba(var(--accent-rgb), 0.05);
+  border-left: 1px solid var(--accent);
+  min-height: 6.4em;
+}
+
+.readoutKey {
+  font-size: 0.688rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  padding-top: 3px;
+}
+
+.readoutText {
+  font-size: 0.938rem;
+  line-height: 1.62;
+  color: var(--paper-dim);
+}
+
+/* ── Real dashboards only ───────────────────────────────── */
+
+.shot {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.shotImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  filter: grayscale(0.5) contrast(1.05);
+  transition: filter 0.7s var(--ease);
+}
+
+.shot:hover .shotImg {
+  filter: none;
+}
+
+.shotCap {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  .analyses {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .cap {
+    grid-template-columns: 34px 150px minmax(0, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .cap {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 4px 14px;
+  }
+
+  .capNote {
+    grid-column: 2;
+  }
+
+  .pipe {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+
+  .node {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+  }
+
+  .wire {
+    left: 4px;
+    top: 50%;
+    width: 1px;
+    height: 100%;
+  }
+
+  .readout {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    min-height: 0;
+  }
+}

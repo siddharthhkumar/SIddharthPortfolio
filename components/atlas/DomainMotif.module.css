@@ -1,0 +1,275 @@
+.plate {
+  position: sticky;
+  top: 132px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.frame {
+  border: 1px solid var(--rule);
+  background: var(--ink-raised);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  transition: border-color 0.6s var(--ease);
+}
+
+.plate:has(.capLabel) .frame {
+  border-color: color-mix(in srgb, var(--d-accent) 34%, transparent);
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Every plate is drawn in one hand: hairlines, one accent, no fills. */
+.draw {
+  --ink: var(--rule-strong);
+  --live: var(--d-accent, var(--accent));
+  animation: plateIn 0.55s var(--ease) both;
+}
+
+@keyframes plateIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hair,
+.axis,
+.rail,
+.callout,
+.trend,
+.headline,
+.progress,
+.lineLive,
+.idleRing {
+  fill: none;
+  stroke-linecap: square;
+}
+
+.hair {
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.5;
+}
+
+.axis {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.idleRing {
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+/* Marks and strokes that carry the accent */
+.trend,
+.rail,
+.headline,
+.progress,
+.lineLive {
+  stroke: var(--live);
+  stroke-width: 1.4;
+  stroke-dasharray: var(--len, 200);
+  stroke-dashoffset: var(--len, 200);
+  animation: strokeIn 0.9s var(--ease) 0.1s both;
+}
+
+.lineLive {
+  stroke-width: 2.4;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  animation: none;
+  opacity: 0.95;
+}
+
+@keyframes strokeIn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.mark {
+  fill: var(--live);
+  animation: pop 0.4s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 260ms);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+    transform-origin: center;
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Product — layered planes */
+.layer {
+  animation: liftIn 0.55s var(--ease) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+@keyframes liftIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.layerFace {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.layerLive {
+  fill: color-mix(in srgb, var(--live) 14%, transparent);
+  stroke: var(--live);
+  stroke-width: 1.2;
+}
+
+.callout {
+  stroke: var(--live);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+  fill: none;
+  opacity: 0.8;
+}
+
+/* Operations — process boxes */
+.node {
+  animation: liftIn 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 80ms + 120ms);
+}
+
+.box {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.boxLive {
+  fill: color-mix(in srgb, var(--live) 16%, transparent);
+  stroke: var(--live);
+  stroke-width: 1.3;
+}
+
+/* Social — content frames */
+.frameCard {
+  animation: liftIn 0.55s var(--ease) both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+.card {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1;
+  opacity: 0.65;
+}
+
+.cardLive {
+  fill: color-mix(in srgb, var(--live) 10%, transparent);
+  stroke: var(--live);
+  stroke-width: 1.2;
+}
+
+/* Content / Research — sheets */
+.sheet {
+  fill: rgba(240, 237, 232, 0.022);
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+
+.bar {
+  fill: var(--ink);
+  opacity: 0.55;
+  animation: growUp 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 55ms + 140ms);
+  transform-origin: center bottom;
+}
+
+.barLive {
+  fill: var(--live);
+  animation: growUp 0.5s var(--ease) both;
+  animation-delay: calc(var(--i) * 55ms + 140ms);
+  transform-origin: center bottom;
+}
+
+@keyframes growUp {
+  from {
+    transform: scaleY(0.05);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ── Caption ────────────────────────────────────────────── */
+
+.caption {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.capIndex {
+  font-size: 0.688rem;
+  color: var(--d-accent, var(--accent));
+  letter-spacing: 0.18em;
+}
+
+.capLabel {
+  font-size: 0.938rem;
+  letter-spacing: -0.014em;
+  color: var(--paper);
+}
+
+.capCovers,
+.capIdle {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  margin-left: auto;
+}
+
+.capIdle {
+  margin-left: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draw,
+  .layer,
+  .node,
+  .frameCard,
+  .mark,
+  .bar,
+  .barLive,
+  .trend,
+  .rail,
+  .headline,
+  .progress {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1;
+  }
+}

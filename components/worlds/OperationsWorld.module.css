@@ -1,0 +1,316 @@
+.title {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 10vw, 7.6rem);
+  line-height: 0.94;
+  letter-spacing: -0.052em;
+  text-transform: uppercase;
+}
+
+.label {
+  display: block;
+  font-size: 0.688rem;
+  color: var(--accent);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── The flow ───────────────────────────────────────────── */
+
+.flowBay {
+  padding-top: 72px;
+  padding-bottom: 0;
+}
+
+.flow {
+  position: relative;
+  margin-top: 44px;
+  padding-top: 30px;
+}
+
+.track,
+.charge {
+  position: absolute;
+  top: 36px;
+  left: 6px;
+  right: 6px;
+  height: 1px;
+}
+
+.track {
+  background: var(--rule-mid);
+}
+
+.charge {
+  background: var(--accent);
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
+  transition: transform 0.55s var(--ease);
+}
+
+.stations {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.station {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding-right: 12px;
+}
+
+/* A control box, not a dot. */
+.box {
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--rule-strong);
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  transition: border-color 0.4s var(--ease);
+}
+
+.boxCore {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+  transition: background-color 0.4s var(--ease);
+}
+
+.stationLit .box {
+  border-color: var(--accent);
+}
+
+.stationLit .boxCore {
+  background: var(--accent);
+}
+
+.stationLabel {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--paper-faint);
+  transition: color 0.4s var(--ease);
+}
+
+.stationLit .stationLabel {
+  color: var(--paper);
+}
+
+.stationNote {
+  font-size: 0.813rem;
+  line-height: 1.5;
+  color: var(--paper-ghost);
+}
+
+/* ── Capabilities ───────────────────────────────────────── */
+
+.capBay {
+  padding-top: 60px;
+  padding-bottom: 0;
+}
+
+.caps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.cap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 20px 15px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.capDot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  flex: 0 0 auto;
+}
+
+.capName {
+  font-size: 0.813rem;
+  color: var(--paper-dim);
+  letter-spacing: 0.02em;
+}
+
+/* ── Systems ────────────────────────────────────────────── */
+
+.sysBay {
+  padding-top: 72px;
+}
+
+.systems {
+  list-style: none;
+  margin-top: 34px;
+}
+
+.system {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 28px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.sysBar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.sysIndex {
+  font-size: 0.688rem;
+  color: var(--accent);
+}
+
+.sysRule {
+  width: 1px;
+  flex: 1;
+  min-height: 40px;
+  background: linear-gradient(to bottom, var(--rule-strong), transparent);
+}
+
+.sysMain {
+  min-width: 0;
+}
+
+.sysHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.sysName {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+
+.sysPeriod {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+}
+
+.sysRole {
+  margin-top: 5px;
+  font-size: 0.844rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sysBody {
+  margin-top: 14px;
+  font-size: 0.938rem;
+  line-height: 1.66;
+  color: var(--paper-dim);
+  max-width: 72ch;
+}
+
+/* Indicators read like a panel readout. */
+.indicators {
+  margin-top: 22px;
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 1px solid var(--rule);
+  width: fit-content;
+}
+
+.indicator {
+  padding: 12px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.indicator + .indicator {
+  border-left: 1px solid var(--rule);
+}
+
+.indValue {
+  font-size: 1.15rem;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+.indLabel {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  white-space: nowrap;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  .stations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 20px;
+  }
+
+  .track,
+  .charge {
+    display: none;
+  }
+
+  .caps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .stations {
+    grid-template-columns: 1fr;
+  }
+
+  .caps {
+    grid-template-columns: 1fr;
+  }
+
+  .system {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .sysBar {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .sysRule {
+    height: 1px;
+    min-height: 0;
+    width: auto;
+    flex: 1;
+    background: linear-gradient(to right, var(--rule-strong), transparent);
+  }
+
+  .indicators {
+    width: 100%;
+  }
+
+  .indicator {
+    padding: 10px 16px;
+    flex: 1;
+  }
+}

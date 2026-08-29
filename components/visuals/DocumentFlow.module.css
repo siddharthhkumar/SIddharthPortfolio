@@ -1,0 +1,287 @@
+.flow {
+  border-top: 1px solid var(--rule);
+  padding-top: 40px;
+}
+
+.pane {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: 44px;
+  align-items: stretch;
+  min-height: 320px;
+}
+
+/* ── The document ───────────────────────────────────────── */
+
+.page {
+  position: relative;
+  background: var(--ink-raised);
+  border: 1px solid var(--rule);
+  padding: 26px 26px 34px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pageMeta {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 20px;
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+}
+
+.line {
+  height: 4px;
+  background: var(--rule-mid);
+  transition: opacity 0.6s var(--ease), background-color 0.6s var(--ease),
+    transform 0.6s var(--ease);
+  transition-delay: calc(var(--i) * 14ms);
+}
+
+/* Stage 0 — the whole page is equally opaque, and equally useless. */
+.s0 .line {
+  opacity: 0.55;
+}
+
+/* Stage 1 — meaning: the page resolves into structure. */
+.s1 .line {
+  opacity: 0.75;
+  background: var(--rule-strong);
+}
+
+/* Stage 2 onward — retrieval: everything recedes except the passage. */
+.s2 .line,
+.s3 .line,
+.s4 .line {
+  opacity: 0.18;
+}
+
+.s2 .lineHit,
+.s3 .lineHit,
+.s4 .lineHit {
+  opacity: 1;
+  background: var(--accent);
+  transform: translateX(3px);
+}
+
+.pageCite {
+  position: absolute;
+  right: 22px;
+  bottom: 12px;
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+
+.s2 .pageCite,
+.s3 .pageCite,
+.s4 .pageCite {
+  opacity: 1;
+  color: var(--accent);
+}
+
+/* ── The exchange ───────────────────────────────────────── */
+
+.exchange {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+
+.ask,
+.reply {
+  border-left: 1px solid var(--rule);
+  padding-left: 22px;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease),
+    border-color 0.6s var(--ease);
+}
+
+.on {
+  opacity: 1;
+  transform: none;
+}
+
+.reply.on {
+  border-left-color: var(--accent);
+}
+
+.askLabel,
+.replyLabel {
+  display: block;
+  font-size: 0.688rem;
+  margin-bottom: 9px;
+}
+
+.replyLabel {
+  color: var(--accent);
+}
+
+.askText {
+  font-size: 1.05rem;
+  line-height: 1.45;
+  letter-spacing: -0.014em;
+  color: var(--paper);
+}
+
+.replyText {
+  font-size: 0.938rem;
+  line-height: 1.6;
+  color: var(--paper-dim);
+  margin-bottom: 12px;
+}
+
+/* The answer writes itself in, once. */
+.reply.on .typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type 1s var(--ease) both 0.15s;
+}
+
+@keyframes type {
+  from {
+    max-width: 0;
+  }
+  to {
+    max-width: 100%;
+  }
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.688rem;
+  color: var(--accent);
+}
+
+.source i {
+  width: 14px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* ── Stepper ────────────────────────────────────────────── */
+
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 36px;
+  border-top: 1px solid var(--rule);
+}
+
+.step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 16px 16px 0;
+  text-align: left;
+  border-top: 1px solid transparent;
+  margin-top: -1px;
+  transition: border-color 0.45s var(--ease);
+}
+
+.stepOn {
+  border-top-color: var(--accent);
+}
+
+.stepDone {
+  border-top-color: var(--rule-strong);
+}
+
+.stepNum {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  transition: color 0.4s var(--ease);
+}
+
+.stepOn .stepNum {
+  color: var(--accent);
+}
+
+.stepLabel {
+  font-size: 0.844rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--paper-faint);
+  transition: color 0.4s var(--ease);
+}
+
+.stepOn .stepLabel,
+.step:hover .stepLabel {
+  color: var(--paper);
+}
+
+.note {
+  margin-top: 22px;
+  font-size: 0.906rem;
+  line-height: 1.62;
+  color: var(--paper-dim);
+  max-width: 62ch;
+  min-height: 3em;
+}
+
+.caption {
+  display: block;
+  margin-top: 22px;
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .pane {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    min-height: 0;
+  }
+
+  .page {
+    min-height: 240px;
+  }
+
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .step {
+    padding-right: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .steps {
+    grid-template-columns: 1fr;
+    border-top: none;
+  }
+
+  .step {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+    border-top: 1px solid var(--rule);
+    padding: 13px 0;
+    margin-top: 0;
+  }
+
+  .note {
+    min-height: 0;
+  }
+}

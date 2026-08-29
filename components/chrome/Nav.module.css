@@ -1,0 +1,464 @@
+/* ═══════════════════════════════════════════════════════════
+   THE BAR
+   Three zones: identity, position, entry. No section list, no
+   border, no blur, no shadow.
+   ═══════════════════════════════════════════════════════════ */
+
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 320;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  padding: 26px var(--gutter);
+  transition: padding 0.55s var(--ease);
+}
+
+/* A flat scrim, not a frosted pane. Follows the world's ground. */
+.bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--chrome-scrim);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+  z-index: -1;
+}
+
+.lifted {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.lifted::before {
+  opacity: 1;
+}
+
+/* While the panel is open the bar sits above it, scrim off. */
+.barOver {
+  z-index: 420;
+}
+
+.barOver::before {
+  opacity: 0;
+}
+
+/* ── Identity ───────────────────────────────────────────── */
+
+.mark {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-self: start;
+  min-width: 0;
+}
+
+.markName {
+  font-size: 0.938rem;
+  font-weight: 500;
+  letter-spacing: -0.014em;
+  white-space: nowrap;
+}
+
+.markLine {
+  font-size: 0.688rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-ghost);
+  transition: color 0.4s var(--ease);
+  white-space: nowrap;
+}
+
+.mark:hover .markLine {
+  color: var(--accent);
+}
+
+/* ── Position ───────────────────────────────────────────── */
+
+.here {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  justify-self: center;
+  min-width: 0;
+}
+
+.hereDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c, var(--paper-ghost));
+  flex: 0 0 auto;
+  transition: background-color 0.5s var(--ease);
+}
+
+.hereNum {
+  font-size: 0.688rem;
+  letter-spacing: 0.2em;
+  color: var(--c, var(--accent));
+}
+
+.hereLabel {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--paper-dim);
+  white-space: nowrap;
+}
+
+/* ── Entry. A word, not an icon. ────────────────────────── */
+
+.trigger {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  min-height: 26px;
+}
+
+.triggerWord {
+  font-size: 0.813rem;
+  letter-spacing: -0.006em;
+  color: var(--paper);
+  transition: color 0.35s var(--ease);
+}
+
+.trigger:hover .triggerWord {
+  color: var(--accent);
+}
+
+.triggerRule {
+  width: 26px;
+  height: 1px;
+  background: var(--paper-ghost);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease), background-color 0.35s var(--ease);
+}
+
+.trigger:hover .triggerRule {
+  transform: scaleX(1.5);
+  background: var(--accent);
+}
+
+.barOver .triggerRule {
+  transform: scaleX(0.45);
+  background: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE PANEL
+   Opens as a plane arriving, not a menu unfolding: the sheet
+   wipes down while its rows rotate up out of depth.
+   ═══════════════════════════════════════════════════════════ */
+
+.panel {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--ink);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.72s var(--ease);
+  pointer-events: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panelOpen {
+  clip-path: inset(0 0 0 0);
+  pointer-events: auto;
+}
+
+.panelInner {
+  min-height: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 132px var(--gutter) 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 0.75fr);
+  gap: 76px;
+  align-content: center;
+  perspective: 1400px;
+}
+
+.panelLabel {
+  font-size: 0.688rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper-ghost);
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+}
+
+/* ── The six ────────────────────────────────────────────── */
+
+.domains {
+  list-style: none;
+}
+
+.domains li {
+  opacity: 0;
+  transform: translate3d(0, 34px, -60px) rotateX(9deg);
+  transform-origin: top center;
+  transition: opacity 0.5s var(--ease), transform 0.62s var(--ease);
+  transition-delay: calc(var(--i) * 52ms + 90ms);
+}
+
+.panelOpen .domains li {
+  opacity: 1;
+  transform: none;
+}
+
+.domain {
+  display: grid;
+  grid-template-columns: 52px minmax(0, auto) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px 22px;
+  padding: 15px 0;
+  transition: padding-left 0.5s var(--ease);
+}
+
+.domain:hover,
+.domain:focus-visible {
+  padding-left: 16px;
+}
+
+.domainNum {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--paper-ghost);
+  transition: color 0.4s var(--ease);
+}
+
+.domain:hover .domainNum,
+.domainOn .domainNum {
+  color: var(--c);
+}
+
+.domainName {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.9rem, 4.4vw, 3.1rem);
+  line-height: 1;
+  letter-spacing: -0.028em;
+  color: var(--paper);
+  transition: color 0.4s var(--ease);
+}
+
+.domain:hover .domainName,
+.domainOn .domainName {
+  color: var(--c);
+}
+
+.domainLine {
+  font-size: 0.844rem;
+  line-height: 1.5;
+  color: var(--paper-ghost);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  max-width: 46ch;
+}
+
+.domain:hover .domainLine,
+.domain:focus-visible .domainLine,
+.domainOn .domainLine {
+  opacity: 1;
+  transform: none;
+}
+
+/* Where you are, marked inside the list as well as in the bar. */
+.youAreHere {
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.688rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c);
+  margin-top: 6px;
+}
+
+.pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* ── The eight ──────────────────────────────────────────── */
+
+.pages {
+  align-self: start;
+  padding-top: 6px;
+}
+
+.pageList {
+  list-style: none;
+}
+
+.pageList li {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.45s var(--ease), transform 0.5s var(--ease);
+  transition-delay: calc(var(--i) * 34ms + 300ms);
+}
+
+.panelOpen .pageList li {
+  opacity: 1;
+  transform: none;
+}
+
+.page {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 9px 0;
+  transition: padding-left 0.4s var(--ease);
+}
+
+.page:hover,
+.page:focus-visible {
+  padding-left: 10px;
+}
+
+.pageLabel {
+  font-size: 0.938rem;
+  letter-spacing: -0.012em;
+  color: var(--paper-dim);
+  transition: color 0.35s var(--ease);
+}
+
+.page:hover .pageLabel,
+.page:focus-visible .pageLabel {
+  color: var(--accent);
+}
+
+.pageWithin {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+}
+
+.panelFoot {
+  margin-top: 40px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 520ms;
+}
+
+.panelOpen .panelFoot {
+  opacity: 1;
+}
+
+.footLink,
+.footNote {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+}
+
+.footLink {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 26px;
+  transition: color 0.35s var(--ease);
+}
+
+.footLink:hover {
+  color: var(--accent);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 1100px) {
+  .panelInner {
+    gap: 48px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* The position readout is the first thing to go — the panel carries it. */
+  .bar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .here {
+    display: none;
+  }
+
+  .panelInner {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    align-content: start;
+    padding-top: 120px;
+  }
+
+  .domain {
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 12px 0;
+  }
+
+  .domainLine {
+    grid-column: 2;
+    opacity: 1;
+    transform: none;
+    font-size: 0.813rem;
+  }
+
+  .youAreHere {
+    grid-column: 2;
+  }
+
+  .pages {
+    border-top: 1px solid var(--rule);
+    padding-top: 30px;
+  }
+
+  .pageList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .markLine {
+    letter-spacing: 0.1em;
+  }
+
+  .domainName {
+    font-size: 1.7rem;
+  }
+
+  .pageList {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion: the panel still opens, it just does not travel. */
+@media (prefers-reduced-motion: reduce) {
+  .domains li,
+  .pageList li {
+    transform: none;
+  }
+}

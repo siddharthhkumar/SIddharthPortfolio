@@ -1,0 +1,253 @@
+.title {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(3rem, 12vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: -0.038em;
+}
+
+.masthead {
+  margin-top: 16px;
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+.sectionLabel,
+.colLabel {
+  display: block;
+  font-size: 0.688rem;
+  color: var(--accent);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ── Opening: set in real columns ───────────────────────── */
+
+.openBay {
+  padding-top: 66px;
+  padding-bottom: 0;
+}
+
+.opening {
+  max-width: 92ch;
+}
+
+.thesis {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  line-height: 1.36;
+  letter-spacing: -0.016em;
+  color: var(--paper);
+  columns: 2;
+  column-gap: 52px;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* A drop cap. The one flourish this world gets. */
+.thesis::first-letter {
+  float: left;
+  font-size: 3.1em;
+  line-height: 0.82;
+  padding: 0.06em 0.1em 0 0;
+  color: var(--accent);
+}
+
+/* ── Kinds ──────────────────────────────────────────────── */
+
+.kindsBay {
+  padding-top: 72px;
+  padding-bottom: 0;
+}
+
+.kindsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 56px;
+}
+
+.kindsCol {
+  min-width: 0;
+}
+
+.kinds {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.kind {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.5;
+  letter-spacing: -0.016em;
+  color: var(--paper-dim);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: color 0.4s var(--ease), padding-left 0.45s var(--ease);
+}
+
+.kind:hover {
+  color: var(--accent);
+  padding-left: 10px;
+}
+
+/* ── Artifacts ──────────────────────────────────────────── */
+
+.artBay {
+  padding-top: 78px;
+  padding-bottom: 0;
+}
+
+.artifacts {
+  list-style: none;
+  margin-top: 30px;
+}
+
+.artifact {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.artRail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.artNum {
+  font-size: 0.688rem;
+  color: var(--paper-ghost);
+}
+
+.artKind {
+  font-size: 0.688rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.artBody {
+  min-width: 0;
+  max-width: 68ch;
+}
+
+.artTitle {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.35rem, 2.8vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+  margin-bottom: 14px;
+}
+
+.artText {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--paper-dim);
+  margin-bottom: 12px;
+}
+
+.artMeta {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+}
+
+.artLink {
+  margin-top: 16px;
+  font-size: 0.875rem;
+}
+
+/* ── Index ──────────────────────────────────────────────── */
+
+.indexBay {
+  padding-top: 76px;
+}
+
+.index {
+  list-style: none;
+  margin-top: 28px;
+}
+
+.entry {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.entryHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.entryName {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.32rem;
+  font-weight: 400;
+  letter-spacing: -0.018em;
+  flex: 0 0 auto;
+}
+
+/* Dot leaders, like a table of contents. */
+.leaders {
+  flex: 1;
+  height: 1px;
+  border-bottom: 1px dotted var(--rule-strong);
+  transform: translateY(-3px);
+}
+
+.entryPeriod {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+  flex: 0 0 auto;
+}
+
+.entryBody {
+  margin-top: 10px;
+  font-size: 0.938rem;
+  line-height: 1.7;
+  color: var(--paper-dim);
+  max-width: 76ch;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .thesis {
+    columns: 1;
+    text-align: left;
+  }
+
+  .kindsGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .artifact {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .artRail {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 620px) {
+  .entryHead {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+  }
+
+  .leaders {
+    display: none;
+  }
+}

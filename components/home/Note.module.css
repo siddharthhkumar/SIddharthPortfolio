@@ -1,0 +1,79 @@
+.grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 68px;
+  align-items: start;
+}
+
+.plate {
+  /* Dropped out of alignment with the text on purpose. */
+  margin-top: 46px;
+}
+
+.figure {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+  overflow: hidden;
+}
+
+.portrait {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: grayscale(1) contrast(1.06) brightness(0.9);
+  transition: filter 0.9s var(--ease);
+}
+
+.figure:hover .portrait {
+  filter: grayscale(0.35) contrast(1.02) brightness(1);
+}
+
+.body {
+  min-width: 0;
+}
+
+.index {
+  color: var(--accent);
+  margin-right: 10px;
+}
+
+.lede {
+  margin-top: 28px;
+  font-size: clamp(1.35rem, 2.6vw, 2rem);
+  line-height: 1.24;
+  letter-spacing: -0.022em;
+  max-width: 30ch;
+  margin-bottom: 26px;
+}
+
+.para {
+  max-width: 64ch;
+  margin-bottom: 30px;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+}
+
+.fact {
+  font-size: 0.75rem;
+  color: var(--paper-ghost);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .plate {
+    margin-top: 0;
+    max-width: 240px;
+  }
+}

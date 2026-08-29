@@ -1,0 +1,143 @@
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ── Leaving: the destination's atmosphere expands from the click ── */
+
+.out {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.out .wash {
+  animation: washIn 620ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.out .plate {
+  animation: plateIn 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Arriving: it dissolves off the new page ── */
+
+.in {
+  opacity: 1;
+  visibility: visible;
+}
+
+.in .wash {
+  animation: washOut 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.in .plate {
+  animation: plateOut 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── The atmosphere itself ── */
+
+.wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      120% 120% at var(--ox, 50%) var(--oy, 50%),
+      color-mix(in srgb, var(--world-accent) 26%, var(--world-ground)) 0%,
+      var(--world-ground) 62%
+    ),
+    var(--world-ground);
+  /* Grown from the click point, not slid in from an edge. */
+  clip-path: circle(0% at var(--ox, 50%) var(--oy, 50%));
+  will-change: clip-path, filter;
+}
+
+@keyframes washIn {
+  from {
+    clip-path: circle(0% at var(--ox) var(--oy));
+    filter: blur(14px);
+  }
+  to {
+    clip-path: circle(150% at var(--ox) var(--oy));
+    filter: blur(0);
+  }
+}
+
+@keyframes washOut {
+  from {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    clip-path: circle(150% at 50% 50%);
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+/* ── The world's mark, briefly ── */
+
+.plate {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  mix-blend-mode: difference;
+}
+
+.numeral {
+  font-size: 0.75rem;
+  letter-spacing: 0.24em;
+  color: var(--paper);
+}
+
+.label {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}
+
+@keyframes plateIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.94);
+    filter: blur(10px);
+  }
+  46% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+
+@keyframes plateOut {
+  from {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -22px, 0) scale(1.04);
+    filter: blur(8px);
+  }
+}
+
+/* Reduced motion never reaches these states — the provider plain-pushes —
+   but if a preference flips mid-flight, nothing is left animating. */
+@media (prefers-reduced-motion: reduce) {
+  .veil {
+    display: none;
+  }
+}
