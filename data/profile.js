@@ -5,11 +5,20 @@ export const profile = {
   name: 'Siddharth Kumar',
   shortName: 'SIDDHARTH',
 
-  // Hero positioning
-  eyebrow: 'Business · Data · Product · Growth · Content',
-  headline: 'Turning business data, product thinking and audience insight into decisions that hold up.',
-  supporting:
-    'B.Tech Information Technology graduate working across analytics, business and operations, product prototyping, digital growth and content — backed by hands-on fluency in SQL, Python, Excel, Power BI and applied AI.',
+  // The opening line. His research found that 32 of 110 students misjudged
+  // their own stress; DocuMind came from noticing document search is slower
+  // than people assume; the GDSC result came from testing the message instead
+  // of trusting it. One habit, six places.
+  opening: 'Most of my work starts where an assumption stops holding.',
+
+  // Not a summary — the actual things. Concrete beats adjectives.
+  ledger: [
+    'Recruitment data at an edtech startup.',
+    'Logistics KPIs and the dashboards behind them.',
+    'A four-person product team, and the prototype that came first.',
+    'A university community built from nothing.',
+    'A paper on why students misjudge their own stress.',
+  ],
 
   // Compact, verifiable proof points shown under the hero
   proof: [
@@ -27,7 +36,7 @@ export const profile = {
     image: '/images/podium.jpeg',
     imageAlt: 'Siddharth Kumar presenting at Gautam Buddha University',
     intro:
-      'I am a B.Tech Information Technology graduate from Gautam Buddha University. I work where business questions meet data, product and audience — analysing operational information, prototyping products, and building communities that actually grow.',
+      'I studied Information Technology at Gautam Buddha University. Most of what I have done since has been closer to working out what an organisation is actually looking at, and whether the thing it believes is true.',
     body:
       'That range is deliberate. Analysing recruitment and logistics data taught me how a business really performs; leading a four-person product team and building a document-intelligence tool on my own taught me how to turn a problem into something usable; growing a university community from zero taught me how people respond to what you put in front of them. The common thread is the same in all three: find the question worth answering, get the evidence, and make the answer clear enough to act on.',
     pillars: [
@@ -64,7 +73,7 @@ export const profile = {
     phoneHref: 'tel:+916202969798',
     location: 'Noida, Uttar Pradesh, India',
     availability:
-      'Open to roles across data and business analysis, operations, product, digital growth and content — plus research collaborations and freelance analytics work.',
+      'Looking for work in data, operations, product or content. Happy to talk about research separately.',
   },
 
   social: {

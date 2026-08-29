@@ -1,4 +1,4 @@
-import { DM_Sans, DM_Mono, Instrument_Serif } from 'next/font/google'
+import { Archivo, Fraunces, IBM_Plex_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Nav from '@/components/chrome/Nav'
 import SideRail from '@/components/chrome/SideRail'
@@ -9,22 +9,26 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 import { TransitionProvider } from '@/components/transition/TransitionProvider'
 import profile from '@/data/profile'
 
-const sans = DM_Sans({
+// Archivo over the usual grotesques: it has a squarer, more engineered
+// skeleton that holds up at label sizes without reading as a UI default.
+const sans = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '700'],
+  weight: ['400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const display = Instrument_Serif({
+// Fraunces carries optical sizing, so the same face can be a quiet 18px
+// caption and a 7rem headline without looking like two different decisions.
+const display = Fraunces({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: ['400', '500'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
 })
 
-const mono = DM_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500'],
   variable: '--font-mono',
@@ -32,7 +36,7 @@ const mono = DM_Mono({
 })
 
 const DESCRIPTION =
-  'B.Tech Information Technology graduate working across business and data analysis, operations, product prototyping, digital growth and content. Lead author of peer-reviewed machine-learning research.'
+  'Siddharth Kumar works across data, operations, product, content and research. Recruitment and logistics analysis, a four-person product team, a university community built from nothing, and a peer-reviewed paper on student stress.'
 
 export const metadata = {
   metadataBase: new URL('https://s-iddharth-portfolio.vercel.app'),
@@ -63,13 +67,13 @@ export const metadata = {
     siteName: 'Siddharth Kumar',
     title: 'Siddharth Kumar — Product, Data & Business',
     description:
-      'The number on the dashboard is never the whole story. Work across business, data, product, operations and digital growth.',
+      'Most of my work starts where an assumption stops holding. Data, operations, product, social, content and research.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Siddharth Kumar — Product, Data & Business',
     description:
-      'The number on the dashboard is never the whole story.',
+      'Most of my work starts where an assumption stops holding.',
   },
   robots: { index: true, follow: true },
 }

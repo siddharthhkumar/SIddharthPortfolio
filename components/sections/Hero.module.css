@@ -59,20 +59,35 @@
 /* ── Support ────────────────────────────────────────────── */
 
 .support {
-  max-width: 56ch;
-  border-left: 1px solid var(--rule-mid);
-  padding-left: 24px;
+  max-width: 52ch;
 }
 
-.supportText {
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  line-height: 1.66;
+/* The work, listed. Each line is a thing that happened, so they are set as
+   a register rather than a paragraph — you read down, not across. */
+.ledger {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.ledgerItem {
+  font-size: clamp(0.938rem, 1.3vw, 1.08rem);
+  line-height: 1.5;
   color: var(--paper-dim);
+  padding: 7px 0;
+  transition: color 0.4s var(--ease);
 }
 
-.name {
+.ledgerItem + .ledgerItem {
+  border-top: 1px solid var(--rule);
+}
+
+.ledger:hover .ledgerItem {
+  color: var(--paper-ghost);
+}
+
+.ledger .ledgerItem:hover {
   color: var(--paper);
-  font-weight: 500;
 }
 
 /* ── Foot ───────────────────────────────────────────────── */

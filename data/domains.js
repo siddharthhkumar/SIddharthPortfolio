@@ -52,7 +52,7 @@ export const domains = [
     ground: '#0c0b09',
     register: 'condensed',
     motif: 'line',
-    line: 'Running the thing end to end — the people, the process and the throughput.',
+    line: 'Running the thing — the people, the process, and what actually moves through it.',
     covers: ['KPI tracking', 'Process analysis', 'Workflow coordination', 'Programme delivery'],
     experienceIds: ['gaint', 'brightrays'],
     leadershipIds: ['sih', 'mirage'],

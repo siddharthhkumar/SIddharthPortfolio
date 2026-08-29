@@ -26,22 +26,26 @@ export default function Hero() {
 
         <h1 className={`display ${styles.statement}`}>
           <Reveal as="span" variant="focus" delay={180} className={styles.line}>
-            The number on the
+            Most of my work starts
           </Reveal>
-          <Reveal as="span" variant="focus" delay={290} className={styles.line}>
-            dashboard is never
+          <Reveal as="span" variant="focus" delay={300} className={styles.line}>
+            where an <em className={styles.accentWord}>assumption</em>
           </Reveal>
-          <Reveal as="span" variant="focus" delay={400} className={styles.line}>
-            the <em className={styles.accentWord}>whole story</em>.
+          <Reveal as="span" variant="focus" delay={420} className={styles.line}>
+            stops holding.
           </Reveal>
         </h1>
 
-        <Reveal variant="rise" delay={620} className={styles.support}>
-          <p className={styles.supportText}>
-            I&rsquo;m <strong className={styles.name}>{profile.name}</strong>. I work across
-            analysis, product and growth &mdash; finding the question worth answering, then
-            building the thing that answers it.
-          </p>
+        {/* The work itself, listed. No adjectives, no summary sentence — the
+            specifics do more than a positioning line would. */}
+        <Reveal variant="rise" delay={640} className={styles.support}>
+          <ul className={styles.ledger}>
+            {profile.ledger.map((item) => (
+              <li key={item} className={styles.ledgerItem}>
+                {item}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </div>
 

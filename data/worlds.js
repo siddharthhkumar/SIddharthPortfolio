@@ -32,7 +32,7 @@ export const dataWorld = {
           'How was the business actually performing, and where was the recruitment pipeline losing people?',
         Data: 'Business and operational records, plus recruitment funnel and pipeline data.',
         Analysis:
-          'SQL and analytical tools used to interpret the records and read the funnel end to end.',
+          'SQL and analytical tools used to read the records, and the funnel, all the way through.',
         Insight:
           'Trends across the operational information, and the bottlenecks sitting inside the pipeline.',
         Decision:
@@ -149,7 +149,7 @@ export const productWorld = {
     {
       id: 'documind-ai',
       kind: 'Solo project',
-      standing: 'Designed and built independently, end to end',
+      standing: 'Designed and built it alone',
       beats: [
         {
           key: 'observation',
@@ -220,7 +220,7 @@ export const operationsWorld = {
       name: 'Smart India Hackathon',
       period: 'Jul – Sep 2025',
       role: 'Head of Public Relations',
-      body: 'Directed PR and media for a national-level innovation hackathon, running a media team and an outreach operation end to end.',
+      body: 'Ran PR and media for a national innovation hackathon — the team, the outreach, and everything that had to land on time.',
       indicators: [
         { value: '1,000+', label: 'Participants reached' },
         { value: '10', label: 'Person media team' },

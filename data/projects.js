@@ -67,7 +67,7 @@ export const projects = [
     built:
       'A retrieval-augmented document platform: upload PDFs, DOCX or text files, search them semantically, and get streamed answers with a citation back to the exact source passage and page. Built as a full-stack application with a Next.js interface over a FastAPI service.',
     role: {
-      title: 'Designed and built independently, end to end',
+      title: 'Designed and built it alone',
       points: [
         'Identified the problem during research and recognised it as a practical, recurring gap.',
         'Designed the full product workflow — document ingestion, semantic search, grounded question answering.',

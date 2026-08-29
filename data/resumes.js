@@ -29,7 +29,7 @@ export const resumeGroups = [
         role: 'Operations',
         targets: 'Operations Analyst · Business Operations · Programme Operations',
         when:
-          'Use this when the role runs on process and execution — monitoring KPIs, tracking operational performance and coordinating teams and programmes end to end.',
+          'Use this when the role runs on process and execution — monitoring KPIs, tracking operational performance, and keeping teams and programmes moving.',
         file: '/resumes/siddharth-operations.pdf',
       },
     ],

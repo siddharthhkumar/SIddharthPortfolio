@@ -13,11 +13,11 @@ export const experience = [
     current: true,
     track: 'growth',
     summary:
-      'Working at the intersection of technology, data, AI, automation and digital growth.',
+      'Working across data, AI, automation and digital growth, on how digital systems get planned and run.',
     bullets: [
       'Work with cross-functional teams across data, AI, automation and digital growth, seeing how business processes and digital systems are planned, executed and scaled.',
       'Build practical understanding of SEO, digital systems and AI-enabled workflows in a live commercial setting.',
-      'Apply data-driven decision-making to day-to-day digital operations.',
+      'Use evidence rather than instinct in day-to-day digital operations.',
     ],
     tags: ['SEO', 'AI Workflows', 'Digital Operations', 'Cross-functional'],
   },
@@ -87,7 +87,7 @@ export const experience = [
     bullets: [
       'Coordinated content, social media campaigns and audience engagement across digital channels.',
       'Applied analytical thinking and a technical background to understand campaign performance.',
-      'Supported campaign execution end to end for community-facing initiatives.',
+      'Saw campaigns through from brief to published, for community-facing work.',
     ],
     tags: ['Content Coordination', 'Social Campaigns', 'Campaign Analytics'],
   },

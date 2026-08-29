@@ -43,12 +43,14 @@
 
 /* Over any ordinary interactive element — a small, quiet swell. */
 .touch {
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   border-color: var(--rule-mid);
 }
 
-/* Labelled states. The ring becomes a solid disc carrying a word. */
+/* Labelled states. The ring stays small and the word sits beside it — a
+   large filled disc following the pointer is the thing every portfolio does,
+   and it covers the work it is meant to describe. */
 .view,
 .enter,
 .open,
@@ -57,16 +59,10 @@
 .expand,
 .read,
 .email {
-  width: 84px;
-  height: 84px;
+  width: 9px;
+  height: 9px;
   background: var(--accent);
   border-color: var(--accent);
-}
-
-.read,
-.paper {
-  width: 92px;
-  height: 92px;
 }
 
 .label {
@@ -82,17 +78,23 @@
 @keyframes labelIn {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(-50%) translateX(-5px);
   }
 
   to {
     opacity: 1;
-    transform: none;
+    transform: translateY(-50%);
   }
 }
 
 /* When the ring is a filled disc the accent dot would muddy it. */
 .view ~ .dot,
-.open ~ .dot {
+.enter ~ .dot,
+.open ~ .dot,
+.resume ~ .dot,
+.paper ~ .dot,
+.expand ~ .dot,
+.read ~ .dot,
+.email ~ .dot {
   opacity: 0;
 }
