@@ -1,0 +1,95 @@
+.rail {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  z-index: 80;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms var(--ease-soft);
+}
+
+/* Arrives once the hero is behind you. */
+.rail[data-past='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  list-style: none;
+}
+
+/* The hit area is generous; the mark inside it is not. */
+.tick {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 3px 2px;
+}
+
+.line {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--rule-strong);
+  opacity: 0.5;
+  transition:
+    width 380ms var(--ease),
+    background-color 300ms var(--ease-soft),
+    opacity 300ms var(--ease-soft);
+}
+
+.tick:hover .line {
+  width: 26px;
+  opacity: 1;
+}
+
+.tick[data-on='true'] .line {
+  width: 30px;
+  background: var(--accent);
+  opacity: 1;
+}
+
+/* The names arrive together when the rail is hovered, so it reads as one
+   object opening rather than twelve labels flickering one at a time. */
+.name {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition:
+    opacity 300ms var(--ease-soft),
+    transform 380ms var(--ease),
+    color 260ms var(--ease-soft);
+}
+
+.rail:hover .name,
+.rail:focus-within .name {
+  opacity: 1;
+  transform: none;
+}
+
+.tick[data-on='true'] .name {
+  color: var(--accent);
+}
+
+.tick:hover .name {
+  color: var(--ink);
+}
+
+/* No margin to live in, and a page being thumbed rather than navigated. */
+@media (max-width: 1099px) {
+  .rail {
+    display: none;
+  }
+}

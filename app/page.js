@@ -1,34 +1,60 @@
-import dynamic from 'next/dynamic'
-import Hero from '@/components/sections/Hero'
-import Atlas from '@/components/atlas/Atlas'
-import Proof from '@/components/home/Proof'
-import Note from '@/components/home/Note'
-import Close from '@/components/home/Close'
-import { DomainFocusProvider } from '@/components/atlas/DomainFocus'
-
-// Never blocks first paint, and never ships to a device that will not run it.
-const Sculpture = dynamic(() => import('@/components/visuals/Sculpture'))
+import Hero from '@/components/hero/Hero'
+import Selected from '@/components/work/Selected'
+import Ledger from '@/components/sections/Ledger'
+import Experience from '@/components/sections/Experience'
+import Toolkit from '@/components/sections/Toolkit'
+import Thinking from '@/components/sections/Thinking'
+import Leadership from '@/components/sections/Leadership'
+import Recognition from '@/components/sections/Recognition'
+import About from '@/components/sections/About'
+import Answers from '@/components/sections/Answers'
+import Resume from '@/components/sections/Resume'
+import TableOfContents from '@/components/nav/TableOfContents'
 
 /**
- * The hub.
+ * The home page.
  *
- * Not a stack of resume sections — a statement, six ways in, the proof, the
- * short version, and a close. Hero and Atlas share a focus context so that
- * considering a discipline lights its node in the hero object.
+ * A server component from top to bottom — the only client JavaScript on the
+ * page is the nav, the theme toggle, the tagline, the cassette transport, the
+ * view counter and the single reveal observer. Everything else, including
+ * every diagram and the colour-grading demo, is HTML, CSS and SVG.
+ *
+ * The order is an argument, not a template:
+ *
+ *   Hero          who he is and what he does, in words anyone can read
+ *   Résumé         all six, immediately. A recruiter who came for one
+ *                  document should not have to scroll past a case study to
+ *                  find it; everyone else scrolls straight past it.
+ *   Ledger         the figures, large — the fastest possible read of the CV
+ *   Selected       the work those figures came out of
+ *   Thinking       how he works, and why the range is one habit not four
+ *   Experience     where that happened, and for whom
+ *   Leadership     the range that no job asked for
+ *   Recognition    the two documents a stranger can open and check
+ *   Toolkit        what it was all done with
+ *   About         the short version, for anyone who scrolled to it first
+ *   Currently     the part that is supposed to go out of date
+ *   Answers       the four or five specific questions, answered plainly
+ *   Résumé        the way out, into an application
+ *
+ * Contact is the footer, in app/layout.js — a separate section above it would
+ * be the same four links twice.
  */
 export default function Home() {
   return (
     <main id="main">
-      <DomainFocusProvider>
-        {/* Held across the hero and the atlas, so choosing a discipline
-            visibly re-forms the object rather than doing it off-screen. */}
-        <Sculpture />
-        <Hero />
-        <Atlas />
-      </DomainFocusProvider>
-      <Proof />
-      <Note />
-      <Close />
+      <Hero />
+      <TableOfContents />
+      <Resume />
+      <Ledger />
+      <Selected />
+      <Thinking />
+      <Experience />
+      <Leadership />
+      <Recognition />
+      <Toolkit />
+      <About />
+      <Answers />
     </main>
   )
 }

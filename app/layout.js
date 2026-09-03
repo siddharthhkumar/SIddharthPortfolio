@@ -1,132 +1,257 @@
-import { Archivo, Fraunces, IBM_Plex_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Nav from '@/components/chrome/Nav'
-import SideRail from '@/components/chrome/SideRail'
-import AccentSwitch from '@/components/chrome/AccentSwitch'
-import Cursor from '@/components/chrome/Cursor'
 import Footer from '@/components/chrome/Footer'
-import { ThemeProvider } from '@/contexts/ThemeContext'
-import { TransitionProvider } from '@/components/transition/TransitionProvider'
+import Reveal from '@/components/motion/RevealRoot'
+import Keys from '@/components/chrome/Keys'
+import Rail from '@/components/chrome/Rail'
+import World from '@/components/world/World'
+import CursorLabel from '@/components/motion/CursorLabel'
 import profile from '@/data/profile'
+import projects from '@/data/projects'
+import research from '@/data/research'
+import experience from '@/data/experience'
+import { faqs } from '@/data/faq'
 
-// Archivo over the usual grotesques: it has a squarer, more engineered
-// skeleton that holds up at label sizes without reading as a UI default.
-const sans = Archivo({
+/**
+ * Two fallbacks, no display face.
+ *
+ * The page is set in the system family — SF Pro on macOS and iOS — with
+ * hierarchy coming from weight and tracking rather than from a second
+ * typeface. Nothing here is a brand font; these two are only what the stacks
+ * in globals.css fall through to off Apple platforms.
+ *
+ * Inter stands in for SF Pro and JetBrains Mono for SF Mono. Both are close
+ * enough that the page reads the same on Windows as it does on a Mac, and
+ * both are self-hosted by next/font, so there is no render-blocking round
+ * trip to Google.
+ */
+const text = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-sans',
+  variable: '--font-text',
   display: 'swap',
+  // Not preloaded, and deliberately. Both stacks in globals.css put the
+  // system face first, so on macOS and iOS this file is never used — and a
+  // font that is preloaded is fetched whether it is used or not. Leaving it
+  // to be fetched on demand means Apple visitors download none of it. Off
+  // Apple it is fetched as the page paints, and next/font's metric-adjusted
+  // fallback keeps the swap from moving anything.
+  preload: false,
 })
 
-// Fraunces carries optical sizing, so the same face can be a quiet 18px
-// caption and a 7rem headline without looking like two different decisions.
-const display = Fraunces({
+const mono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const mono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
   variable: '--font-mono',
   display: 'swap',
+  // 700 is here for the name in the hero greeting — without the real cut the
+  // browser synthesises a bold, which smears at 12px.
+  weight: ['400', '500', '700'],
+  // Same reasoning as above: SF Mono resolves first on Apple platforms.
+  preload: false,
 })
 
+const SITE = 'https://s-iddharth-portfolio.vercel.app'
+
 const DESCRIPTION =
-  'Siddharth Kumar works across data, operations, product, content and research. Recruitment and logistics analysis, a four-person product team, a university community built from nothing, and a peer-reviewed paper on student stress.'
+  'Siddharth Kumar works across product and operations in Noida, India. He led a four-person build of an AI financial platform from prototype to delivery, tracked KPIs and built dashboards for a logistics operation, ran a ten-person media team for a national hackathon, and is lead author of a peer-reviewed machine-learning paper.'
 
 export const metadata = {
-  metadataBase: new URL('https://s-iddharth-portfolio.vercel.app'),
+  metadataBase: new URL(SITE),
   title: {
-    default: 'Siddharth Kumar — Product, Data & Business',
+    default: 'Siddharth Kumar — Product & Operations',
     template: '%s — Siddharth Kumar',
   },
   description: DESCRIPTION,
+  applicationName: 'Siddharth Kumar',
+  authors: [{ name: 'Siddharth Kumar', url: SITE }],
+  creator: 'Siddharth Kumar',
+  publisher: 'Siddharth Kumar',
+  category: 'portfolio',
   keywords: [
     'Siddharth Kumar',
-    'Business Analyst',
-    'Data Analyst',
-    'Product Manager',
-    'Operations Analyst',
-    'SEO Content Writer',
-    'Social Media Manager',
-    'Power BI',
-    'SQL',
-    'Portfolio',
+    'associate product manager',
+    'APM portfolio India',
+    'product analyst',
+    'product operations',
+    'operations analyst',
+    'business operations',
+    'programme operations',
+    'KPI tracking dashboards',
+    'business analyst India',
+    'MIS executive',
+    'Gautam Buddha University',
+    'Noida product operations',
   ],
-  authors: [{ name: 'Siddharth Kumar' }],
-  creator: 'Siddharth Kumar',
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en': '/',
+      'en-IN': '/',
+    },
+  },
   openGraph: {
-    type: 'website',
+    type: 'profile',
+    firstName: 'Siddharth',
+    lastName: 'Kumar',
     locale: 'en_IN',
-    url: '/',
+    url: SITE,
     siteName: 'Siddharth Kumar',
-    title: 'Siddharth Kumar — Product, Data & Business',
-    description:
-      'Most of my work starts where an assumption stops holding. Data, operations, product, social, content and research.',
+    title: 'Siddharth Kumar — Product & Operations',
+    description: DESCRIPTION,
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Siddharth Kumar' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Siddharth Kumar — Product, Data & Business',
+    title: 'Siddharth Kumar — Product & Operations',
     description:
-      'Most of my work starts where an assumption stops holding.',
+      'Two shipped products, a four-person build led end to end, KPIs and dashboards for a logistics operation, and a ten-person team run for a national hackathon.',
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large' },
+  },
 }
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0b0b0c',
-  colorScheme: 'dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f2ece1' },
+    { media: '(prefers-color-scheme: dark)', color: '#16150f' },
+  ],
 }
 
-// Structured data. Every field maps to something already verified in data/.
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: profile.name,
-  jobTitle: 'Business, Data & Product',
-  description: DESCRIPTION,
-  email: `mailto:${profile.contact.email}`,
-  alumniOf: {
-    '@type': 'CollegeOrUniversity',
-    name: profile.education.institution,
-  },
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Noida',
-    addressRegion: 'Uttar Pradesh',
-    addressCountry: 'IN',
-  },
-  sameAs: [profile.social.linkedin, profile.social.github, profile.social.instagram],
+/**
+ * Structured data. Four graphs, each for a different reader: Person for
+ * search engines, ScholarlyArticle so the paper is citable, FAQPage so answer
+ * engines have literal pairs to quote, and CreativeWork per project.
+ *
+ * Every value is pulled from data/ — nothing is asserted twice.
+ */
+function schema() {
+  const person = {
+    '@type': 'Person',
+    '@id': `${SITE}/#person`,
+    name: profile.name,
+    jobTitle: 'Product & Operations',
+    description: DESCRIPTION,
+    url: SITE,
+    email: `mailto:${profile.contact.email}`,
+    telephone: profile.contact.phone,
+    knowsLanguage: ['English', 'German'],
+    alumniOf: { '@type': 'CollegeOrUniversity', name: profile.education.institution },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Noida',
+      addressRegion: 'Uttar Pradesh',
+      addressCountry: 'IN',
+    },
+    knowsAbout: [
+      'Product management',
+      'Product operations',
+      'Problem framing',
+      'Prototyping',
+      'Cross-functional coordination',
+      'Operations analysis',
+      'KPI definition and tracking',
+      'Process analysis',
+      'Business analysis',
+      'SQL',
+      'Power BI',
+      'Machine learning',
+    ],
+    sameAs: [
+      profile.social.linkedin,
+      profile.social.github,
+      profile.social.medium,
+      profile.social.instagram,
+    ].filter(Boolean),
+    worksFor: experience
+      .filter((r) => r.current)
+      .map((r) => ({ '@type': 'Organization', name: r.company })),
+  }
+
+  const article = {
+    '@type': 'ScholarlyArticle',
+    '@id': `${SITE}/#research`,
+    headline: research.title,
+    abstract: research.abstract,
+    author: research.authors.map((a) => ({ '@type': 'Person', name: a.name })),
+    datePublished: '2026-05',
+    isPartOf: { '@type': 'Periodical', name: 'Journal of Intelligent Computing System' },
+    publisher: { '@type': 'Organization', name: research.publisher },
+    url: `${SITE}${research.paper}`,
+  }
+
+  const works = projects.map((p) => ({
+    '@type': 'CreativeWork',
+    name: p.name,
+    description: p.problem,
+    creator: { '@id': `${SITE}/#person` },
+    keywords: p.stack.join(', '),
+    ...(p.links?.[0] ? { url: p.links[0].href } : {}),
+  }))
+
+  const faq = {
+    '@type': 'FAQPage',
+    '@id': `${SITE}/#faq`,
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      person,
+      article,
+      faq,
+      ...works,
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE}/#website`,
+        url: SITE,
+        name: `${profile.name} — Portfolio`,
+        description: DESCRIPTION,
+        publisher: { '@id': `${SITE}/#person` },
+        inLanguage: 'en',
+      },
+    ],
+  }
 }
+
+// Runs before first paint, so a stored dark choice never flashes paper-white.
+const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}`
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`${text.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema()) }}
         />
-        <ThemeProvider>
-          <TransitionProvider>
-            <a href="#main" className="skip">
-              Skip to content
-            </a>
-            <Cursor />
-            <Nav />
-            <SideRail />
-            {children}
-            <Footer />
-            <AccentSwitch />
-          </TransitionProvider>
-        </ThemeProvider>
+        <a href="#main" className="skip">
+          Skip to content
+        </a>
+        <World />
+        <Reveal />
+        <Keys />
+        <CursorLabel />
+        <Nav />
+        <Rail />
+        {children}
+        <Footer />
       </body>
     </html>
   )

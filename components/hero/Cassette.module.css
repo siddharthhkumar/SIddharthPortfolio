@@ -1,0 +1,261 @@
+/* A cassette, drawn rather than photographed: a squared shell, a window with
+   two spools behind it, and a printed label taking up most of the face. */
+.case {
+  width: min(300px, 30vh, 100%);
+  margin: 0;
+}
+.shell {
+  position: relative;
+  padding: 14px;
+  border-radius: 6px;
+  background: linear-gradient(168deg, var(--card), var(--paper-2));
+  border: 1px solid var(--rule-2);
+  box-shadow: var(--shadow-m);
+  transition: transform 460ms var(--ease), box-shadow 460ms var(--ease);
+}
+.case:hover .shell {
+  transform: translateY(-3px) rotate(0.4deg);
+  box-shadow: var(--shadow-l);
+}
+/* Two screw wells, top corners. The kind of detail that only registers if
+   you look, which is the point of it. */
+.shell::before,
+.shell::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.28);
+}
+.shell::before {
+  left: 9px;
+}
+.shell::after {
+  right: 9px;
+}
+/* ── Window and spools ──────────────────────────────────────────────── */
+.window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  border-radius: var(--r-s);
+  /* Fixed, not themed. Tape window is dark plastic in both themes — deriving
+     it from --ink turned it into a bright panel on charcoal, which is the one
+     thing a cassette window never is. */
+  background: #1b1811;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+}
+/* The tape running between the spools. */
+.tape {
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  top: 50%;
+  height: 5px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    180deg,
+    rgba(90, 62, 34, 0.9),
+    rgba(56, 38, 20, 0.95)
+  );
+  border-radius: 1px;
+}
+.reel {
+  position: relative;
+  z-index: 1;
+  display: block;
+  line-height: 0;
+}
+/* Light enough to read against the near-black window — at the real colour
+   of magnetic tape the spools disappeared into the shell. */
+.wound {
+  fill: #77522c;
+  transition: r 420ms linear;
+}
+.hub {
+  fill: var(--paper-2);
+}
+.reel[data-spinning='true'] svg {
+  animation: spin 3.4s linear infinite;
+}
+.reel[data-side='left'][data-spinning='true'] svg {
+  animation-duration: 4.6s;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel svg {
+    animation: none !important;
+  }
+}
+/* ── The printed label ──────────────────────────────────────────────── */
+.label {
+  padding: 10px 12px 9px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+.labelHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--accent);
+  margin-bottom: 8px;
+}
+.side {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.stamp {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+.title {
+  font-family: var(--display);
+  font-size: 1.0625rem;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.artist {
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+/* Ruled, the way a blank cassette label is printed. The rules are drawn on
+   the note rather than on the whole card, at exactly the handwriting's 18px
+   line box — so each line sits on a rule instead of the ruling drifting
+   underneath whatever heading happens to be above it. */
+.lines {
+  margin-top: 5px;
+  background-image: linear-gradient(
+    transparent 17px,
+    var(--rule) 17px,
+    var(--rule) 18px
+  );
+  background-size: 100% 18px;
+}
+/* Written on the label, not printed on it. */
+.hand {
+  font-size: 0.8125rem;
+  line-height: 18px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+/* ── Transport ──────────────────────────────────────────────────────── */
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.play {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  transition: background-color 220ms var(--ease-soft), transform 200ms var(--ease);
+}
+.play:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: scale(1.05);
+}
+.play:active {
+  transform: scale(0.96);
+}
+/* One rail, drawn from a gradient stop so the filled portion needs no extra
+   element. Thumb is deliberately small — this is a tape counter, not a
+   media player chrome. */
+.rail {
+  flex: 1;
+  min-width: 0;
+  height: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.rail::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--p),
+    var(--rule-2) var(--p) 100%
+  );
+}
+.rail::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--accent) 0 var(--p),
+    var(--rule-2) var(--p) 100%
+  );
+}
+.rail::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--card);
+}
+.rail::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--card);
+  border-radius: 50%;
+  background: var(--ink);
+}
+.rail:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.clock {
+  font-family: var(--mono);
+  flex: none;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+.slash {
+  opacity: 0.5;
+}
+.failed {
+  margin-top: 9px;
+  font-size: 0.8125rem;
+  color: var(--accent);
+}
+.caption {
+  margin-top: 10px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}

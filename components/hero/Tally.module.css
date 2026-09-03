@@ -1,0 +1,145 @@
+.tally {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* One hundred and ten equal columns, so the count runs edge to edge of the
+   measure rather than stopping wherever 110 fixed-width marks happen to end.
+   Below a certain width it folds to two rows and then three — the marks stay
+   the same size throughout, because a tally that rescaled with the viewport
+   would stop reading as a count of individual things. */
+.marks {
+  display: grid;
+  grid-template-columns: repeat(110, minmax(0, 1fr));
+  align-items: end;
+  row-gap: 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mark {
+  justify-self: center;
+  width: 2px;
+  height: 22px;
+  border-radius: 1px;
+  background: var(--ink);
+  opacity: 0.16;
+  transform-origin: bottom;
+  transition:
+    opacity 420ms var(--ease-soft),
+    transform 420ms var(--ease),
+    background-color 420ms var(--ease-soft);
+}
+
+.mark[data-hit='true'] {
+  background: var(--accent);
+  opacity: 0.55;
+  height: 30px;
+}
+
+/* Hovering or focusing the line of text raises the thirty-two it is talking
+   about. The relationship is the whole point of the object, so it should be
+   possible to see it rather than only read it. */
+.tally:hover .mark[data-hit='true'],
+.tally:focus-within .mark[data-hit='true'] {
+  opacity: 1;
+  transform: scaleY(1.18);
+}
+
+.tally:hover .mark[data-hit='false'],
+.tally:focus-within .mark[data-hit='false'] {
+  opacity: 0.09;
+}
+
+/* A shallow stagger left to right, so the change reads as a sweep across the
+   count rather than everything switching at once. */
+.mark[data-hit='true'] {
+  transition-delay: calc(var(--i) * 3ms);
+}
+
+.caption {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  color: var(--ink-2);
+}
+
+.count {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1;
+  color: var(--ink);
+  transition: color 320ms var(--ease-soft);
+}
+
+.text {
+  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+.strong {
+  font-weight: 500;
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 var(--accent);
+  transition: color 320ms var(--ease-soft);
+}
+
+.tally:hover .count,
+.tally:hover .strong {
+  color: var(--accent);
+}
+
+.go {
+  margin-left: auto;
+  font-family: var(--label);
+  font-size: 0.9rem;
+  color: var(--ink-3);
+  transition: transform 320ms var(--ease), color 320ms var(--ease-soft);
+}
+
+.tally:hover .go {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark {
+    transition: none;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* 110 folds evenly into two rows of 55; 37 columns give three rows with the
+   last one short, which is what a tally sheet looks like anyway. */
+@media (max-width: 1000px) {
+  .marks {
+    grid-template-columns: repeat(55, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .marks {
+    grid-template-columns: repeat(37, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .mark {
+    height: 16px;
+  }
+
+  .mark[data-hit='true'] {
+    height: 22px;
+  }
+
+  .caption {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+
+  .go {
+    margin-left: 0;
+  }
+}

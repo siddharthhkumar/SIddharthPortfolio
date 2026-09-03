@@ -148,14 +148,14 @@ export const projects = [
     problem:
       'Tournament-wide data across dozens of matches is hard to read without a structure that lets you move between team, player and match level.',
     built:
-      'An interactive Power BI dashboard analysing FIFA World Cup 2022 match data — goals, possession, player performance and team statistics.',
+      'An interactive Power BI dashboard analysing FIFA World Cup 2022 match data — expected goals (xG), finishing difference against xG, possession, player performance and team statistics.',
     role: {
       title: 'Solo build',
       points: ['Dataset preparation, KPI selection and interactive report design.'],
     },
     stack: ['Power BI', 'Data Modelling', 'Data Visualisation'],
     outcome:
-      'Tournament-level insight that drills from team performance down to individual match and player statistics.',
+      'Tournament-level insight that drills from team performance down to individual match and player statistics, with finishing measured against expected goals rather than raw scoreline.',
     links: [],
   },
 ]

@@ -1,0 +1,16 @@
+.views {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.n {
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}

@@ -1,0 +1,358 @@
+/* Case study chrome. One stylesheet for both kinds of case study, so the
+   project pages and the research page are visibly the same publication. */
+
+.page {
+  padding-top: calc(var(--nav-h) + clamp(38px, 6vw, 72px));
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: color 240ms var(--ease-soft);
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.backArrow {
+  transition: transform 300ms var(--ease);
+}
+
+.back:hover .backArrow {
+  transform: translateX(-4px);
+}
+
+/* ── Masthead ───────────────────────────────────────────────────────── */
+
+.masthead {
+  padding-top: clamp(28px, 4vw, 46px);
+  padding-bottom: clamp(34px, 5vw, 56px);
+}
+
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin-bottom: 20px;
+}
+
+.kickerItem {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.kickerAccent {
+  color: var(--tone);
+}
+
+.title {
+  margin-bottom: 22px;
+}
+
+.standfirst {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 450;
+  letter-spacing: -0.018em;
+  line-height: 1.34;
+  color: var(--ink-2);
+  max-width: 40ch;
+}
+
+/* ── The facts rail ─────────────────────────────────────────────────── */
+
+.rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border-block: 1px solid var(--rule);
+  margin-bottom: clamp(44px, 6vw, 72px);
+}
+
+.railCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--paper);
+}
+
+.railKey {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.railVal {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+/* ── Body sections ──────────────────────────────────────────────────── */
+
+.section {
+  padding-block: clamp(30px, 4vw, 46px);
+  border-top: 1px solid var(--rule);
+}
+
+.sectionHead {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 40px);
+  align-items: start;
+}
+
+.sectionLabel {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding-top: 7px;
+  position: sticky;
+  top: calc(var(--nav-h) + 28px);
+}
+
+.sectionBody {
+  min-width: 0;
+}
+
+.h {
+  margin-bottom: 16px;
+}
+
+.p {
+  font-size: 1.0625rem;
+  line-height: 1.66;
+  color: var(--ink-2);
+  max-width: 62ch;
+}
+
+.p + .p {
+  margin-top: 16px;
+}
+
+/* A pulled-out sentence. Used once or twice per case study, never more. */
+.pull {
+  margin: 26px 0;
+  padding-left: 20px;
+  border-left: 3px solid var(--tone);
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+  font-weight: 650;
+  letter-spacing: -0.022em;
+  line-height: 1.32;
+  color: var(--ink);
+  max-width: 44ch;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  max-width: 62ch;
+}
+
+.list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.68em;
+  width: 9px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+/* Numbered, for architecture steps where the order is the information. */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 64ch;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 14px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--tone);
+  padding-top: 4px;
+}
+
+.caveat {
+  margin-top: 22px;
+  padding: 15px 18px;
+  background: var(--paper-2);
+  border-left: 2px solid var(--rule-strong);
+  border-radius: 0 var(--r-s) var(--r-s) 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 58ch;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+}
+
+.tags li {
+  padding: 5px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+/* ── Reflection ─────────────────────────────────────────────────────── */
+
+.reflect {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.reflectCell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 24px;
+  background: var(--card);
+}
+
+.reflectKey {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.reflectVal {
+  font-size: 0.9375rem;
+  line-height: 1.62;
+  color: var(--ink-2);
+}
+
+/* ── Links out ──────────────────────────────────────────────────────── */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color 240ms var(--ease-soft), transform 240ms var(--ease);
+}
+
+.link:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-1px);
+}
+
+.linkGhost {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--rule-2);
+}
+
+.linkGhost:hover {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ── Next ───────────────────────────────────────────────────────────── */
+
+.next {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-block: clamp(34px, 5vw, 54px);
+  border-top: 1px solid var(--rule-2);
+}
+
+.nextLabel {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.nextTitle {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 400;
+  color: var(--ink);
+  transition: color 260ms var(--ease-soft);
+}
+
+.next:hover .nextTitle {
+  color: var(--tone);
+}
+
+@media (max-width: 860px) {
+  .sectionHead {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .sectionLabel {
+    position: static;
+  }
+}

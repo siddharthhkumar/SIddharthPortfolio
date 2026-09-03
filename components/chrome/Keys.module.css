@@ -1,0 +1,111 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  background: rgba(20, 17, 12, 0.4);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  animation: fade 200ms var(--ease-soft);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+/* A printed index card: squared corners, a hairline, a slight tilt. */
+.card {
+  width: min(420px, 100%);
+  padding: 22px 24px 18px;
+  background: var(--card);
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-s);
+  box-shadow: var(--shadow-l);
+  transform: rotate(-0.5deg);
+  animation: lift 320ms var(--ease);
+}
+
+@keyframes lift {
+  from {
+    opacity: 0;
+    transform: rotate(-0.5deg) translateY(14px) scale(0.98);
+  }
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.close {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.close:hover {
+  color: var(--accent);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.keys {
+  flex: none;
+  display: flex;
+  gap: 5px;
+  width: 62px;
+}
+
+.kbd {
+  font-family: var(--mono);
+  display: grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding-inline: 6px;
+  font-size: 0.75rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule-2);
+  border-bottom-width: 2px;
+  border-radius: var(--r-s);
+}
+
+.what {
+  font-size: 0.9rem;
+  color: var(--ink-2);
+}
+
+.foot {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}

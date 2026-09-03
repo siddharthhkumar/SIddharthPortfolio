@@ -1,0 +1,205 @@
+.lead {
+  display: flex;
+  flex-direction: column;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: clamp(20px, 3.5vw, 52px);
+  padding: clamp(30px, 4vw, 46px) 0;
+  border-top: 1px solid var(--rule-2);
+  padding-left: 0;
+  border-left: 2px solid transparent;
+  transition:
+    border-color 280ms var(--ease-soft),
+    padding-left 280ms var(--ease);
+}
+
+.role:hover {
+  border-left-color: var(--accent);
+  padding-left: clamp(10px, 1.5vw, 18px);
+}
+
+.role:last-child {
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.when {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* The year, set in the display face and large enough to scan down the page
+   without reading anything else. */
+.year {
+  font-family: var(--display);
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.span {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.now {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 3px 9px 3px 7px;
+  border-radius: 999px;
+  background: var(--accent-wash);
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--live);
+}
+
+.company {
+  margin-bottom: 5px;
+}
+
+.title {
+  font-family: var(--label);
+  font-size: 0.78125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+}
+
+/* Already the metadata ink; dimming it further put it under 4.5:1. */
+.place {
+  color: var(--ink-3);
+}
+
+.summary {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 58ch;
+}
+
+.bullets {
+  list-style: none;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  max-width: 62ch;
+}
+
+.bullets li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.9375rem;
+  line-height: 1.58;
+  color: var(--ink-2);
+}
+
+.bullets li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.66em;
+  width: 8px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+  list-style: none;
+}
+
+.tags li {
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+
+/* ── The compact remainder ──────────────────────────────────────────── */
+
+.also {
+  margin-top: clamp(34px, 4vw, 52px);
+}
+
+.alsoLabel {
+  margin-bottom: 14px;
+}
+
+.compact {
+  list-style: none;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(12px, 3vw, 52px);
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background-color 280ms var(--ease-soft);
+}
+
+.line:hover {
+  background: var(--accent-wash);
+}
+
+.lineWhen {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lineWho {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.lineWhat {
+  font-size: 0.875rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 860px) {
+  .role,
+  .line {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .when {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .line {
+    gap: 3px;
+    padding-block: 15px;
+  }
+}

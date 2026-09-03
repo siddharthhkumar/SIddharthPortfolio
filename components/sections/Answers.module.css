@@ -1,0 +1,113 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+.title {
+  max-width: 13ch;
+  position: sticky;
+  top: calc(var(--nav-h) + 34px);
+}
+
+.list {
+  border-top: 1px solid var(--rule-2);
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* The default disclosure triangle is replaced by a plus that becomes a minus,
+   which is the one affordance a reader never has to learn. */
+.q {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 22px;
+  align-items: baseline;
+  gap: 10px;
+  padding: 17px 0;
+  cursor: pointer;
+  list-style: none;
+  transition: color 240ms var(--ease-soft);
+}
+
+.q::-webkit-details-marker {
+  display: none;
+}
+
+.q:hover {
+  color: var(--accent);
+}
+
+.n {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+}
+
+.qText {
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  color: inherit;
+}
+
+.mark {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  justify-self: end;
+  transform: translateY(2px);
+}
+
+.mark::before,
+.mark::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.55;
+  transition: transform 320ms var(--ease), opacity 240ms var(--ease-soft);
+}
+
+.mark::after {
+  transform: rotate(90deg);
+}
+
+.item[open] .mark::after {
+  transform: rotate(0deg);
+}
+
+.item[open] .mark::before,
+.item[open] .mark::after {
+  opacity: 1;
+}
+
+.item[open] .q {
+  color: var(--accent);
+}
+
+.a {
+  padding: 0 32px 22px 50px;
+  font-size: 0.9875rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+  max-width: 66ch;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    position: static;
+  }
+
+  .a {
+    padding-left: 50px;
+    padding-right: 0;
+  }
+}

@@ -1,0 +1,162 @@
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
+}
+
+/* A print, taped to the page. Slight rotation, generous bottom margin the way
+   a photographic print is mounted. */
+.print {
+  position: relative;
+  margin: 0;
+  padding: 14px 14px 0;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-m);
+  transform: rotate(-0.7deg);
+  transition: transform 620ms var(--ease);
+}
+
+.print:hover {
+  transform: rotate(0deg);
+}
+
+.tape {
+  position: absolute;
+  z-index: 2;
+  width: 74px;
+  height: 22px;
+  background: var(--tape);
+  opacity: 0.85;
+  /* Torn ends, cut with a mask rather than drawn. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent calc(100% - 3px));
+  mask-image: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent calc(100% - 3px));
+}
+
+.tape[data-corner='tl'] {
+  top: -10px;
+  left: -18px;
+  transform: rotate(-28deg);
+}
+
+.tape[data-corner='br'] {
+  bottom: 22px;
+  right: -20px;
+  transform: rotate(-28deg);
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  padding: 13px 2px 15px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+}
+
+/* ── The documents ──────────────────────────────────────────────────── */
+
+.side {
+  padding-top: 8px;
+}
+
+.title {
+  margin-bottom: 18px;
+  max-width: 14ch;
+}
+
+.lede {
+  margin-bottom: 30px;
+}
+
+.docs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.doc {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-m);
+  transition:
+    border-color 280ms var(--ease-soft),
+    transform 280ms var(--ease),
+    box-shadow 280ms var(--ease);
+}
+
+.doc:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-s);
+}
+
+.docIcon {
+  color: var(--ink-3);
+  padding-top: 2px;
+}
+
+.doc:hover .docIcon {
+  color: var(--accent);
+}
+
+.docText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.docName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.docIssuer {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.docNote {
+  margin-top: 5px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.docGo {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.doc:hover .docGo {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .tape[data-corner='br'] {
+    right: -10px;
+  }
+}

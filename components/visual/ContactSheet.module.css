@@ -1,0 +1,131 @@
+.sheet {
+  margin: 0;
+  padding: 12px 0;
+  background: #17150f;
+  border-radius: var(--r-s);
+  box-shadow: var(--shadow-m);
+  overflow: hidden;
+}
+
+/* Sprocket rails, top and bottom. A repeating gradient, not an image. */
+.rail {
+  display: block;
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0 7px,
+    rgba(238, 232, 218, 0.8) 7px 15px,
+    transparent 15px 24px
+  );
+  -webkit-mask-image: linear-gradient(#000, #000);
+  opacity: 0.9;
+}
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  padding: 10px;
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: #0d0c08;
+  aspect-ratio: 3 / 2;
+}
+
+/* A double frame spans two columns and the gap between them, so it needs a
+   wider ratio to finish at the same height as its neighbours — otherwise the
+   row it is in grows and the sheet fills with black gaps. */
+.frame[data-wide='true'] {
+  grid-column: span 2;
+  aspect-ratio: 3.06 / 1;
+}
+
+.n {
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  left: 7px;
+  font-family: var(--label);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  color: #e8a33c;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Contact sheets are proofs, not prints — slightly flat until you look. */
+  filter: saturate(0.82) contrast(1.04);
+  transition: filter 620ms var(--ease), transform 900ms var(--ease);
+}
+
+.frame:hover .img {
+  filter: none;
+  transform: scale(1.03);
+}
+
+/* The caption arrives on hover, and on focus for anyone using a keyboard. */
+.cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 22px 9px 8px;
+  background: linear-gradient(transparent, rgba(8, 7, 4, 0.9));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 380ms var(--ease-soft), transform 380ms var(--ease);
+}
+
+.frame:hover .cap,
+.frame:focus-within .cap {
+  opacity: 1;
+  transform: none;
+}
+
+.capTitle {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #f4efe3;
+}
+
+.capOrg {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: rgba(244, 239, 227, 0.75);
+}
+
+.foot {
+  display: block;
+  padding: 10px 12px 4px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgba(244, 239, 227, 0.72);
+}
+
+/* The weights are four doubles and four singles, which tile exactly into
+   rows of four and rows of six — 2+2+2 / 1+1+1+1+2. */
+@media (min-width: 1200px) {
+  .strip {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 780px) {
+  .strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .frame[data-wide='true'] {
+    grid-column: span 2;
+  }
+}

@@ -1,0 +1,61 @@
+.btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: var(--ink-2);
+  border: 1px solid transparent;
+  transition:
+    background-color 220ms var(--ease-soft),
+    color 220ms var(--ease-soft),
+    border-color 220ms var(--ease-soft);
+}
+
+.btn:hover {
+  background: var(--accent-wash);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+/* Inert until the stored choice is known. */
+.btn[data-ready='false'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+}
+
+.icon svg {
+  display: block;
+}
+
+/* Three glyphs stacked in one 20×20 box; only one is ever opaque, and the
+   swap is a dissolve rather than a pop. */
+.sun,
+.moon {
+  opacity: 0;
+  transform-origin: 10px 10px;
+  transition: opacity 260ms var(--ease-soft), transform 400ms var(--ease);
+}
+
+.icon svg > * {
+  grid-area: 1 / 1;
+}
+
+.sun,
+.moon {
+  /* Both occupy the same coordinate space inside the single SVG, so stacking
+     is inherent — only visibility needs managing. */
+  transform: scale(0.6) rotate(-40deg);
+}
+
+.btn[data-mode='light'] .sun,
+.btn[data-mode='dark'] .moon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}

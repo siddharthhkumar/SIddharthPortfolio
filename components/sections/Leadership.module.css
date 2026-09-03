@@ -1,0 +1,172 @@
+.head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(20px, 4vw, 60px);
+  align-items: end;
+  margin-bottom: clamp(42px, 5vw, 66px);
+}
+
+.title {
+  max-width: 15ch;
+}
+
+.lede {
+  padding-bottom: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+/* Hairline separators come from the grid gap showing through, so there is no
+   double rule where two cells meet. */
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(24px, 2.8vw, 32px);
+  background: var(--paper-2);
+  transition: background-color 340ms var(--ease-soft);
+}
+
+.item:hover {
+  background: var(--card);
+}
+
+.itemHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.role {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.period {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.headline {
+  font-family: var(--display);
+  font-size: 1.35rem;
+  line-height: 1.24;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+  text-wrap: pretty;
+}
+
+.org {
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px dotted var(--rule-2);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font-family: var(--display);
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.statLabel {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.details {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.details li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.details li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 0.66em;
+  width: 7px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+@media (max-width: 860px) {
+  .head {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+/* ── The contact sheet ──────────────────────────────────────────────── */
+
+/* Breaks the container and runs the full width of the window, with only a
+   hair of margin so the sheet reads as an object laid on the page rather than
+   a panel inside a column. */
+.sheet {
+  margin-top: clamp(46px, 6vw, 78px);
+  padding-inline: clamp(12px, 1.6vw, 24px);
+}
+
+/* A link out of a card, where one exists. */
+.out {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dotted var(--rule-2);
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: gap 260ms var(--ease);
+}
+
+.out:hover {
+  gap: 12px;
+}

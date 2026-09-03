@@ -1,0 +1,54 @@
+/* The anchor tracks the pointer; the pill inside it is offset, so the label
+   sits beside the cursor rather than under it. */
+
+.anchor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 120;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pill {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: var(--shadow-m);
+
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: top left;
+  transition:
+    opacity 180ms var(--ease-soft),
+    transform 260ms var(--ease);
+}
+
+.pill[data-on='true'] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.arrow {
+  opacity: 0.6;
+}
+
+/* Belt and braces: the component already refuses to mount for these, but if
+   the media query changes after load the pill goes away rather than sticking. */
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .anchor {
+    display: none;
+  }
+}

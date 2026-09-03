@@ -1,0 +1,268 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(72px, 10vw, 132px);
+}
+
+/* Three columns: a narrow margin of metadata, the writing, and the visual.
+   The visual spans the full width underneath both, which is what lets it be
+   genuinely large without the text turning into a caption. */
+.feature {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr) minmax(0, 1.05fr);
+  column-gap: clamp(24px, 3.5vw, 48px);
+  row-gap: clamp(28px, 4vw, 44px);
+  align-items: start;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule-2);
+}
+
+/* Where the visual is a diagram rather than a photograph it takes the full
+   measure on its own row — five stages squeezed into a half-width column
+   turns every note into one word per line.
+
+   Both selectors below carry data-flip as well, and that is the whole point:
+   the alternating rule further down has the same specificity and comes after
+   it in the file, so on an even-numbered feature the flip was winning. The
+   diagram was being dropped into the narrow column and the writing pushed
+   into a column that layout does not have. */
+.feature[data-visual='diagram'] {
+  grid-template-columns: 128px minmax(0, 1fr);
+}
+
+.feature[data-visual='diagram'] .body,
+.feature[data-visual='diagram'][data-flip='true'] .body {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.feature[data-visual='diagram'] .visual,
+.feature[data-visual='diagram'][data-flip='true'] .visual {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* Alternating: on the flipped ones the visual leads and the writing follows,
+   so the page never falls into a rhythm you can predict. */
+.feature[data-flip='true'] .body {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.feature[data-flip='true'] .visual {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* ── The margin ─────────────────────────────────────────────────────── */
+
+.margin {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+}
+
+.n {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 3vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--tone);
+}
+
+.field,
+.period {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+/* The field takes the discipline colour too, so the margin reads as one
+   labelled unit rather than a coloured number beside grey text. Declared
+   after the shared rule above, which would otherwise win on source order. */
+.field {
+  color: var(--tone);
+}
+
+.period {
+  letter-spacing: 0.1em;
+}
+
+/* ── The writing ────────────────────────────────────────────────────── */
+
+.title {
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+/* The one line that makes you want to read the paragraph. */
+.hook {
+  margin-top: 22px;
+  font-family: var(--display);
+  font-size: clamp(1.24rem, 2vw, 1.65rem);
+  font-weight: 650;
+  letter-spacing: -0.024em;
+  line-height: 1.26;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.blurb {
+  margin-top: 16px;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 22px;
+  list-style: none;
+}
+
+.stack li {
+  padding: 4px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  transition: border-color 260ms var(--ease-soft), color 260ms var(--ease-soft);
+}
+
+.feature[data-linked='true']:hover .stack li {
+  border-color: var(--rule-2);
+  color: var(--ink-2);
+}
+
+.go {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 26px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--rule-2);
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: color 240ms var(--ease-soft), border-color 240ms var(--ease-soft);
+}
+
+.feature:hover .go {
+  color: var(--tone);
+  border-color: var(--tone);
+}
+
+.arrow {
+  transition: transform 340ms var(--ease);
+}
+
+.feature:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* ── The visual ─────────────────────────────────────────────────────── */
+
+.visual {
+  min-width: 0;
+}
+
+.frame {
+  overflow: hidden;
+  border-radius: var(--r-m);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-s);
+}
+
+/* The shape and the crop point come from the entry, because the photographs
+   do not share a shape: one of them is a 914x1600 portrait, and forcing that
+   into 3:2 threw away most of the frame. */
+.frameImg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio, 3 / 2);
+  object-fit: cover;
+  object-position: var(--focus, center);
+  transition: transform 900ms var(--ease), filter 900ms var(--ease);
+}
+
+/* A shift, not a zoom-and-tilt. */
+.feature[data-linked='true']:hover .frameImg {
+  transform: scale(1.022);
+}
+
+.pair {
+  display: grid;
+  gap: 18px;
+}
+
+.shot {
+  overflow: hidden;
+  border-radius: var(--r-m);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-s);
+}
+
+.shotImg {
+  width: 100%;
+  height: auto;
+}
+
+.shotCap {
+  padding: 9px 13px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+/* ── Narrow ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+  /* Every variant collapses to one column. The diagram rule has to be named
+     explicitly — an attribute selector outranks the bare class, so without it
+     the two-column layout survives all the way down to a phone. */
+  .feature,
+  .feature[data-flip='true'],
+  .feature[data-visual='diagram'] {
+    grid-template-columns: 1fr;
+  }
+
+  .feature[data-flip='true'] .body,
+  .feature[data-flip='true'] .visual,
+  .feature[data-visual='diagram'] .visual,
+  .feature .body,
+  .feature .visual {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .margin {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 16px;
+  }
+
+  .n {
+    font-size: 1.6rem;
+  }
+}

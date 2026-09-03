@@ -1,0 +1,388 @@
+/* ── Anatomy ──────────────────────────────────────────────
+   A pipeline, drawn. Stages arrive left to right; the connector between
+   each pair draws itself and then carries a pulse in the direction of
+   flow, so the diagram reads as a sequence rather than five icons.
+
+   Everything hangs off `.in`, which the page's single reveal observer adds.
+   No component-level JavaScript. */
+
+.figure {
+  margin: 34px 0 0;
+  padding: 30px 26px 24px;
+  border-radius: var(--r-m);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+
+.track {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0 18px;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.figure.in .stage,
+:global(.in) .stage {
+  animation: rise 620ms var(--ease) forwards;
+  animation-delay: calc(var(--i) * 130ms);
+}
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── The glyph ──────────────────────────────────────────── */
+
+.glyphBox {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  color: var(--accent);
+}
+
+.svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  overflow: visible;
+}
+
+/* Strokes that draw themselves in. */
+.draw {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+}
+
+:global(.in) .draw {
+  animation: drawIn 900ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 130ms + 320ms);
+}
+
+@keyframes drawIn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Elements that pop in one after another inside a single glyph. */
+.dot,
+.bar {
+  opacity: 0;
+}
+
+:global(.in) .dot {
+  animation: fadeIn 420ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 130ms + var(--n) * 70ms + 400ms);
+}
+
+.bar {
+  transform-origin: bottom;
+  transform: scaleY(0.2);
+}
+
+:global(.in) .bar {
+  animation: growUp 520ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 130ms + var(--n) * 70ms + 380ms);
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes growUp {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.pulseDot {
+  opacity: 0;
+  transform-origin: center;
+}
+
+:global(.in) .pulseDot {
+  animation: popIn 600ms var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 130ms + 700ms);
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── The connector ──────────────────────────────────────── */
+
+.link {
+  position: absolute;
+  top: 26px;
+  left: calc(52px + 10px);
+  right: -18px;
+  height: 1px;
+  background: var(--rule-2);
+  transform: scaleX(0);
+  transform-origin: left;
+  overflow: visible;
+}
+
+:global(.in) .link {
+  animation: extend 480ms var(--ease) forwards;
+  animation-delay: calc(var(--i) * 130ms + 260ms);
+}
+
+@keyframes extend {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* A single travelling highlight, repeating slowly. It is the only thing on
+   the page that loops, and it is what makes the diagram read as flow. */
+.link::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 26px;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+}
+
+:global(.in) .link::after {
+  animation: travel 2.8s var(--ease-soft) infinite;
+  animation-delay: calc(var(--i) * 260ms + 900ms);
+}
+
+@keyframes travel {
+  0% {
+    left: -10%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* ── Text ───────────────────────────────────────────────── */
+
+.stageLabel {
+  min-height: 2.6em;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.stageNote {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.caption {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+/* ── Narrow ─────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .track {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  /* Stacked, so there is nothing to line up with. */
+  .stageLabel {
+    min-height: 0;
+  }
+
+  .stage {
+    grid-template-columns: 52px minmax(0, 1fr);
+    column-gap: 16px;
+    row-gap: 4px;
+    align-items: start;
+  }
+
+  .glyphBox {
+    grid-row: span 2;
+  }
+
+  /* The connector becomes the vertical spine between stages. */
+  .link {
+    top: 58px;
+    left: 26px;
+    right: auto;
+    bottom: -26px;
+    width: 1px;
+    height: auto;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  :global(.in) .link {
+    animation-name: extendV;
+  }
+
+  @keyframes extendV {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  :global(.in) .link::after {
+    animation: travelV 2.8s var(--ease-soft) infinite;
+  }
+
+  @keyframes travelV {
+    0% {
+      top: -10%;
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.9;
+    }
+    70% {
+      opacity: 0.9;
+    }
+    100% {
+      top: 100%;
+      opacity: 0;
+    }
+  }
+
+  .link::after {
+    width: 3px;
+    height: 26px;
+    left: -1px;
+    background: linear-gradient(180deg, transparent, var(--accent), transparent);
+  }
+}
+
+@media (max-width: 700px) {
+  .figure {
+    padding: 24px 18px 20px;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+/* Everything resolves to its finished state. The diagram still explains the
+   project; it simply does not perform. */
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .dot,
+  .bar,
+  .pulseDot {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+
+  .draw {
+    stroke-dashoffset: 0;
+    animation: none !important;
+  }
+
+  .link {
+    transform: none;
+    animation: none !important;
+  }
+
+  .link::after {
+    display: none;
+  }
+}
+
+/* ── Standing still ─────────────────────────────────────────
+   The stages and the connector are hidden until the reveal observer adds
+   `.in`. Under reduced motion that observer never runs, so without this the
+   whole diagram would simply not be there. Everything arrives, in place. */
+@media (prefers-reduced-motion: reduce) {
+  .stage {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .link {
+    transform: scaleX(1);
+    animation: none;
+  }
+
+  .link::after {
+    display: none;
+  }
+}
+
+/* Narrow: the pipeline turns and runs down the page, and the connector
+   becomes the vertical rule between one stage and the next. */
+@media (max-width: 620px) {
+  .track {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .link {
+    top: 56px;
+    left: 26px;
+    right: auto;
+    width: 1px;
+    height: 22px;
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  :global(.in) .link {
+    animation-name: extendY;
+  }
+
+  @keyframes extendY {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .link::after {
+    display: none;
+  }
+}

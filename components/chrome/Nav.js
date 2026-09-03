@@ -2,205 +2,126 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import ThemeToggle from './ThemeToggle'
 import styles from './Nav.module.css'
-import profile from '@/data/profile'
-import domains from '@/data/domains'
 
 /**
- * Contextual navigation.
+ * The navigation, as an object.
  *
- * The bar carries three things and nothing else: who this is, where you
- * currently are, and a way in. No section list sits on screen permanently —
- * the eight pages live inside the panel, subordinate to the six disciplines,
- * because the disciplines are the structure of the site and the pages are
- * just addresses within it.
+ * A single floating pill rather than a bar across the top — it sits on the
+ * page the way a paper tab sits on a desk, and it never spans the full width.
+ * Five destinations is the whole of it. The résumé stays visible at every
+ * width because it is the one thing a recruiter is looking for.
  *
- * No hamburger on desktop: the control is the word "Index".
+ * Links are hashes on the home page and absolute paths from a case study, so
+ * "Work" always goes somewhere sensible no matter which page you are on.
  */
-
-// Destinations that genuinely exist. Experience and Leadership are not
-// homepage sections any more — that material lives inside the disciplines,
-// so these point where it actually is rather than at a dead anchor.
-const PAGES = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/#about' },
-  { label: 'Experience', href: '/practice/data', within: 'in Data & Operations' },
-  { label: 'Work', href: '/#work' },
-  { label: 'Research', href: '/practice/research', within: 'a discipline' },
-  { label: 'Leadership', href: '/practice/social', within: 'in Social & Operations' },
-  { label: 'Résumés', href: '/#resumes' },
-  { label: 'Contact', href: '/#contact' },
-]
-
-// Homepage sections, used only to name where the reader currently is.
-const SECTIONS = [
-  { id: 'top', label: 'Opening' },
-  { id: 'practice', label: 'The practice' },
-  { id: 'work', label: 'Proof' },
-  { id: 'about', label: 'The short version' },
-  { id: 'contact', label: 'Contact' },
+const LINKS = [
+  { hash: '#work', label: 'Work' },
+  { hash: '#thinking', label: 'Thinking' },
+  { hash: '#leadership', label: 'Leadership' },
+  { hash: '#about', label: 'About' },
 ]
 
 export default function Nav() {
-  const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  const [lifted, setLifted] = useState(false)
-  const [section, setSection] = useState('Opening')
+  const [home, setHome] = useState(true)
+  const [hidden, setHidden] = useState(false)
 
-  const activeDomain = domains.find((d) => pathname === d.route) || null
-
+  // Whether hash links can stay hashes. Read after mount so the markup is
+  // identical on the server for every route.
   useEffect(() => {
-    const onScroll = () => setLifted(window.scrollY > 30)
-    onScroll()
+    setHome(window.location.pathname === '/')
+  }, [])
+
+  // The pill retreats on the way down and comes back on the way up, so it is
+  // never sitting on top of the thing you scrolled to read.
+  useEffect(() => {
+    let last = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setHidden(y > 260 && y > last)
+      last = y
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Name the section in view — only meaningful on the hub.
-  useEffect(() => {
-    if (activeDomain) return
-    const nodes = SECTIONS.map((s) => ({ s, el: document.getElementById(s.id) })).filter((x) => x.el)
-    if (!nodes.length) return
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const hit = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
-        if (!hit) return
-        const match = SECTIONS.find((s) => s.id === hit.target.id)
-        if (match) setSection(match.label)
-      },
-      { rootMargin: '-20% 0px -66% 0px', threshold: 0 }
-    )
-
-    nodes.forEach(({ el }) => io.observe(el))
-    return () => io.disconnect()
-  }, [activeDomain, pathname])
-
-  // Close on route change, and lock the page while the panel is open.
-  useEffect(() => setOpen(false), [pathname])
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [open])
-
+  // Escape closes the sheet; so does the viewport going wide again, which
+  // would otherwise leave it open and invisible behind the desktop layout.
   useEffect(() => {
     if (!open) return
     const onKey = (e) => e.key === 'Escape' && setOpen(false)
+    const mq = window.matchMedia('(min-width: 861px)')
+    const onWide = () => mq.matches && setOpen(false)
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    mq.addEventListener('change', onWide)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      mq.removeEventListener('change', onWide)
+    }
   }, [open])
 
+  const to = (hash) => (home ? hash : `/${hash}`)
+
   return (
-    <>
-      <header className={`${styles.bar} ${lifted ? styles.lifted : ''} ${open ? styles.barOver : ''}`}>
-        <Link href="/" className={styles.mark}>
-          <span className={styles.markName}>{profile.name}</span>
-          <span className={`mono ${styles.markLine}`}>Business · Data · Product</span>
+    <header className={`${styles.shell} ${hidden && !open ? styles.away : ''}`}>
+      <div className={styles.pill}>
+        <Link href="/" className={styles.mark} aria-label="Siddharth Kumar — home">
+          <span className={styles.monogram} aria-hidden="true">
+            SK
+          </span>
         </Link>
 
-        {/* Where you are. The only thing in the bar that changes. */}
-        <p className={styles.here} aria-live="polite">
-          {activeDomain ? (
-            <>
-              <span
-                className={styles.hereDot}
-                style={{ '--c': activeDomain.accent }}
-                aria-hidden="true"
-              />
-              <span className={`mono ${styles.hereNum}`}>{activeDomain.numeral}</span>
-              <span className={styles.hereLabel}>{activeDomain.label}</span>
-            </>
-          ) : (
-            <>
-              <span className={styles.hereDot} aria-hidden="true" />
-              <span className={`mono ${styles.hereLabel}`}>{section}</span>
-            </>
-          )}
-        </p>
+        <nav className={styles.links} aria-label="Primary">
+          {LINKS.map((l) => (
+            <a key={l.hash} href={to(l.hash)} className={styles.link}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        <a href={to('#contact')} className={styles.cta}>
+          <span className={styles.ctaDot} aria-hidden="true" />
+          Get in touch
+        </a>
+
+        <ThemeToggle />
 
         <button
           type="button"
-          className={styles.trigger}
+          className={styles.burger}
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          aria-controls="nav-panel"
+          aria-label={open ? 'Close menu' : 'Open menu'}
         >
-          <span className={styles.triggerWord}>{open ? 'Close' : 'Index'}</span>
-          <span className={styles.triggerRule} aria-hidden="true" />
+          <span className={`${styles.bars} ${open ? styles.barsOpen : ''}`} aria-hidden="true">
+            <i />
+            <i />
+          </span>
         </button>
-      </header>
+      </div>
 
-      <nav
-        id="nav-panel"
-        className={`${styles.panel} ${open ? styles.panelOpen : ''}`}
-        aria-label="Site navigation"
-        {...(open ? {} : { inert: '' })}
-      >
-        <div className={styles.panelInner}>
-          {/* ── The six. The structure of the site. ── */}
-          <div className={styles.practice}>
-            <p className={`mono ${styles.panelLabel}`}>The practice</p>
-
-            <ol className={styles.domains}>
-              {domains.map((d, i) => {
-                const current = activeDomain?.id === d.id
-                return (
-                  <li key={d.id} style={{ '--i': i, '--c': d.accent }}>
-                    <Link
-                      href={d.route}
-                      className={`${styles.domain} ${current ? styles.domainOn : ''}`}
-                      data-cursor="enter"
-                    >
-                      <span className={`mono ${styles.domainNum}`}>{d.numeral}</span>
-                      <span className={styles.domainName}>{d.label}</span>
-                      <span className={styles.domainLine}>{d.line}</span>
-                      {current && (
-                        <span className={`mono ${styles.youAreHere}`}>
-                          <span className={styles.pulse} aria-hidden="true" />
-                          Exploring
-                        </span>
-                      )}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ol>
-          </div>
-
-          {/* ── The eight. Addresses, deliberately quieter. ── */}
-          <div className={styles.pages}>
-            <p className={`mono ${styles.panelLabel}`}>Pages</p>
-
-            <ul className={styles.pageList}>
-              {PAGES.map((p, i) => (
-                <li key={p.label} style={{ '--i': i }}>
-                  <Link href={p.href} className={styles.page}>
-                    <span className={styles.pageLabel}>{p.label}</span>
-                    {p.within && <span className={`mono ${styles.pageWithin}`}>{p.within}</span>}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-            <div className={styles.panelFoot}>
-              <a
-                href={`mailto:${profile.contact.email}`}
-                className={`mono ${styles.footLink}`}
-                data-cursor="email"
-              >
-                {profile.contact.email}
-              </a>
-              <span className={`mono ${styles.footNote}`}>{profile.contact.location}</span>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </>
+      {open && (
+        <nav className={styles.sheet} aria-label="Menu">
+          {LINKS.map((l) => (
+            <a
+              key={l.hash}
+              href={to(l.hash)}
+              className={styles.sheetLink}
+              onClick={() => setOpen(false)}
+            >
+              {l.label}
+            </a>
+          ))}
+          <a href={to('#contact')} className={styles.sheetLink} onClick={() => setOpen(false)}>
+            Contact
+          </a>
+          <a href={to('#resume')} className={styles.sheetLink} onClick={() => setOpen(false)}>
+            Résumé
+          </a>
+        </nav>
+      )}
+    </header>
   )
 }

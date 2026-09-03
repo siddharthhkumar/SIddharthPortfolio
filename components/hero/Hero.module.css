@@ -1,0 +1,338 @@
+/* The hero owns the first screen. Three rows: the rail, the middle (which
+   takes whatever is left), and the tally on the floor. `svh` rather than `vh`
+   so a mobile browser's collapsing address bar cannot push the floor out of
+   sight on load. */
+
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding-top: calc(var(--nav-h) + clamp(18px, min(3vw, 3.2vh), 40px));
+  padding-bottom: clamp(16px, min(3vw, 2vh), 44px);
+  overflow: hidden;
+}
+
+/* Colour, at the size of the window and almost none of the strength.
+   Three soft fields in three of the discipline hues, blurred past the point
+   of being shapes, sitting behind everything and reaching nothing. It is what
+   keeps a warm-paper page from reading as beige — and because the hues are
+   the same five used to mark the work, even the wash is saying something.
+
+   Masked away from the bottom so the tally sits on clean ground. */
+.wash {
+  position: absolute;
+  inset: -12% -14% 20% -14%;
+  pointer-events: none;
+  opacity: 0.44;
+  background-image:
+    radial-gradient(38% 44% at 82% 20%, var(--c-growth), transparent 66%),
+    radial-gradient(36% 46% at 10% 66%, var(--c-data), transparent 68%),
+    radial-gradient(30% 36% at 56% 90%, var(--c-product), transparent 66%);
+  filter: blur(52px) saturate(150%);
+  /* Fades in below the rail and out above the tally, so neither the printed
+     facts at the top nor the count at the bottom sits on tinted ground. */
+  -webkit-mask-image: linear-gradient(180deg, transparent 6%, #000 34%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 6%, #000 34%, #000 70%, transparent 100%);
+}
+
+/* Charcoal takes more of it: the same wash that reads as tinted paper in the
+   light theme disappears completely on a dark ground. */
+:global([data-theme='dark']) .wash {
+  opacity: 0.32;
+  filter: blur(64px) saturate(140%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .wash {
+    opacity: 0.32;
+    filter: blur(64px) saturate(140%);
+  }
+}
+
+/* The grid the page is set on, shown once. Twelve columns of hairline, fading
+   out before they reach the floor so they read as ruling rather than a table. */
+.rules {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--rule) 0 1px,
+    transparent 1px calc(100% / 12)
+  );
+  background-size: calc(100% - 2 * var(--gutter)) 100%;
+  background-position: var(--gutter) 0;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 62%, transparent 92%);
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 62%, transparent 92%);
+}
+
+/* ── The rail ───────────────────────────────────────────────────────── */
+
+.rail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.railItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+}
+
+.railEnd {
+  margin-left: auto;
+}
+
+.railVersion {
+  padding: 2px 7px;
+  border: 1px solid var(--rule-2);
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+.live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--live);
+  flex: none;
+}
+
+/* ── The middle ─────────────────────────────────────────────────────── */
+
+.main {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(20px, 3vw, 56px);
+  align-items: center;
+  padding-block: clamp(18px, 3vh, 60px);
+}
+
+/* Printed up the spine, reading bottom to top. */
+.spine {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 4px;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.slash {
+  color: var(--accent);
+  padding-block: 0.6em;
+}
+
+.left {
+  min-width: 0;
+}
+
+/* The way you would actually introduce yourself, at the size that implies.
+   The greeting stays quiet; the name is set bold and in full ink, because it
+   is the one thing on this screen a visitor has to leave with. */
+.greeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: clamp(14px, min(2vw, 2vh), 26px);
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.greetName {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.greetDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+/* One sentence, no jargon: who, what, where. This is the line the whole
+   screen exists to set up, so it is the largest thing after the headline. */
+/* The explanation on the left, the object on the right. */
+.below {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+  margin-top: clamp(18px, min(2.6vw, 2.6vh), 34px);
+  padding-top: clamp(16px, min(2.2vw, 2.2vh), 28px);
+  border-top: 1px solid var(--rule);
+}
+
+.says {
+  min-width: 0;
+}
+
+.plain {
+  font-size: clamp(1.08rem, 1.32vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 54ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(20px, min(2.6vw, 2.6vh), 34px);
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color 240ms var(--ease-soft), transform 240ms var(--ease);
+}
+
+.primary span {
+  transition: transform 320ms var(--ease);
+}
+
+.primary:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.primary:hover span {
+  transform: translateX(5px);
+}
+
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 26px;
+  border-radius: 999px;
+  border: 1px solid var(--rule-2);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: border-color 240ms var(--ease-soft), color 240ms var(--ease-soft);
+}
+
+.secondary:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ── The objects ────────────────────────────────────────────────────── */
+
+/* The objects on the desk: the cassette, and the control for the shore.
+   Put down at a slight angle, the way things end up. */
+.objects {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  justify-self: end;
+  transform: rotate(1.2deg);
+  margin-top: -6px;
+}
+
+/* ── The floor ──────────────────────────────────────────────────────── */
+
+.floor {
+  padding-top: clamp(12px, min(2.6vw, 1.8vh), 34px);
+}
+
+/* ── Below the full-screen composition ──────────────────────────────── */
+
+/* Short viewports: stop forcing one screen and let the hero run long rather
+   than crushing the sentence to fit. */
+@media (max-height: 800px) and (min-width: 1000px) {
+  .hero {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 1180px) {
+  .main {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: clamp(32px, 5vw, 56px);
+  }
+
+  .below {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .objects {
+    justify-self: start;
+    margin-top: 6px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  /* The spine needs a column of its own to be readable; on a narrow screen
+     there is not one, so it lies down and becomes an ordinary eyebrow. */
+  .spine {
+    writing-mode: horizontal-tb;
+    transform: none;
+    justify-content: flex-start;
+    align-self: start;
+    padding: 0 0 18px;
+    letter-spacing: 0.24em;
+  }
+
+  .slash {
+    padding-block: 0;
+    padding-inline: 0.5em;
+  }
+
+  .objects {
+    transform: none;
+  }
+
+  .rules {
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--rule) 0 1px,
+      transparent 1px calc(100% / 4)
+    );
+  }
+}
+
+@media (max-width: 620px) {
+  .railEnd {
+    margin-left: 0;
+  }
+}

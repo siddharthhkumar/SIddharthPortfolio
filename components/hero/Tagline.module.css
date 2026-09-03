@@ -1,0 +1,84 @@
+/* Scoped to h1 so it outranks the global .d-hero regardless of stylesheet
+   order. The vh term is what keeps the whole hero inside one screen: on a
+   900px-tall laptop the sentence gives back the height the objects and the
+   tally need, instead of pushing them under the fold. */
+h1.line {
+  margin: 0;
+  max-width: 20ch;
+  /* Three caps. vw so it fills the measure, vh so the hero still holds one
+     screen, and an absolute rem cap so the longest phrase cannot outgrow the
+     container on a very wide monitor.
+     The vh figure is deliberately a step below what would fit exactly: the
+     page is set in the system face, and SF Pro on a Mac does not have the
+     same metrics as the Inter that stands in for it elsewhere. The margin is
+     what stops a phrase wrapping on someone else's machine. */
+  font-size: clamp(2.6rem, min(8.2vw, 10.6vh), 8rem);
+}
+
+/* The fixed half of the sentence. */
+.frame {
+  color: var(--ink);
+}
+
+/* The moving half gets its own block, so the frame around it never reflows.
+   Height is reserved for two lines — the longest phrase wraps at most once —
+   which is why nothing below the hero ever jumps as the phrase changes. */
+.slot {
+  display: block;
+  min-height: 2.06em;
+  /* One hue per phrase, set from the data by data-tone on the heading. */
+  color: var(--tone);
+  transition: color 420ms var(--ease-soft);
+}
+
+.phrase {
+  display: inline-block;
+  animation: arrive 420ms var(--ease) both;
+}
+
+.out {
+  animation: leave 340ms var(--ease-soft) both;
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(0.24em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes leave {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.2em);
+  }
+}
+
+/* Wide enough for the longest phrase to sit on one line — the reserved
+   second line would be dead air rather than composition. */
+@media (min-width: 1120px) {
+  h1.line {
+    max-width: none;
+  }
+
+  .slot {
+    min-height: 1.03em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .phrase,
+  .out {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

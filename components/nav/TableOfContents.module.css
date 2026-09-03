@@ -1,0 +1,94 @@
+/* ── Table of Contents strip ─────────────────────────────────────────
+   Sits just below the hero, sticky so it stays on screen while the
+   reader moves through the page. Same chrome vocabulary as the Nav pill:
+   glass background, a single rule, accent on hover.
+   ──────────────────────────────────────────────────────────────────── */
+
+.toc {
+  position: sticky;
+  top: 0;
+  z-index: 90;                           /* below Nav (100), above content (2) */
+  background: var(--chrome);
+  backdrop-filter: saturate(160%) blur(18px);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  border-bottom: 1px solid var(--rule);
+  padding-block: 10px;
+}
+
+.tocInner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tocLabel {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  flex: none;
+}
+
+.tocList {
+  display: flex;
+  list-style: none;
+  gap: clamp(16px, 2.4vw, 32px);
+  margin: 0;
+  padding: 0;
+}
+
+.tocList a {
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition:
+    color 200ms var(--ease),
+    opacity 200ms var(--ease);
+  padding-block: 4px;
+  position: relative;
+}
+
+/* Underline drawn with a pseudo-element so it can animate in. */
+.tocList a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms var(--ease);
+}
+
+.tocList a:hover {
+  color: var(--accent);
+}
+
+.tocList a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 600px) {
+  .tocLabel {
+    display: none;
+  }
+
+  .tocList {
+    gap: 14px;
+  }
+
+  .tocList a {
+    font-size: 0.75rem;
+  }
+}
+

@@ -12,6 +12,8 @@ export const profile = {
   opening: 'Most of my work starts where an assumption stops holding.',
 
   // Not a summary — the actual things. Concrete beats adjectives.
+  // (The `proof` array that used to live here was removed when the Ledger
+  // section replaced it; nothing read it any more.)
   ledger: [
     'Recruitment data at an edtech startup.',
     'Logistics KPIs and the dashboards behind them.',
@@ -20,14 +22,6 @@ export const profile = {
     'A paper on why students misjudge their own stress.',
   ],
 
-  // Compact, verifiable proof points shown under the hero
-  proof: [
-    { value: 'Lead Author', label: 'Peer-reviewed ML research · AIS2C2 2025 · JICS 2026' },
-    { value: '2,500+ / 500K+', label: 'Community followers and organic reach, built from zero' },
-    { value: 'SQL · Python · Power BI', label: 'Applied across recruitment, logistics and digital operations' },
-  ],
-
-
   // About section
   about: {
     tag: 'About',
@@ -35,26 +29,28 @@ export const profile = {
     titleEm: 'builder by habit',
     image: '/images/podium.jpeg',
     imageAlt: 'Siddharth Kumar presenting at Gautam Buddha University',
-    intro:
-      'I studied Information Technology at Gautam Buddha University. Most of what I have done since has been closer to working out what an organisation is actually looking at, and whether the thing it believes is true.',
-    body:
-      'That range is deliberate. Analysing recruitment and logistics data taught me how a business really performs; leading a four-person product team and building a document-intelligence tool on my own taught me how to turn a problem into something usable; growing a university community from zero taught me how people respond to what you put in front of them. The common thread is the same in all three: find the question worth answering, get the evidence, and make the answer clear enough to act on.',
+    bullets: [
+      '**Data & Business Analysis**: Analyzing real business data (SQL, Excel, Power BI), tracking KPIs, and building dashboards to help teams make fast decisions.',
+      '**Product & Prototyping**: Figuring out product mechanics, building initial prototypes, designing interfaces, and guiding teams to launch.',
+      '**Digital Growth**: Writing SEO-optimized content, running campaigns, and building online communities from the ground up.',
+      '**Applied AI & Research**: Building AI search tools and publishing research papers to solve practical problems rather than following trends.'
+    ],
     pillars: [
       {
         title: 'Data & Business Analysis',
-        text: 'SQL, Excel and Power BI applied to real operational data — KPIs, conversion and funnel trends, dashboards and structured insight for decision-makers.',
+        text: 'I use SQL, Excel, and Power BI to analyze real business data, track KPIs, and build dashboards that help teams make decisions quickly.',
       },
       {
         title: 'Product & Prototyping',
-        text: 'Defining how a product should work for the person using it, building the first prototype, designing the interface, and coordinating the team that ships it.',
+        text: 'I figure out how a product should work, build the first prototype, design the interface, and guide the team to launch it.',
       },
       {
         title: 'Digital Growth & Content',
-        text: 'SEO writing, social campaigns, A/B-tested messaging and community management — grown across agency, edtech, NGO and campus work.',
+        text: 'I write SEO-optimized content, run social media campaigns, and build online communities for agencies, edtech companies, and non-profits.',
       },
       {
         title: 'Applied AI & Research',
-        text: 'Retrieval-augmented systems, supervised model comparison and a published, peer-reviewed study — technical depth used in service of the question, not for its own sake.',
+        text: 'I build AI search tools and write published research papers, using technical skills to solve practical problems instead of just following trends.',
       },
     ],
   },
@@ -84,6 +80,11 @@ export const profile = {
     instagram: 'https://www.instagram.com/gautambuddhauniversityy/',
     instagramLabel: '@gautambuddhauniversityy',
     twitter: 'https://twitter.com/siddharthh_k',
+
+    // The handle is the one in the newsletter URL in data/leadership.js;
+    // medium.com/@handle is Medium's canonical profile address.
+    medium: 'https://medium.com/@siddharthk1500',
+    mediumLabel: 'medium.com/@siddharthk1500',
   },
 
   languages: ['English — Professional working', 'German — Limited working'],

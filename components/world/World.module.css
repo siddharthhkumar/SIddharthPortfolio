@@ -1,0 +1,979 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   THE WORLD
+
+   One environment, three densities, two times of day.
+
+   ── THE THREE LAYERS ────────────────────────────────────────────────
+   1  ATMOSPHERE   the sky wash, and the grain that lives on body::before
+   2  STORY        sun or moon, clouds, birds or stars, the landscape
+   3  DETAIL       doodles, paper scraps, the studio note
+
+   Layer 3 is the one that rewards a second look, and it is also the first
+   thing to go on a small screen.
+
+   ── THE RULE EVERYTHING OBEYS ───────────────────────────────────────
+   Nothing with contrast is placed where the type goes. The hero headline
+   occupies roughly the left two-thirds of the screen between a fifth and a
+   half of the way down; every object here is positioned outside that, and
+   the layers that cannot be positioned — the landscape, the star field —
+   are masked away from it. The composition is built around the words.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.world {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+
+  /* ── Day: warm paper under morning light ───────────────────────── */
+  --ink-line: rgba(28, 26, 22, 0.5);
+  --hair-line: rgba(28, 26, 22, 0.26);
+  --ridge-1: rgba(122, 116, 84, 0.1);
+  --ridge-2: rgba(122, 116, 84, 0.068);
+  --ridge-3: rgba(122, 116, 84, 0.044);
+  --sun-fill: rgba(200, 128, 46, 0.3);
+  --sun-ring: rgba(176, 54, 35, 0.26);
+  --sun-glow: rgba(214, 158, 92, 0.13);
+  --detail: 0.32;
+  --story: 0.72;
+}
+
+/* The sky. A wash, not a gradient blob: it runs top to bottom across the
+   whole viewport and never draws attention to a centre. */
+.sky {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(226, 208, 174, 0.42) 0%,
+      rgba(233, 221, 197, 0.2) 32%,
+      transparent 62%
+    ),
+    radial-gradient(120% 68% at 78% 6%, rgba(216, 172, 108, 0.3), transparent 62%);
+}
+
+/* ── Night: the same desk, later ────────────────────────────────────── */
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .world {
+    --ink-line: rgba(240, 234, 219, 0.4);
+    --hair-line: rgba(240, 234, 219, 0.26);
+    --ridge-1: rgba(10, 14, 34, 0.72);
+    --ridge-2: rgba(10, 14, 34, 0.5);
+    --ridge-3: rgba(10, 14, 34, 0.3);
+    --detail: 0.42;
+    --story: 0.9;
+  }
+
+  :global(:root:not([data-theme='light'])) .sky {
+    background:
+      linear-gradient(to bottom, rgba(18, 24, 58, 0.62) 0%, rgba(14, 18, 42, 0.28) 44%, transparent 74%),
+      radial-gradient(110% 62% at 78% 8%, rgba(58, 74, 140, 0.34), transparent 64%);
+  }
+}
+
+:global([data-theme='dark']) .world {
+  --ink-line: rgba(240, 234, 219, 0.4);
+  --hair-line: rgba(240, 234, 219, 0.26);
+  --ridge-1: rgba(10, 14, 34, 0.72);
+  --ridge-2: rgba(10, 14, 34, 0.5);
+  --ridge-3: rgba(10, 14, 34, 0.3);
+  --detail: 0.36;
+  --story: 0.8;
+}
+
+:global([data-theme='dark']) .sky {
+  background:
+    linear-gradient(to bottom, rgba(18, 24, 58, 0.62) 0%, rgba(14, 18, 42, 0.28) 44%, transparent 74%),
+    radial-gradient(110% 62% at 78% 8%, rgba(58, 74, 140, 0.34), transparent 64%);
+}
+
+/* ── Which half of the day is showing ───────────────────────────────── */
+
+.nightOnly {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .dayOnly {
+    display: none;
+  }
+
+  :global(:root:not([data-theme='light'])) .nightOnly {
+    display: block;
+  }
+}
+
+:global([data-theme='dark']) .dayOnly {
+  display: none;
+}
+
+:global([data-theme='dark']) .nightOnly {
+  display: block;
+}
+
+/* ── Shared placement ───────────────────────────────────────────────── */
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.object {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: calc(var(--r) * 2vw);
+  aspect-ratio: 1;
+  margin: calc(var(--r) * -1vw) 0 0 calc(var(--r) * -1vw);
+  min-width: 132px;
+}
+
+.object svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* ── 03 · the sun ───────────────────────────────────────────────────── */
+
+.sunDisc {
+  fill: var(--sun-fill);
+}
+
+/* Printed a hair out of register, which is what makes it drawn. */
+.sunRing {
+  fill: none;
+  stroke: var(--sun-ring);
+  stroke-width: 1.4;
+}
+
+.sunHalo {
+  fill: var(--sun-glow);
+}
+
+/* ── 10 · the moon ──────────────────────────────────────────────────── */
+
+.moonDisc {
+  fill: rgba(226, 224, 208, 0.42);
+}
+
+.moonDot {
+  fill: rgba(10, 14, 34, 0.34);
+}
+
+.crater {
+  fill: rgba(10, 14, 34, 0.16);
+}
+
+.moonHalo {
+  fill: rgba(160, 178, 235, 0.1);
+}
+
+/* ── 04 · clouds and birds ──────────────────────────────────────────── */
+
+.clouds,
+.birds {
+  opacity: var(--story);
+}
+
+.cloud path {
+  fill: rgba(255, 252, 244, 0.5);
+}
+
+.cloudLine {
+  stroke: rgba(28, 26, 22, 0.1);
+  stroke-width: 0.5;
+}
+
+.bird {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
+  width: calc(22px * var(--s));
+  height: auto;
+  stroke: var(--ink-line);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+/* ── 11 · stars ─────────────────────────────────────────────────────── */
+
+.stars {
+  opacity: var(--story);
+  /* Cut away from the headline. A star behind a word is a smudge. */
+  -webkit-mask-image: radial-gradient(68% 52% at 32% 40%, transparent 46%, #000 86%);
+  mask-image: radial-gradient(68% 52% at 32% 40%, transparent 46%, #000 86%);
+}
+
+.star,
+.starBreath {
+  fill: rgba(238, 240, 255, 0.72);
+}
+
+.starBreath {
+  animation: breathe var(--t) ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.32;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.constellation polyline {
+  stroke: rgba(200, 210, 255, 0.2);
+  stroke-width: 1;
+}
+
+/* ── 02 / 09 · the landscape ────────────────────────────────────────── */
+
+.landscape {
+  opacity: var(--story);
+}
+
+.ridge {
+  fill: var(--ridge-1);
+}
+
+.ridge[style*='--i: 1'] {
+  fill: var(--ridge-2);
+}
+
+.ridge[style*='--i: 2'] {
+  fill: var(--ridge-3);
+}
+
+.windowLight {
+  display: none;
+  fill: #f0b25a;
+}
+
+:global([data-theme='dark']) .windowLight {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .windowLight {
+    display: block;
+  }
+}
+
+/* ── 05 / 12 · doodles ──────────────────────────────────────────────── */
+
+.doodles {
+  opacity: var(--detail);
+}
+
+.mark {
+  position: absolute;
+  transition: opacity 900ms var(--ease-soft), transform 900ms var(--ease);
+}
+
+.hair {
+  stroke: var(--hair-line);
+  stroke-width: 0.9;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.plot {
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  opacity: 0.68;
+}
+
+.plotDot {
+  fill: var(--accent);
+  opacity: 0.68;
+}
+
+.drawn {
+  stroke: var(--ink-line);
+  stroke-width: 1.05;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+/* ── Ambient mark placements ─────────────────────────────────────────
+   Five geometric marks. Each sits outside the headline area — left or
+   right margin, above or below the text zone. Nothing smaller than 28px
+   so a mark at low opacity is still legible; nothing larger than 56px
+   so it reads as texture rather than illustration.
+   ──────────────────────────────────────────────────────────────────── */
+
+/* 01 — Crosshair: far left, above the headline */
+.mCross {
+  left: 7%;
+  top: 18%;
+  width: 36px;
+}
+
+/* 02 — Bracket pair: far right margin, mid-screen */
+.mBracket {
+  right: 8%;
+  top: 28%;
+  width: 52px;
+}
+
+/* 03 — Scan-line box: lower left, below the headline */
+.mScan {
+  left: 14%;
+  bottom: 22%;
+  width: 56px;
+}
+
+/* 04 — Diagonal rule: upper right, above the sun/moon zone */
+.mRule {
+  right: 22%;
+  top: 8%;
+  width: 28px;
+}
+
+/* 05 — Dot cluster: right margin, lower third */
+.mDots {
+  right: 16%;
+  bottom: 28%;
+  width: 32px;
+}
+
+.animeLine {
+  transform-origin: center;
+  opacity: 0.75;
+}
+
+.animeFloat {
+  animation: animeFloat 5s ease-in-out infinite;
+}
+
+.animeFloatSlow {
+  animation: animeFloat 7s ease-in-out infinite alternate;
+}
+
+.animePulse {
+  animation: animePulse 3.5s ease-in-out infinite;
+}
+
+.animePulseSlow {
+  animation: animePulse 6s ease-in-out infinite alternate;
+}
+
+/* Spin is no longer needed — removed with the sakura petal */
+
+@keyframes animeFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes animePulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ── 06 / 13 · paper ────────────────────────────────────────────────── */
+
+.paper {
+  opacity: var(--detail);
+}
+
+.scrap {
+  position: absolute;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-s);
+}
+
+.scrapA {
+  right: 6.5%;
+  bottom: 30%;
+  width: 74px;
+  height: 96px;
+  transform: rotate(4.5deg);
+}
+
+.scrapB {
+  right: 9.5%;
+  bottom: 33%;
+  width: 62px;
+  height: 80px;
+  transform: rotate(-6deg);
+  opacity: 0.7;
+}
+
+/* The studio note, which now lives in the footer. Kept in this stylesheet
+   because it is made of the world's vocabulary — paper, tape, mono — and
+   should change when the world does. */
+.note {
+  width: 178px;
+  padding: 14px 15px 13px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-s);
+  transform: rotate(-1.4deg);
+}
+
+.tape {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 56px;
+  height: 18px;
+  margin-left: -28px;
+  background: var(--tape);
+  opacity: 0.8;
+  transform: rotate(-2.5deg);
+}
+
+.noteLabel {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.noteLine {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+
+.noteFoot {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dotted var(--rule-2);
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  /* No opacity on top of the ink: at ten pixels that dropped it to 3.6:1. */
+  color: var(--ink-3);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PARALLAX
+
+   Scroll-driven, and deliberately tiny. Each layer travels a fixed handful
+   of viewport units across the entire page rather than a multiple of the
+   scroll distance — on a page this long a true multiplier would throw
+   everything off screen in the first section.
+
+   The sun and the moon travel furthest and downward: they set as you read,
+   so the footer is the end of a long day.
+
+   Browsers without scroll-driven animations get the composition standing
+   still, which is a complete outcome and not a degraded one.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .stars,
+    .clouds,
+    .birds,
+    .object,
+    .landscape,
+    .doodles,
+    .paper {
+      animation-timeline: scroll(root block);
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+    }
+
+    .stars {
+      animation-name: travel-stars;
+    }
+
+    .clouds,
+    .birds {
+      animation-name: travel-clouds;
+    }
+
+    .object {
+      animation-name: travel-sky;
+    }
+
+    .landscape {
+      animation-name: travel-ridge;
+    }
+
+    .doodles,
+    .paper {
+      animation-name: travel-detail;
+    }
+  }
+}
+
+@keyframes travel-stars {
+  to {
+    transform: translate3d(0, -3vh, 0);
+  }
+}
+
+@keyframes travel-clouds {
+  to {
+    transform: translate3d(-4vw, -6vh, 0);
+  }
+}
+
+/* Setting. */
+@keyframes travel-sky {
+  to {
+    transform: translate3d(-5vw, 16vh, 0);
+  }
+}
+
+@keyframes travel-ridge {
+  to {
+    transform: translate3d(0, 2vh, 0);
+  }
+}
+
+@keyframes travel-detail {
+  to {
+    transform: translate3d(0, -5vh, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starBreath,
+  .bird {
+    animation: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THREE COMPOSITIONS
+
+   Not one composition cropped three ways. Each breakpoint drops whole
+   objects rather than scaling them down: a 96px camera frame at 40px is not
+   a smaller mark, it is a smudge.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Tablet — the margins have gone, so the things that lived in them go too. */
+@media (max-width: 1100px) {
+  .scrapA,
+  .scrapB,
+  .mReg,
+  .mArrow,
+  .mClip,
+  .mRing,
+  .mBars {
+    display: none;
+  }
+
+  .mGrid {
+    left: -2%;
+    bottom: 12%;
+    opacity: 0.7;
+  }
+
+  .mFrame {
+    left: auto;
+    right: 4%;
+    top: 62%;
+  }
+
+  .mLine {
+    left: 12%;
+    width: 62%;
+  }
+}
+
+/* Phone — vertical. One thing in the sky, a horizon, and a single mark. The
+   rest is negative space, which on a 390px screen is the composition. */
+@media (max-width: 760px) {
+  .clouds,
+  .birds,
+  .doodles,
+  .paper {
+    display: none;
+  }
+
+  .object {
+    --x: 82%;
+    --y: 11%;
+    width: 118px;
+    min-width: 0;
+    margin: -59px 0 0 -59px;
+  }
+
+  .sky {
+    background:
+      linear-gradient(to bottom, rgba(226, 208, 174, 0.46) 0%, rgba(233, 221, 197, 0.18) 38%, transparent 66%),
+      radial-gradient(90% 42% at 82% 8%, rgba(216, 172, 108, 0.32), transparent 60%);
+  }
+
+  :global([data-theme='dark']) .sky,
+    /* Half the sky, and the half that is not behind the headline. */
+  .stars {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0 14%, transparent 26%);
+    mask-image: linear-gradient(to bottom, #000 0 14%, transparent 26%);
+  }
+
+  .landscape {
+    opacity: calc(var(--story) * 0.8);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LEAN
+
+   --px and --py come from components/world/Pointer.js: how far the pointer
+   is from the centre, -1 to 1. Each layer multiplies them by a different
+   number of pixels, so the world has depth when the mouse moves.
+
+   The ordering matches the scroll parallax — sky least, detail most —
+   because it is the same idea: things further away move less. Total travel
+   is under twenty pixels anywhere, which is felt rather than seen.
+
+   These sit alongside the scroll animations rather than fighting them: the
+   scroll travel is on the layer, this is on a wrapper inside it, so the two
+   transforms compose instead of overwriting each other.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: no-preference) and (pointer: fine) {
+  .object svg,
+  .clouds svg,
+  .stars,
+  .doodles,
+  .paper {
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .stars {
+    transform: translate3d(calc(var(--px, 0) * 4px), calc(var(--py, 0) * 3px), 0);
+  }
+
+  .object svg {
+    transform: translate3d(calc(var(--px, 0) * -9px), calc(var(--py, 0) * -7px), 0);
+  }
+
+  .clouds svg {
+    transform: translate3d(calc(var(--px, 0) * -14px), calc(var(--py, 0) * -8px), 0);
+  }
+
+  .doodles {
+    transform: translate3d(calc(var(--px, 0) * 16px), calc(var(--py, 0) * 12px), 0);
+  }
+
+  .paper {
+    transform: translate3d(calc(var(--px, 0) * 20px), calc(var(--py, 0) * 14px), 0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   14 · THE OCEAN
+
+   A band at the horizon, in front of the ridges. Three wave lines, each one
+   period of a curve drawn twice across a double-width viewBox and translated
+   by exactly one period — which is what makes the loop seamless. Animating a
+   single copy is the usual mistake and it snaps every cycle.
+
+   Two travel left and one travels right, at three different speeds, so it
+   never reads as one sheet sliding sideways. Nothing here is fast: the
+   quickest band takes eighteen seconds to cross.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ocean {
+  top: auto;
+  bottom: 0;
+  height: 16vh;
+  /* Deliberately weaker than the rest of the story layer. This is the one
+     band of the screen that always has type over it — the tally and its
+     caption — so the water has to be felt rather than seen. */
+  opacity: calc(var(--story) * 0.55);
+}
+
+.ocean svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.water {
+  color: rgba(96, 122, 118, 0.085);
+}
+
+.glitter {
+  display: none;
+  color: rgba(226, 224, 208, 0.14);
+}
+
+.waveFill {
+  stroke: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.waveDeep {
+  fill: rgba(72, 96, 96, 0.4);
+  transform: translate(0, -2px);
+  animation: swell-left 18s linear infinite;
+}
+
+.waveMid {
+  fill: rgba(72, 96, 96, 0.3);
+  transform: translate(0, 2px);
+  animation: swell-right 25s linear infinite;
+}
+
+.waveFoam {
+  fill: rgba(255, 255, 255, 0.15);
+  transform: translate(0, 5px);
+  animation: swell-left 35s linear infinite;
+}
+
+/* One period is 50 units of the 200-unit path, which is half the frame. */
+@keyframes swell-left {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: -50px 0;
+  }
+}
+
+@keyframes swell-right {
+  from {
+    translate: -50px 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+/* Night: darker water, and the moon lays a column of light on it. */
+:global([data-theme='dark']) .water {
+  color: rgba(8, 12, 32, 0.42);
+}
+
+:global([data-theme='dark']) .waveDeep {
+  fill: rgba(30, 42, 75, 0.6);
+}
+
+:global([data-theme='dark']) .waveMid {
+  fill: rgba(50, 70, 110, 0.4);
+}
+
+:global([data-theme='dark']) .waveFoam {
+  fill: rgba(150, 172, 226, 0.2);
+}
+
+:global([data-theme='dark']) .glitter {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .water {
+    color: rgba(8, 12, 32, 0.42);
+  }
+
+  :global(:root:not([data-theme='light'])) .wave {
+    stroke: rgba(150, 172, 226, 0.28);
+  }
+
+  :global(:root:not([data-theme='light'])) .glitter {
+    display: block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   04b · THE BIRDS, FLYING
+
+   Two motions at once. The whole bird drifts across and up on a long, uneven
+   cycle; the wing itself beats on a much shorter one, done as a scaleY on
+   the stroke so the "v" opens and closes rather than the bird bobbing.
+
+   The beats are prime-ish and the delays negative, so the three are already
+   mid-flight on load and never fall into step.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.bird {
+  animation: fly 46s linear infinite;
+  animation-delay: var(--delay);
+}
+
+.bird path {
+  transform-origin: 50% 60%;
+  animation: flap 1.9s ease-in-out infinite alternate;
+  animation-delay: var(--delay);
+}
+
+@keyframes fly {
+  from {
+    translate: -6vw 2vh;
+  }
+  to {
+    translate: 26vw -5vh;
+  }
+}
+
+@keyframes flap {
+  from {
+    scale: 1 1;
+  }
+  to {
+    scale: 1 0.42;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bird,
+  .bird path,
+  .waveA,
+  .waveB,
+  .waveC {
+    animation: none;
+  }
+}
+
+/* Phone: the ocean stays — it is the atmospheric anchor once the doodles are
+   gone — but one wave line is enough at that width. */
+@media (max-width: 760px) {
+  .ocean {
+    height: 16vh;
+  }
+
+  .waveB,
+  .waveC {
+    display: none;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   THE SHORE CONTROL
+
+   Small, and beside the cassette, because it is the same kind of thing: an
+   object on the desk that makes a noise only if you ask it to. Four bars
+   that stand still until it is on and then move like water rather than like
+   a graphic equaliser — slowly, and out of step with each other.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ambience {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 15px 8px 12px;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--card);
+}
+
+.ambience:hover {
+  color: var(--ink);
+  border-color: var(--ink-3);
+}
+
+.ambience[data-on='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.ambienceWave {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 11px;
+}
+
+.ambienceWave i {
+  display: block;
+  width: 2px;
+  height: 3px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.ambience[data-on='true'] .ambienceWave i {
+  animation: swellBar 2.6s ease-in-out infinite alternate;
+}
+
+.ambience[data-on='true'] .ambienceWave i:nth-child(2) {
+  animation-duration: 3.7s;
+}
+
+.ambience[data-on='true'] .ambienceWave i:nth-child(3) {
+  animation-duration: 3.1s;
+}
+
+.ambience[data-on='true'] .ambienceWave i:nth-child(4) {
+  animation-duration: 4.3s;
+}
+
+@keyframes swellBar {
+  from {
+    height: 3px;
+  }
+  to {
+    height: 11px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambience[data-on='true'] .ambienceWave i {
+    animation: none;
+    height: 7px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VISUAL RHYTHM
+
+   The environment is fixed, so without this it sits at full strength behind
+   the case studies and the résumés as well as behind the hero — and text
+   over a landscape is text you have to work to read.
+
+   So it settles. Over the first tenth of the page it drops to a little under
+   half strength and stays there: about seventy per cent atmosphere in the
+   hero, about thirty everywhere else, which is the rhythm the art direction
+   asks for and also the thing that keeps every word legible.
+
+   Scroll-driven, so it costs no JavaScript. Browsers without support keep
+   the hero's strength throughout, which is why the settled value is a floor
+   rather than a fade to nothing.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@supports (animation-timeline: scroll()) {
+  .world {
+    animation: settle linear both;
+    animation-timeline: scroll(root block);
+    animation-range: 0 12%;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.42;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .world {
+    animation: none;
+    opacity: 0.62;
+  }
+}

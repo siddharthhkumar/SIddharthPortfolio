@@ -1,0 +1,115 @@
+.title {
+  max-width: 16ch;
+  margin-bottom: clamp(38px, 5vw, 58px);
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: clamp(30px, 4vw, 56px);
+}
+
+.groupHead {
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.groupTitle {
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.groupBlurb {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+  max-width: 46ch;
+}
+
+.files {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* A file in a drawer: a coloured tab down the left edge, the label, and the
+   note about when to pull it. */
+.file {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 16px 18px 16px 14px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-s);
+  transition:
+    transform 300ms var(--ease),
+    border-color 300ms var(--ease-soft),
+    box-shadow 300ms var(--ease);
+}
+
+.file:hover {
+  transform: translateX(4px);
+  border-color: var(--rule-2);
+  box-shadow: var(--shadow-s);
+}
+
+.tab {
+  width: 3px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--rule-2);
+  transition: background-color 300ms var(--ease-soft);
+}
+
+.file:hover .tab {
+  background: var(--accent);
+}
+
+.fileMain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.role {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.targets {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.when {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.get {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  white-space: nowrap;
+  padding-top: 4px;
+}
+
+.file:hover .get {
+  color: var(--accent);
+}

@@ -1,0 +1,76 @@
+/* The title plate. A paper has a front page; this is it, set as one. */
+
+.plate {
+  padding: clamp(26px, 3.4vw, 40px) clamp(24px, 3.2vw, 44px);
+  margin-bottom: clamp(30px, 4vw, 44px);
+  background: var(--card);
+  border: 1px solid var(--rule-2);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 var(--r-s) var(--r-s);
+  text-align: center;
+}
+
+.plateLabel {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+}
+
+.plateTitle {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 2.1vw, 1.6rem);
+  line-height: 1.34;
+  color: var(--ink);
+  max-width: 44ch;
+  margin: 0 auto 18px;
+  text-wrap: balance;
+}
+
+.plateAuthors {
+  font-size: 0.9375rem;
+  color: var(--ink-2);
+  margin-bottom: 4px;
+}
+
+.self {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--accent);
+}
+
+.plateAff {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+}
+
+/* ── The conference photograph ──────────────────────────────────────── */
+
+.photo {
+  margin: 0 0 26px;
+  /* A portrait, so it is held to a column rather than the full measure. */
+  max-width: 420px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-m);
+  background: var(--paper-2);
+  box-shadow: var(--shadow-s);
+}
+
+.photoImg {
+  width: 100%;
+  height: auto;
+}
+
+.photoCap {
+  padding: 11px 15px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-3);
+}

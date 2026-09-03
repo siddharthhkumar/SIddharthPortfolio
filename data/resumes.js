@@ -1,28 +1,26 @@
 // Six role-specific resumes, grouped into two tracks.
+//
+// The first group is the one being applied for; the second is the rest of the
+// range. Regrouping changes which document a recruiter reaches for first, and
+// nothing else: every file below already existed, and none of the copy inside
+// them is written here.
+//
 // Each `file` must exist in public/resumes/ — see the README note in that folder.
 
 export const resumeGroups = [
   {
-    id: 'data-analytics',
-    label: 'Data & Analytics',
+    id: 'product-operations',
+    label: 'Product & Operations',
     blurb:
-      'For roles where the job is to work with business and operational data, define the metrics and make the numbers usable.',
+      'The two he is applying for. Both are about deciding what should happen and then making sure it does — one at the level of the product, one at the level of the operation.',
     resumes: [
       {
-        id: 'data-analyst',
-        role: 'Data Analyst',
-        targets: 'Data Analyst · Reporting Analyst · BI Analyst · MIS Executive',
+        id: 'product-manager',
+        role: 'Product Manager / APM',
+        targets: 'APM · Product Analyst · Associate PM · Product Operations',
         when:
-          'Use this when the role centres on SQL, Excel and Power BI — cleaning data, tracking KPIs and turning recurring reporting into dashboards people rely on.',
-        file: '/resumes/siddharth-data-analyst.pdf',
-      },
-      {
-        id: 'business-analyst-mis',
-        role: 'Business Analyst / MIS',
-        targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
-        when:
-          'Use this when the role is about interpreting business performance — finding trends, answering stakeholder questions and turning analysis into recommendations.',
-        file: '/resumes/siddharth-business-analyst-mis.pdf',
+          'Use this when the role calls for problem identification, prototyping and cross-functional execution — leading a build and defining how the product should work for the person using it.',
+        file: '/resumes/siddharth-product-manager.pdf',
       },
       {
         id: 'operations',
@@ -32,21 +30,29 @@ export const resumeGroups = [
           'Use this when the role runs on process and execution — monitoring KPIs, tracking operational performance, and keeping teams and programmes moving.',
         file: '/resumes/siddharth-operations.pdf',
       },
+      {
+        id: 'business-analyst-mis',
+        role: 'Business Analyst / MIS',
+        targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
+        when:
+          'Use this when the role is about interpreting business performance — finding trends, answering stakeholder questions and turning analysis into recommendations.',
+        file: '/resumes/siddharth-business-analyst-mis.pdf',
+      },
     ],
   },
   {
-    id: 'product-growth',
-    label: 'Product & Growth',
+    id: 'data-content',
+    label: 'Data & Content',
     blurb:
-      'For roles where the job is to shape what gets built, or to grow the audience that uses it.',
+      'The rest of the range, kept because the work behind it is real and some roles are looking for exactly this.',
     resumes: [
       {
-        id: 'product-manager',
-        role: 'Product Manager / APM',
-        targets: 'APM · Product Analyst · Associate PM · Product Operations',
+        id: 'data-analyst',
+        role: 'Data Analyst',
+        targets: 'Data Analyst · Reporting Analyst · BI Analyst · MIS Executive',
         when:
-          'Use this when the role calls for problem identification, prototyping and cross-functional execution — leading a build and defining how the product should work for the person using it.',
-        file: '/resumes/siddharth-product-manager.pdf',
+          'Use this when the role centres on SQL, Excel and Power BI — cleaning data, tracking KPIs and turning recurring reporting into dashboards people rely on.',
+        file: '/resumes/siddharth-data-analyst.pdf',
       },
       {
         id: 'social-media-manager',

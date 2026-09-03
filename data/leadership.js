@@ -41,7 +41,15 @@ export const leadership = [
       'Mobilised a technology community of 500+ students, increasing event registrations by 25%.',
       'Organised Gen AI workshops and Cloud Study Jams, coordinating marketing and speaker onboarding.',
     ],
-    tags: ['A/B Testing', 'Campaign Strategy', 'Community Growth'],
+    // The chapter newsletter, published on his own Medium account. The
+    // January 2024 edition falls inside the Core Team period noted above.
+    // Medium's `?sharedUserId=` tracking parameter is stripped — it is a
+    // share-attribution token, not part of the address.
+    link: {
+      label: 'Read the Jan 2024 newsletter',
+      href: 'https://medium.com/@siddharthk1500/gdsc-gbu-newsletter-jan-2024-edition-f08ded4ce0d4',
+    },
+    tags: ['A/B Testing', 'Campaign Strategy', 'Newsletter', 'Community Growth'],
   },
   {
     id: 'sih',
