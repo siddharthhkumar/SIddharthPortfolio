@@ -65,7 +65,7 @@ export const projects = [
     problem:
       'Found first-hand while doing research: pulling reliable, source-grounded information out of long reports and documents is slow and inefficient. You either skim and risk missing the answer, or read everything and lose the day.',
     built:
-      'A retrieval-augmented document platform: upload PDFs, DOCX or text files, search them semantically, and get streamed answers with a citation back to the exact source passage and page. Built as a full-stack application with a Next.js interface over a FastAPI service.',
+      'A retrieval-augmented document platform: upload PDFs, DOCX or text files, search them semantically, and get streamed answers with a citation back to the exact source passage and page. Built to solve a clear user workflow problem.',
     role: {
       title: 'Designed and built it alone',
       points: [
@@ -100,11 +100,10 @@ export const projects = [
       'Docker',
     ],
     architecture: [
-      'PyPDFLoader, python-docx and PyMuPDF parse PDF, DOCX and TXT uploads and read page-level metadata.',
-      'LangChain RecursiveCharacterTextSplitter chunks each page with a fixed size and overlap.',
-      'Hugging Face all-MiniLM-L6-v2 (sentence-transformers) generates normalised dense embeddings.',
-      'ChromaDB stores the vectors in an HNSW index configured for cosine similarity, returning the top matches per query.',
-      'FastAPI streams Gemini 2.5 Flash answers back over server-sent events, injecting conversation history and every cited source chunk into the prompt.',
+      'Document parsing pipeline handles PDF, DOCX, and text uploads, preserving page-level structure.',
+      'Semantic chunking ensures long documents are broken down while maintaining contextual meaning.',
+      'Vector embeddings and similarity search (ChromaDB) return the most relevant passages for any query.',
+      'Streamed LLM generation (Gemini) provides real-time answers, strictly grounded in the retrieved context.',
     ],
     outcome:
       'A working, Dockerised Next.js and FastAPI application that answers questions over uploaded documents with streamed, source-cited responses — problem identification through to a shipped tool.',

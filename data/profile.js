@@ -33,7 +33,7 @@ export const profile = {
       '**Data & Business Analysis**: Analyzing real business data (SQL, Excel, Power BI), tracking KPIs, and building dashboards to help teams make fast decisions.',
       '**Product & Prototyping**: Figuring out product mechanics, building initial prototypes, designing interfaces, and guiding teams to launch.',
       '**Digital Growth**: Writing SEO-optimized content, running campaigns, and building online communities from the ground up.',
-      '**Applied AI & Research**: Building AI search tools and publishing research papers to solve practical problems rather than following trends.'
+      '**Applied AI & Research**: Building AI search tools and publishing research papers to solve practical business problems rather than following technical trends.'
     ],
     pillars: [
       {
@@ -50,7 +50,7 @@ export const profile = {
       },
       {
         title: 'Applied AI & Research',
-        text: 'I build AI search tools and write published research papers, using technical skills to solve practical problems instead of just following trends.',
+        text: 'I build AI search tools and write published research papers, using technology to solve practical business problems instead of just following technical trends.',
       },
     ],
   },

@@ -12,8 +12,7 @@ export const experience = [
     period: 'Aug 2026 – Present',
     current: true,
     track: 'growth',
-    summary:
-      'Working across data, AI, automation and digital growth, on how digital systems get planned and run.',
+    summary: 'Working across data, AI, automation and digital growth to plan and scale business systems.',
     bullets: [
       'Work with cross-functional teams across data, AI, automation and digital growth, seeing how business processes and digital systems are planned, executed and scaled.',
       'Build practical understanding of SEO, digital systems and AI-enabled workflows in a live commercial setting.',
@@ -29,8 +28,7 @@ export const experience = [
     location: 'Gurugram, India',
     period: 'Feb 2026 – Apr 2026',
     track: 'data',
-    summary:
-      'Business and operational data analysis for an edtech startup, working directly with international clients.',
+    summary: 'Business and operational data analysis for an edtech startup, reporting directly to international clients.',
     bullets: [
       'Analysed business and operational data using SQL and analytical tools, interpreting records to answer questions about how the business was performing.',
       'Identified trends across operational information and prepared insights that supported management decision-making.',
@@ -47,8 +45,7 @@ export const experience = [
     location: '',
     period: 'Jul 2025 – Sep 2025',
     track: 'data',
-    summary:
-      'KPI tracking, lead and conversion analysis, and dashboards supporting operational decisions in logistics.',
+    summary: 'KPI tracking, lead analysis, and operations dashboards to support logistics decisions.',
     bullets: [
       'Carried out business analysis and performance tracking, organising KPIs to measure how the operation was performing.',
       'Evaluated lead and conversion data to identify trends in business performance and highlight workflow inefficiencies.',
@@ -65,8 +62,7 @@ export const experience = [
     location: 'Bengaluru, India',
     period: 'Jul 2025 – Aug 2025',
     track: 'growth',
-    summary:
-      'Marketing and sales initiatives through campaign planning, customer research and digital outreach.',
+    summary: 'Marketing and sales initiatives through campaign planning, customer research and digital outreach.',
     bullets: [
       'Supported campaign planning and digital outreach across marketing and sales initiatives.',
       'Ran customer research to sharpen audience understanding and improve engagement.',
@@ -82,8 +78,7 @@ export const experience = [
     location: '',
     period: 'Jul 2025 – Aug 2025',
     track: 'content',
-    summary:
-      'Content coordination and social campaigns for college and school communities, with performance analysis.',
+    summary: 'Content coordination, social campaigns, and performance analysis for educational communities.',
     bullets: [
       'Coordinated content, social media campaigns and audience engagement across digital channels.',
       'Applied analytical thinking and a technical background to understand campaign performance.',
@@ -99,8 +94,7 @@ export const experience = [
     location: 'Chhattisgarh, India',
     period: 'Jun 2025 – Jul 2025',
     track: 'content',
-    summary:
-      'SEO-focused blogs, social content and marketing creatives built on research and storytelling.',
+    summary: 'SEO-focused blogs, social content, and marketing creatives built on research and storytelling.',
     bullets: [
       'Created SEO-focused blogs, social media content and marketing creatives for brands.',
       'Combined research and storytelling to turn complex topics into clear, engaging content.',
@@ -116,8 +110,7 @@ export const experience = [
     location: 'Bengaluru, India',
     period: 'Jul 2025',
     track: 'content',
-    summary:
-      'Social-impact campaigns, creative content and CSR awareness communication for an NGO.',
+    summary: 'Social-impact campaigns, creative content, and CSR awareness for an NGO.',
     bullets: [
       'Supported social impact initiatives through social media campaigns and creative content.',
       'Developed campaign ideas and informative content to improve awareness and visibility around CSR and social causes.',
@@ -128,13 +121,13 @@ export const experience = [
     id: 'mectoi',
     company: 'Mectoi Technologies Private Limited',
     title: 'Junior Software Engineer Intern',
-    focus: 'Software Engineering',
+    focus: 'Technical Operations',
     location: 'Lucknow, India',
     period: 'Jun 2024 – Jul 2024',
     track: 'technical',
-    summary: 'Early software engineering internship — first hands-on exposure to building in a team.',
+    summary: 'Early hands-on exposure to software development, building an understanding of how technical teams operate and ship products.',
     bullets: [],
-    tags: ['Software Engineering'],
+    tags: ['Technical Operations', 'Cross-functional Understanding'],
   },
 ]
 
