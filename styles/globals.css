@@ -89,6 +89,11 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* 3D depth tokens — small, restrained magnitudes */
+  --perspective: 1500px;
+  --tilt-max: 8deg;
+  --lift-z: 18px;
+
   /* Defined once here so no module has to restate a stack. --display is the
      same family as body text, set heavy: the difference between a headline
      and a sentence is weight and tracking, not typeface. */
@@ -394,7 +399,7 @@ img {
 .band {
   position: relative;
   z-index: 2;
-  padding-block: clamp(60px, 6.4vw, 116px);
+  padding-block: clamp(76px, 7.4vw, 144px);
 }
 
 .band-sub {
@@ -428,7 +433,7 @@ img {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: clamp(26px, 4vw, 44px);
+  margin-bottom: clamp(32px, 4.5vw, 52px);
 }
 
 .marker::after {
@@ -709,6 +714,40 @@ html[data-switching='true'] body::before {
   [class*='row']:active {
     transform: none;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   3D DEPTH & TILT
+
+   Pointer-driven perspective on fine pointers, gated by reduced motion.
+   [data-tilt] consumes the existing --px/--py custom properties broadcast by
+   components/world/Pointer.js, so no new JS is needed. [data-reveal-3d]
+   extends the existing [data-reveal]/. in reveal system to animate entrance
+   in 3D instead of flat Y-slide.
+   ═════════════════════════════════════════════════════════════════════════ */
+
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-tilt] {
+    perspective: var(--perspective);
+    transform-style: preserve-3d;
+    transform: rotateX(calc(var(--py, 0) * -1 * var(--tilt-max)))
+      rotateY(calc(var(--px, 0) * var(--tilt-max)));
+    transition: transform 600ms var(--ease-soft);
+  }
+}
+
+html.reveal-ready [data-reveal-3d] {
+  opacity: 0;
+  transform: rotateX(-6deg) translateZ(-40px);
+  transition:
+    opacity 740ms var(--ease),
+    transform 740ms var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+html.reveal-ready [data-reveal-3d].in {
+  opacity: 1;
+  transform: none;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

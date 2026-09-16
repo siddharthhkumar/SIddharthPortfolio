@@ -6,7 +6,8 @@
 }
 
 /* A print, taped to the page. Slight rotation, generous bottom margin the way
-   a photographic print is mounted. */
+   a photographic print is mounted. On hover, it lifts and turns toward the
+   reader in 3D. */
 .print {
   position: relative;
   margin: 0;
@@ -16,10 +17,20 @@
   box-shadow: var(--shadow-m);
   transform: rotate(-0.7deg);
   transition: transform 620ms var(--ease);
+  perspective: var(--perspective);
+  transform-style: preserve-3d;
 }
 
-.print:hover {
-  transform: rotate(0deg);
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .print:hover {
+    transform: rotateX(4deg) rotateY(2deg) rotateZ(-0.7deg) translateZ(var(--lift-z));
+  }
+}
+
+@media (pointer: coarse) {
+  .print:hover {
+    transform: rotate(0deg);
+  }
 }
 
 .tape {

@@ -35,24 +35,6 @@ export const profile = {
       '**Digital Growth**: Writing SEO-optimized content, running campaigns, and building online communities from the ground up.',
       '**Applied AI & Research**: Building AI search tools and publishing research papers to solve practical business problems rather than following technical trends.'
     ],
-    pillars: [
-      {
-        title: 'Data & Business Analysis',
-        text: 'I use SQL, Excel, and Power BI to analyze real business data, track KPIs, and build dashboards that help teams make decisions quickly.',
-      },
-      {
-        title: 'Product & Prototyping',
-        text: 'I figure out how a product should work, build the first prototype, design the interface, and guide the team to launch it.',
-      },
-      {
-        title: 'Digital Growth & Content',
-        text: 'I write SEO-optimized content, run social media campaigns, and build online communities for agencies, edtech companies, and non-profits.',
-      },
-      {
-        title: 'Applied AI & Research',
-        text: 'I build AI search tools and write published research papers, using technology to solve practical business problems instead of just following technical trends.',
-      },
-    ],
   },
 
   education: {

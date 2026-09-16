@@ -30,6 +30,7 @@
     opacity 420ms var(--ease-soft),
     transform 420ms var(--ease),
     background-color 420ms var(--ease-soft);
+  perspective: var(--perspective);
 }
 
 .mark[data-hit='true'] {
@@ -40,11 +41,12 @@
 
 /* Hovering or focusing the line of text raises the thirty-two it is talking
    about. The relationship is the whole point of the object, so it should be
-   possible to see it rather than only read it. */
+   possible to see it rather than only read it. In 3D, they flip toward the
+   reader and lift. */
 .tally:hover .mark[data-hit='true'],
 .tally:focus-within .mark[data-hit='true'] {
   opacity: 1;
-  transform: scaleY(1.18);
+  transform: scaleY(1.18) rotateX(6deg) translateZ(var(--lift-z));
 }
 
 .tally:hover .mark[data-hit='false'],

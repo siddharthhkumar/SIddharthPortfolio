@@ -104,7 +104,7 @@
   background: var(--card);
   border-color: var(--rule-2);
   box-shadow: var(--shadow-s);
-  transform: translateY(-2px);
+  transform: translateY(-2px) translateZ(var(--lift-z));
 }
 
 .passedStage {

@@ -26,6 +26,8 @@
   pointer-events: none;
   overflow: hidden;
   contain: strict;
+  perspective: var(--perspective);
+  transform-style: preserve-3d;
 
   /* ── Day: warm paper under morning light ───────────────────────── */
   --ink-line: rgba(28, 26, 22, 0.5);
@@ -41,10 +43,11 @@
 }
 
 /* The sky. A wash, not a gradient blob: it runs top to bottom across the
-   whole viewport and never draws attention to a centre. */
+   whole viewport and never draws attention to a centre. In 3D, it's furthest back. */
 .sky {
   position: absolute;
   inset: 0;
+  transform: translateZ(-120px);
   background:
     linear-gradient(
       to bottom,
@@ -241,6 +244,7 @@
 
 .landscape {
   opacity: var(--story);
+  transform: translateZ(-60px);
 }
 
 .ridge {
@@ -274,6 +278,7 @@
 
 .doodles {
   opacity: var(--detail);
+  transform: translateZ(40px);
 }
 
 .mark {
@@ -695,8 +700,10 @@
   height: 16vh;
   /* Deliberately weaker than the rest of the story layer. This is the one
      band of the screen that always has type over it — the tally and its
-     caption — so the water has to be felt rather than seen. */
+     caption — so the water has to be felt rather than seen. In 3D, just
+     behind the foreground. */
   opacity: calc(var(--story) * 0.55);
+  transform: translateZ(-20px);
 }
 
 .ocean svg {

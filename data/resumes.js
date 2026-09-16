@@ -12,7 +12,7 @@ export const resumeGroups = [
     id: 'analytics-product',
     label: 'Data, Business & Product Resumes',
     blurb:
-      'Role-specific résumés tailored for analytical and product roles — interpreting data, tracking KPIs, and guiding product prototypes.',
+      'Specialized résumés for data-driven roles: SQL analytics, BI dashboards, business insights, and product management across analytics, data science, and product operations.',
     resumes: [
       {
         id: 'data-analyst',
@@ -20,7 +20,7 @@ export const resumeGroups = [
         downloadLabel: 'Data & Analytics Resume',
         targets: 'Data Analyst · BI Analyst · Reporting Analyst · MIS Executive',
         when:
-          'Use for roles centred on SQL, Excel, and Power BI — data cleaning, KPI tracking, and interactive dashboards.',
+          'Best for SQL and Excel-focused roles: data extraction, ETL pipelines, Power BI dashboards, KPI reporting, and data quality.',
         file: '/resumes/siddharth-data-analyst.pdf',
       },
       {
@@ -29,7 +29,7 @@ export const resumeGroups = [
         downloadLabel: 'Business Analyst Resume',
         targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
         when:
-          'Use for roles interpreting business performance — finding trends, answering stakeholder questions, and generating insights.',
+          'Ideal for roles analyzing business performance: trend identification, stakeholder reporting, performance metrics, and data-driven recommendations.',
         file: '/resumes/siddharth-business-analyst-mis.pdf',
       },
       {
@@ -38,7 +38,7 @@ export const resumeGroups = [
         downloadLabel: 'Product Manager Resume',
         targets: 'APM · Product Analyst · Associate PM · Product Operations',
         when:
-          'Use for roles calling for problem framing, prototyping, and cross-functional feature execution.',
+          'Perfect for product-focused positions: problem discovery, feature roadmap, user research, prototyping, and cross-functional leadership.',
         file: '/resumes/siddharthpm.pdf',
       },
     ],
@@ -47,7 +47,7 @@ export const resumeGroups = [
     id: 'growth-operations',
     label: 'Growth, Marketing & Operations Resumes',
     blurb:
-      'Role-specific résumés tailored for digital marketing, audience growth, content strategy, and operations tracking.',
+      'Tailored résumés for marketing and growth roles: digital marketing strategy, audience growth, SEO content, social media campaigns, and operational execution.',
     resumes: [
       {
         id: 'social-media-manager',
@@ -55,7 +55,7 @@ export const resumeGroups = [
         downloadLabel: 'Digital Marketing Resume',
         targets: 'Digital Marketing · Social Media Manager · Community Lead',
         when:
-          'Use for roles focused on audience growth, campaign planning, A/B tested messaging, and digital engagement.',
+          'Ideal for marketing and growth roles: social media strategy, campaign management, audience growth, community engagement, and marketing analytics.',
         file: '/resumes/SiddharthKumarDM.pdf',
       },
       {
@@ -64,7 +64,7 @@ export const resumeGroups = [
         downloadLabel: 'SEO & Content Resume',
         targets: 'SEO Content Writer · Content Strategist · Digital Copywriter',
         when:
-          'Use for roles requiring SEO blogs, research writing, content campaigns, and digital storytelling.',
+          'Perfect for content-focused positions: SEO optimization, keyword research, blog strategy, content calendars, and digital storytelling.',
         file: '/resumes/siddharth-seo-content-writer.pdf',
       },
       {
@@ -73,7 +73,7 @@ export const resumeGroups = [
         downloadLabel: 'Operations Resume',
         targets: 'Operations Analyst · Business Operations · Programme Operations',
         when:
-          'Use for roles executing operational processes — KPI monitoring, logistics tracking, and workflow efficiency.',
+          'Best for operations roles: process optimization, workflow management, KPI tracking, supply chain, and operational efficiency.',
         file: '/resumes/siddharth-operations.pdf',
       },
     ],

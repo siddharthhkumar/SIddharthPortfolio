@@ -51,9 +51,18 @@
 }
 
 /* A small lift rather than a colour change — the colour is already saying
-   which discipline this is, and it should not flicker on hover. */
-.row:hover .figure {
-  transform: translateX(4px);
+   which discipline this is, and it should not flicker on hover. In 3D, the
+   figure also raises toward the reader. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .row:hover .figure {
+    transform: translateX(4px) translateZ(var(--lift-z));
+  }
+}
+
+@media (pointer: coarse) {
+  .row:hover .figure {
+    transform: translateX(4px);
+  }
 }
 
 .unit {

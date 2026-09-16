@@ -201,7 +201,18 @@
   transition: transform 900ms var(--ease), filter 900ms var(--ease);
 }
 
-/* A shift, not a zoom-and-tilt. */
+/* A shift, not a zoom-and-tilt — now literally a 3D tilt pick-up. */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .feature .visual {
+    perspective: var(--perspective);
+    transform-style: preserve-3d;
+  }
+
+  .feature:hover .visual {
+    transform: rotateX(2deg) rotateY(-3deg) translateZ(var(--lift-z));
+  }
+}
+
 .feature[data-linked='true']:hover .frameImg {
   transform: scale(1.022);
 }

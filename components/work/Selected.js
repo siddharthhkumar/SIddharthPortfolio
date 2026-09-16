@@ -70,7 +70,7 @@ function Feature({ entry, flip }) {
   return (
     <Wrapper
       {...props}
-      data-reveal
+      data-reveal-3d
       data-flip={flip ? 'true' : 'false'}
       data-tone={entry.tone}
       data-visual={visual}

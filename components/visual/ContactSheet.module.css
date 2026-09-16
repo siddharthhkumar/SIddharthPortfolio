@@ -64,9 +64,23 @@
   transition: filter 620ms var(--ease), transform 900ms var(--ease);
 }
 
-.frame:hover .img {
-  filter: none;
-  transform: scale(1.03);
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .frame {
+    perspective: var(--perspective);
+    transform-style: preserve-3d;
+  }
+
+  .frame:hover .img {
+    filter: none;
+    transform: scale(1.03) rotateX(3deg) rotateY(-2deg) translateZ(12px);
+  }
+}
+
+@media (pointer: coarse) {
+  .frame:hover .img {
+    filter: none;
+    transform: scale(1.03);
+  }
 }
 
 /* The caption arrives on hover, and on focus for anyone using a keyboard. */

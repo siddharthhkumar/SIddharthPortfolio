@@ -25,7 +25,7 @@
 
 .groupBlurb {
   font-size: 0.9375rem;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--ink-3);
   max-width: 46ch;
 }
@@ -38,7 +38,7 @@
 }
 
 /* A file in a drawer: a coloured tab down the left edge, the label, and the
-   note about when to pull it. */
+   note about when to pull it. On hover, it pulls forward in 3D. */
 .file {
   position: relative;
   display: grid;
@@ -50,15 +50,29 @@
   border: 1px solid var(--rule);
   border-radius: var(--r-s);
   transition:
-    transform 300ms var(--ease),
-    border-color 300ms var(--ease-soft),
-    box-shadow 300ms var(--ease);
+    transform 180ms var(--ease),
+    border-color 180ms var(--ease-soft),
+    box-shadow 180ms var(--ease),
+    background-color 180ms var(--ease-soft);
+  cursor: pointer;
+  perspective: var(--perspective);
+  transform-style: preserve-3d;
 }
 
-.file:hover {
-  transform: translateX(4px);
-  border-color: var(--rule-2);
-  box-shadow: var(--shadow-s);
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .file:hover {
+    transform: translateX(3px) rotateY(-2deg) translateZ(var(--lift-z));
+    border-color: var(--rule-2);
+    box-shadow: var(--shadow-s);
+  }
+}
+
+@media (pointer: coarse) {
+  .file:hover {
+    transform: translateX(3px);
+    border-color: var(--rule-2);
+    box-shadow: var(--shadow-s);
+  }
 }
 
 .tab {
@@ -66,7 +80,7 @@
   align-self: stretch;
   border-radius: 2px;
   background: var(--rule-2);
-  transition: background-color 300ms var(--ease-soft);
+  transition: background-color 150ms var(--ease-soft);
 }
 
 .file:hover .tab {
@@ -97,7 +111,7 @@
 .when {
   margin-top: 6px;
   font-size: 0.875rem;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--ink-2);
 }
 
@@ -108,6 +122,7 @@
   color: var(--ink-3);
   white-space: nowrap;
   padding-top: 4px;
+  transition: color 150ms var(--ease-soft);
 }
 
 .file:hover .get {

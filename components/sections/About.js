@@ -50,15 +50,15 @@ export default function About() {
 
             <p className={`t-body ${styles.para}`}>{offClock.lines[1]}</p>
 
-            <div className={styles.currentlySection} style={{ marginTop: '3rem' }}>
-              <h3 className={`d-title`} style={{ fontSize: '1.5rem', marginBottom: '1.5rem' }}>Currently</h3>
+            <div className={styles.currentlySection}>
+              <h3 className="d-title">Currently</h3>
               <dl className={styles.currentlyEntries}>
                 {current.entries.map((e) => (
-                  <div key={e.key} style={{ marginBottom: '1rem' }}>
-                    <dt style={{ fontWeight: '600', color: 'var(--ink)' }}>{e.key}</dt>
-                    <dd style={{ color: 'var(--ink-sub)' }}>
+                  <div key={e.key}>
+                    <dt>{e.key}</dt>
+                    <dd>
                       <span>{e.value}</span>
-                      {e.note && <span style={{ display: 'block', fontSize: '0.85em', opacity: 0.8 }}>{e.note}</span>}
+                      {e.note && <span>{e.note}</span>}
                     </dd>
                   </div>
                 ))}
