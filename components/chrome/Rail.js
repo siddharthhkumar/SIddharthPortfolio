@@ -35,7 +35,6 @@ const SECTIONS = [
   { id: 'recognition', label: 'Recognition' },
   { id: 'toolkit', label: 'Toolkit' },
   { id: 'about', label: 'About' },
-  { id: 'currently', label: 'Currently' },
   { id: 'answers', label: 'Answers' },
   { id: 'contact', label: 'Contact' },
 ]

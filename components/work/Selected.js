@@ -56,7 +56,12 @@ function Feature({ entry, flip }) {
   // A feature is a very large link with no button on it, so the pointer says
   // where it goes. Only the ones that actually go somewhere get a label.
   const props = entry.href
-    ? { href: entry.href, className: styles.feature, 'data-cursor': 'Read the case study' }
+    ? {
+        href: entry.href,
+        className: styles.feature,
+        'data-cursor': 'Read the case study',
+        'aria-label': `View the ${piece.name} case study`,
+      }
     : { className: styles.feature }
 
   // A diagram needs the full measure; a photograph is happy in half of it.

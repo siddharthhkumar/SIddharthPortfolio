@@ -33,9 +33,7 @@ import TableOfContents from '@/components/nav/TableOfContents'
  *   Recognition    the two documents a stranger can open and check
  *   Toolkit        what it was all done with
  *   About         the short version, for anyone who scrolled to it first
- *   Currently     the part that is supposed to go out of date
  *   Answers       the four or five specific questions, answered plainly
- *   Résumé        the way out, into an application
  *
  * Contact is the footer, in app/layout.js — a separate section above it would
  * be the same four links twice.

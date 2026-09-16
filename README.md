@@ -82,8 +82,8 @@ Almost everything is a data file, not a component.
 | projects, research, experience, leadership, skills, résumés | the file of that name |
 | the case-study reflections | `data/reflections.js` — **the one file written in his voice; read the note at the top of it** |
 
-`data/current.js` drives the printed date in three places at once. There is one
-date to change, not three.
+`data/current.js` drives the printed date wherever the live status appears,
+including the hero and the studio note. There is one date to change.
 
 ## Design system
 
@@ -113,17 +113,11 @@ Mechanically it is one attribute and one variable: any element with
 without knowing which discipline it belongs to. Every hue clears 4.5:1 on the
 tightest ground it sits on, in both themes.
 
-**The background moves.** Four large fields of colour, drawn from the same
-five discipline hues, drift on their own paths behind the whole page —
-between forty and seventy seconds for a circuit, so nothing is ever seen
-moving; the page simply looks slightly different whenever you come back to
-it. Only `transform` is animated: the softness is in the gradients, which
-rasterise once, rather than in a `filter: blur()` that would have to be
-recomputed every frame. It is a server component and ships no JavaScript.
-Under `prefers-reduced-motion` the drift stops and the composition holds
-still. It is what keeps warm paper from reading as beige, and it is edited in
-`data/backdrop.js` — which also takes a background **image**, currently
-`null`, ready for one to be dropped into `public/images/`.
+**The background moves.** The page sits inside a drawn world: sky, water,
+paper, landscape and small moving details, built from CSS and server-rendered
+components in `components/world/`. It ships no background JavaScript beyond the
+small ambience control in the hero. Under `prefers-reduced-motion`, decorative
+motion holds still.
 
 Built for a large screen first. The container runs to 1780px and the gutter
 grows with the viewport, so a 1440 laptop uses nearly all of it and a 1920
@@ -135,19 +129,15 @@ and lets itself run long rather than be crushed.
 
 Colour is warm paper and warm charcoal rather than white and black, with a
 single ink red used as punctuation and a quieter green reserved for live-status
-dots. Three typefaces, each with one job: **Fraunces** for display, **Inter**
-for sentences, **JetBrains Mono** for anything that would be stamped rather
-than written.
+dots. The type system stays in one family: the system face first, Inter as the
+text fallback, and SF Mono falling back to JetBrains Mono where fixed-width
+figures are useful.
 
-**Four theme states, not two.** Paper, Charcoal, Auto — and **Leap**, a
-comic-book night of indigo ground and halftone dots, where the pointer becomes
-a web-shooter reticle. It is an homage rather than a licence: no character, no
-logo, and it is named after the note on the cassette rather than after the
-film. An explicit choice stamps `data-theme` on the root; Auto stamps nothing
-and follows the OS. Every hue in every theme clears 4.5:1 on the tightest
-ground it sits on. The stored choice is
-re-applied by an inline script before first paint, so a dark-mode visitor never
-gets a paper-white flash.
+**Two explicit theme states.** Day and Night are the stored choices. With no
+stored choice, the root has no `data-theme` and follows the OS. Every hue in
+both themes clears 4.5:1 on the tightest ground it sits on. The stored choice
+is re-applied by an inline script before first paint, so a dark-mode visitor
+never gets a paper-white flash.
 
 ## Interaction
 

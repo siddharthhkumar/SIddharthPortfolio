@@ -34,13 +34,13 @@ export const projects = [
     // Stage labels describing the product described in `problem` and `built`.
     anatomy: {
       mode: 'system',
-      caption: 'How the system carries a question to an answer',
+      caption: 'How the system takes a question and gives you a clear answer',
       stages: [
-        { key: 'user', label: 'User', note: 'Someone without a finance background, with a decision to make.' },
-        { key: 'data', label: 'Market & transaction data', note: 'Raw financial inputs, fragmented and dense.' },
-        { key: 'analysis', label: 'Analysis', note: 'Transaction profiling, anomaly detection and trend models.' },
-        { key: 'signals', label: 'Signals', note: 'BUY / SELL / HOLD calls and portfolio insight.' },
-        { key: 'decision', label: 'Decision support', note: 'Plain, actionable output in an interface built for a non-specialist.' },
+        { key: 'user', label: 'You', note: 'Someone who needs to make a financial decision but does not have a finance background.' },
+        { key: 'data', label: 'Market data', note: 'Raw stock prices and transaction records — a wall of numbers that means nothing on its own.' },
+        { key: 'analysis', label: 'The system looks for patterns', note: 'It checks for unusual activity, spots trends, and compares what is happening against what normally happens.' },
+        { key: 'signals', label: 'A clear recommendation', note: 'BUY, SELL, or HOLD — a single, plain call instead of a spreadsheet to interpret.' },
+        { key: 'decision', label: 'You decide, confidently', note: 'A clean screen shows you the recommendation and why, so you can act without needing a financial advisor.' },
       ],
     },
     stack: ['Next.js', 'Python', 'FastAPI', 'Scikit-Learn', 'XGBoost', 'SQL', 'Vercel', 'Render'],
@@ -80,13 +80,13 @@ export const projects = [
       'Treat retrieval as the product, not the model. Parse the document properly, chunk it so meaning survives, embed it, and make every generated sentence traceable back to the passage and page it came from.',
     anatomy: {
       mode: 'document',
-      caption: 'What happens between a long document and a trustworthy answer',
+      caption: 'How a 50-page report becomes one honest answer',
       stages: [
-        { key: 'document', label: 'A long document', note: 'A report, a paper, a contract. Fifty pages you do not have time to read.' },
-        { key: 'meaning', label: 'Meaning', note: 'Parsed, chunked, and embedded so passages can be compared by sense rather than keyword.' },
-        { key: 'retrieval', label: 'Retrieval', note: 'Cosine similarity over an HNSW index returns the passages that actually bear on the question.' },
-        { key: 'question', label: 'Your question', note: 'Asked in plain language, against your own documents.' },
-        { key: 'answer', label: 'A grounded answer', note: 'Streamed back with a citation to the exact source passage and page.' },
+        { key: 'document', label: 'Your document', note: 'Upload any PDF, Word file, or text — a contract, a research report, a policy, anything.' },
+        { key: 'meaning', label: 'It reads the whole thing', note: 'The document is split into sections so the system can compare each part against your question.' },
+        { key: 'retrieval', label: 'It finds what matters', note: 'Out of all the sections, only the ones actually relevant to your question are selected.' },
+        { key: 'question', label: 'You ask in plain English', note: 'Type whatever you want to know — no keywords, no boolean operators, just a normal question.' },
+        { key: 'answer', label: 'You get an answer with a source', note: 'The answer streams back in seconds, with a reference to the exact page and sentence it came from.' },
       ],
     },
     stack: [

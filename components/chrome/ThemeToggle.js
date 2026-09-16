@@ -5,13 +5,13 @@ import { switchTheme, centreOf } from '@/components/motion/themeSwitch'
 import styles from './ThemeToggle.module.css'
 
 /**
- * Paper, charcoal, or whatever the machine says.
+ * Paper or charcoal, starting from whatever the machine says.
  *
- * Three states, not two. "Auto" is the default and stamps nothing on the
- * root, so the page follows the OS; choosing paper or charcoal stamps
- * data-theme and wins over it. The choice is written to localStorage and
- * re-applied by the inline script in the head before first paint — without
- * that, a dark-mode visitor gets a paper-white flash on every load.
+ * There are two explicit choices. With no stored choice, the page follows the
+ * OS; choosing day or night stamps data-theme and wins over it. The choice is
+ * written to localStorage and re-applied by the inline script in the head
+ * before first paint — without that, a dark-mode visitor gets a paper-white
+ * flash on every load.
  *
  * One button rather than three, because it lives inside the nav pill and
  * three would double its width. The accessible name always says both where
@@ -83,8 +83,7 @@ export default function ThemeToggle() {
       title={`Theme: ${NAMES[mode]}`}
     >
       <span className={styles.icon} aria-hidden="true">
-        {/* Sun, moon and a half-and-half disc for auto. One SVG, three
-            states, switched by opacity so the change reads as a dissolve. */}
+        {/* Sun and moon, switched by opacity so the change reads as a dissolve. */}
         <svg viewBox="0 0 20 20" width="16" height="16" focusable="false">
           <g className={styles.sun}>
             <circle cx="10" cy="10" r="3.6" fill="currentColor" />

@@ -162,7 +162,6 @@ export default function ResearchCase() {
               height={1600}
               sizes="(max-width: 900px) 92vw, 62vw"
               loading="lazy"
-              loading="lazy"
               className={styles.photoImg}
             />
             <figcaption className={styles.photoCap}>

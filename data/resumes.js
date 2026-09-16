@@ -9,66 +9,72 @@
 
 export const resumeGroups = [
   {
-    id: 'product-operations',
-    label: 'Product & Operations',
+    id: 'analytics-product',
+    label: 'Data, Business & Product Resumes',
     blurb:
-      'The two he is applying for. Both are about deciding what should happen and then making sure it does — one at the level of the product, one at the level of the operation.',
-    resumes: [
-      {
-        id: 'product-manager',
-        role: 'Product Manager / APM',
-        targets: 'APM · Product Analyst · Associate PM · Product Operations',
-        when:
-          'Use this when the role calls for problem identification, prototyping and cross-functional execution — leading a build and defining how the product should work for the person using it.',
-        file: '/resumes/siddharth-product-manager.pdf',
-      },
-      {
-        id: 'operations',
-        role: 'Operations',
-        targets: 'Operations Analyst · Business Operations · Programme Operations',
-        when:
-          'Use this when the role runs on process and execution — monitoring KPIs, tracking operational performance, and keeping teams and programmes moving.',
-        file: '/resumes/siddharth-operations.pdf',
-      },
-      {
-        id: 'business-analyst-mis',
-        role: 'Business Analyst / MIS',
-        targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
-        when:
-          'Use this when the role is about interpreting business performance — finding trends, answering stakeholder questions and turning analysis into recommendations.',
-        file: '/resumes/siddharth-business-analyst-mis.pdf',
-      },
-    ],
-  },
-  {
-    id: 'data-content',
-    label: 'Data & Content',
-    blurb:
-      'The rest of the range, kept because the work behind it is real and some roles are looking for exactly this.',
+      'Role-specific résumés tailored for analytical and product roles — interpreting data, tracking KPIs, and guiding product prototypes.',
     resumes: [
       {
         id: 'data-analyst',
         role: 'Data Analyst',
-        targets: 'Data Analyst · Reporting Analyst · BI Analyst · MIS Executive',
+        downloadLabel: 'Data & Analytics Resume',
+        targets: 'Data Analyst · BI Analyst · Reporting Analyst · MIS Executive',
         when:
-          'Use this when the role centres on SQL, Excel and Power BI — cleaning data, tracking KPIs and turning recurring reporting into dashboards people rely on.',
+          'Use for roles centred on SQL, Excel, and Power BI — data cleaning, KPI tracking, and interactive dashboards.',
         file: '/resumes/siddharth-data-analyst.pdf',
       },
       {
-        id: 'social-media-manager',
-        role: 'Social Media Manager',
-        targets: 'Social Media Manager · Community Manager · Digital Content Executive',
+        id: 'business-analyst-mis',
+        role: 'Business Analyst / MIS',
+        downloadLabel: 'Business Analyst Resume',
+        targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
         when:
-          'Use this when the role owns an audience — community building, campaign planning, content production and messaging tested against real engagement data.',
-        file: '/resumes/siddharth-social-media-manager.pdf',
+          'Use for roles interpreting business performance — finding trends, answering stakeholder questions, and generating insights.',
+        file: '/resumes/siddharth-business-analyst-mis.pdf',
+      },
+      {
+        id: 'product-manager',
+        role: 'Product Manager / APM',
+        downloadLabel: 'Product Manager Resume',
+        targets: 'APM · Product Analyst · Associate PM · Product Operations',
+        when:
+          'Use for roles calling for problem framing, prototyping, and cross-functional feature execution.',
+        file: '/resumes/siddharthpm.pdf',
+      },
+    ],
+  },
+  {
+    id: 'growth-operations',
+    label: 'Growth, Marketing & Operations Resumes',
+    blurb:
+      'Role-specific résumés tailored for digital marketing, audience growth, content strategy, and operations tracking.',
+    resumes: [
+      {
+        id: 'social-media-manager',
+        role: 'Digital Marketing & Community Manager',
+        downloadLabel: 'Digital Marketing Resume',
+        targets: 'Digital Marketing · Social Media Manager · Community Lead',
+        when:
+          'Use for roles focused on audience growth, campaign planning, A/B tested messaging, and digital engagement.',
+        file: '/resumes/SiddharthKumarDM.pdf',
       },
       {
         id: 'seo-content-writer',
-        role: 'SEO & Content Writer',
-        targets: 'SEO Content Writer · Content Writer · Content Strategist',
+        role: 'SEO & Content Strategist',
+        downloadLabel: 'SEO & Content Resume',
+        targets: 'SEO Content Writer · Content Strategist · Digital Copywriter',
         when:
-          'Use this when the role is writing — SEO blogs, social copy, scripts and long-form research turned into clear, audience-focused content.',
+          'Use for roles requiring SEO blogs, research writing, content campaigns, and digital storytelling.',
         file: '/resumes/siddharth-seo-content-writer.pdf',
+      },
+      {
+        id: 'operations',
+        role: 'Operations Analyst',
+        downloadLabel: 'Operations Resume',
+        targets: 'Operations Analyst · Business Operations · Programme Operations',
+        when:
+          'Use for roles executing operational processes — KPI monitoring, logistics tracking, and workflow efficiency.',
+        file: '/resumes/siddharth-operations.pdf',
       },
     ],
   },

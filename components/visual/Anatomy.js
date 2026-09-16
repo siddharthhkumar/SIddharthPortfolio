@@ -1,35 +1,104 @@
+'use client'
+
+import { useState } from 'react'
 import styles from './Anatomy.module.css'
 
 /**
  * How a project works, drawn.
  *
- * Reads `anatomy.stages` straight off the project, so the diagram can never
- * describe something the written record does not. Each stage gets a glyph that
- * means something specific — scattered points for raw data, a fitted line for
- * analysis, a cited passage for a grounded answer — rather than a generic icon.
- *
- * No client JavaScript. The reveal observer already puts `.in` on the wrapper
- * when it scrolls into view, and every animation here hangs off that class, so
- * the sequence plays once and costs nothing.
+ * Reads `anatomy.stages` straight off the project. Interactive, human-crafted
+ * step-by-step editorial flow with smooth micro-interactions, keyboard navigation,
+ * and clear progress tracking.
  */
 export default function Anatomy({ anatomy }) {
   if (!anatomy?.stages?.length) return null
   const { stages, caption, mode } = anatomy
+  const [activeStep, setActiveStep] = useState(0)
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowRight') {
+      setActiveStep((prev) => (prev + 1) % stages.length)
+    } else if (e.key === 'ArrowLeft') {
+      setActiveStep((prev) => (prev - 1 + stages.length) % stages.length)
+    }
+  }
+
+  const currentStage = stages[activeStep] || stages[0]
 
   return (
-    <figure className={styles.figure} data-reveal>
-      <div className={styles.track} role="img" aria-label={diagramLabel(caption, stages)}>
-        {stages.map((s, i) => (
-          <div key={s.key} className={styles.stage} style={{ '--i': i }}>
-            <div className={styles.glyphBox}>
-              <Glyph name={s.key} mode={mode} />
-            </div>
-            <p className={styles.stageLabel}>{s.label}</p>
-            <p className={styles.stageNote}>{s.note}</p>
-            {i < stages.length - 1 && <span className={styles.link} aria-hidden="true" />}
-          </div>
-        ))}
+    <figure className={styles.figure} data-reveal tabIndex={0} onKeyDown={handleKeyDown}>
+      {/* ── Top Editorial Control / Progress Header ── */}
+      <div className={styles.header}>
+        <div className={styles.headerMeta}>
+          <span className={styles.stepCount}>
+            STEP {String(activeStep + 1).padStart(2, '0')} / {String(stages.length).padStart(2, '0')}
+          </span>
+          <span className={styles.activeTitle}>{currentStage.label}</span>
+        </div>
+        <div className={styles.progressTrack} aria-hidden="true">
+          <div
+            className={styles.progressBar}
+            style={{ width: `${((activeStep + 1) / stages.length) * 100}%` }}
+          />
+        </div>
       </div>
+
+      {/* ── Interactive Stage Track ── */}
+      <div
+        className={styles.track}
+        role="tablist"
+        aria-label={diagramLabel(caption, stages)}
+      >
+        {stages.map((s, i) => {
+          const isActive = i === activeStep
+          const isPassed = i <= activeStep
+          const stepNum = String(i + 1).padStart(2, '0')
+
+          return (
+            <button
+              key={s.key}
+              type="button"
+              role="tab"
+              aria-selected={isActive}
+              tabIndex={isActive ? 0 : -1}
+              className={`${styles.stage} ${isActive ? styles.activeStage : ''} ${isPassed ? styles.passedStage : ''}`}
+              style={{ '--i': i }}
+              onClick={() => setActiveStep(i)}
+              onMouseEnter={() => setActiveStep(i)}
+              onFocus={() => setActiveStep(i)}
+            >
+              <div className={styles.stageTop}>
+                <span className={styles.stepNum}>{stepNum}</span>
+                <div className={styles.glyphBox}>
+                  <Glyph name={s.key} mode={mode} />
+                </div>
+              </div>
+
+              <div className={styles.stageContent}>
+                <p className={styles.stageLabel}>{s.label}</p>
+                <p className={styles.stageNote}>{s.note}</p>
+              </div>
+
+              {i < stages.length - 1 && (
+                <span
+                  className={`${styles.link} ${i < activeStep ? styles.linkActive : ''}`}
+                  aria-hidden="true"
+                />
+              )}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* ── Active Detail Callout ── */}
+      <div className={styles.activeCallout} aria-live="polite">
+        <span className={styles.calloutBadge}>{String(activeStep + 1).padStart(2, '0')}</span>
+        <div className={styles.calloutText}>
+          <strong className={styles.calloutLabel}>{currentStage.label}</strong>
+          <span className={styles.calloutNote}>{currentStage.note}</span>
+        </div>
+      </div>
+
       <figcaption className={styles.caption}>{caption}</figcaption>
     </figure>
   )
@@ -41,8 +110,7 @@ function diagramLabel(caption, stages) {
 }
 
 /* ── Glyphs ────────────────────────────────────────────────
-   Each is drawn on a 48×48 grid with a 1.6 stroke, so they read as one set.
-   Animated parts carry a class the stylesheet drives. */
+   Each is drawn on a 48×48 grid with a 1.6 stroke, so they read as one set. */
 function Glyph({ name }) {
   const P = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.6, strokeLinecap: 'round', strokeLinejoin: 'round' }
 
@@ -57,7 +125,6 @@ function Glyph({ name }) {
       )
 
     case 'data':
-      // Raw inputs: uneven, unsorted, no shape yet.
       return (
         <Svg>
           {[
@@ -73,7 +140,6 @@ function Glyph({ name }) {
       )
 
     case 'analysis':
-      // The same points, with a trend pulled through them.
       return (
         <Svg>
           <path d="M10 34c6-2 9-9 14-11s10 3 14-6" {...P} className={styles.draw} />
@@ -90,7 +156,6 @@ function Glyph({ name }) {
       )
 
     case 'signals':
-      // Three discrete calls, not a continuous reading.
       return (
         <Svg>
           <path d="M14 30V16m0 0l-4 4m4-4l4 4" {...P} className={styles.dot} style={{ '--n': 0 }} />
@@ -122,7 +187,6 @@ function Glyph({ name }) {
       )
 
     case 'meaning':
-      // The page broken into comparable pieces.
       return (
         <Svg>
           {[0, 1, 2, 3, 4, 5].map((n) => (
@@ -142,7 +206,6 @@ function Glyph({ name }) {
       )
 
     case 'retrieval':
-      // Only the pieces that bear on the question come back.
       return (
         <Svg>
           {[0, 1, 2, 3, 4, 5].map((n) => (
@@ -178,7 +241,6 @@ function Glyph({ name }) {
           {[17, 22].map((y, i) => (
             <line key={y} x1="18" y1={y} x2="30" y2={y} {...P} opacity="0.45" className={styles.dot} style={{ '--n': i }} />
           ))}
-          {/* The citation: the line that points back at its source. */}
           <line x1="18" y1="28" x2="27" y2="28" {...P} className={styles.draw} />
           <path d="M18 33h6" {...P} opacity="0.75" />
           <circle cx="30.5" cy="33" r="2.4" fill="currentColor" stroke="none" className={styles.pulseDot} />

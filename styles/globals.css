@@ -24,8 +24,8 @@
    an ink red — used as punctuation. A second, quieter green appears only on
    live-status dots, so "available" never competes with a headline.
 
-   Three theme states. An explicit choice stamps data-theme on the root; the
-   default stamps nothing and follows the OS.
+   Two explicit theme states. An explicit choice stamps data-theme on the
+   root; the default stamps nothing and follows the OS.
    ═══════════════════════════════════════════════════════════════════════ */
 
 :root {
@@ -213,7 +213,7 @@ body {
     Roboto,
     sans-serif;
   font-size: 17.5px;
-  line-height: 1.55;
+  line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

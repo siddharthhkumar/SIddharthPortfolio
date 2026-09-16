@@ -29,6 +29,7 @@ export default function Footer() {
     { label: 'GitHub', value: social.githubLabel, href: social.github, external: true },
     { label: 'Medium', value: social.mediumLabel, href: social.medium, external: true },
     { label: 'Instagram', value: social.instagramLabel, href: social.instagram, external: true },
+    { label: 'Instagram (Personal)', value: social.instagramPersonalLabel, href: social.instagramPersonal, external: true },
   ].filter((r) => r.href && r.value)
 
   return (
@@ -62,7 +63,8 @@ export default function Footer() {
           </p>
 
           <p className={styles.built}>
-            Built in Next.js. Set in Fraunces, Inter and JetBrains Mono. Version {current.version}
+            Built in Next.js. Set in the system face, with Inter and JetBrains Mono fallbacks.
+            Version {current.version}
             {' — '}
             no analytics beyond a counter, no cookies, nothing tracked.
           </p>

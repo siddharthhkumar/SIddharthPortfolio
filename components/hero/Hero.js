@@ -60,8 +60,9 @@ export default function Hero() {
       <div className={`wrap ${styles.main}`}>
         {/* Printed up the spine. Three words, and the order is the argument. */}
         <p className={styles.spine} aria-hidden="true">
-          Product <span className={styles.slash}>/</span> Operations{' '}
-          <span className={styles.slash}>/</span> Data
+          Data <span className={styles.slash}>/</span> Business{' '}
+          <span className={styles.slash}>/</span> Product{' '}
+          <span className={styles.slash}>/</span> Growth
         </p>
 
         <div className={styles.left}>

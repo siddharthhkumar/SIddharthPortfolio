@@ -69,7 +69,7 @@ export const profile = {
     phoneHref: 'tel:+916202969798',
     location: 'Noida, Uttar Pradesh, India',
     availability:
-      'Looking for work in data, operations, product or content. Happy to talk about research separately.',
+      'Seeking roles in Data Analysis, Business Analysis, Product Analytics / APM, and Digital Growth.',
   },
 
   social: {
@@ -77,8 +77,10 @@ export const profile = {
     linkedinLabel: 'linkedin.com/in/siddharth-kumar-0938ab245',
     github: 'https://github.com/siddharthhkumar',
     githubLabel: 'github.com/siddharthhkumar',
-    instagram: 'https://www.instagram.com/gautambuddhauniversityy/',
-    instagramLabel: '@gautambuddhauniversityy',
+    instagram: 'https://www.instagram.com/siddharthh__k',
+    instagramLabel: '@siddharthh__k',
+    instagramPersonal: 'https://www.instagram.com/stillfiguringoutsidd',
+    instagramPersonalLabel: '@stillfiguringoutsidd',
     twitter: 'https://twitter.com/siddharthh_k',
 
     // The handle is the one in the newsletter URL in data/leadership.js;

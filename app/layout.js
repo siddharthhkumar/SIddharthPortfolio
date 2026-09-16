@@ -53,12 +53,12 @@ const mono = JetBrains_Mono({
 const SITE = 'https://s-iddharth-portfolio.vercel.app'
 
 const DESCRIPTION =
-  'Siddharth Kumar works across product and operations in Noida, India. He led a four-person build of an AI financial platform from prototype to delivery, tracked KPIs and built dashboards for a logistics operation, ran a ten-person media team for a national hackathon, and is lead author of a peer-reviewed machine-learning paper.'
+  'Siddharth Kumar is an early-career technology and business professional (B.Tech IT, Gautam Buddha University) in Noida, India. Specializing in Data Analysis (SQL, Excel, Power BI), Business Analysis, Product Analytics / APM, and Digital Growth.'
 
 export const metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: 'Siddharth Kumar — Product & Operations',
+    default: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
     template: '%s — Siddharth Kumar',
   },
   description: DESCRIPTION,
@@ -69,18 +69,21 @@ export const metadata = {
   category: 'portfolio',
   keywords: [
     'Siddharth Kumar',
+    'Siddharth Kumar data analyst',
+    'Siddharth Kumar business analyst',
+    'Siddharth Kumar product manager',
+    'Siddharth Kumar digital marketing',
+    'Siddharth Kumar BTech IT',
+    'data analyst portfolio',
+    'business analyst India',
     'associate product manager',
     'APM portfolio India',
     'product analyst',
-    'product operations',
-    'operations analyst',
-    'business operations',
-    'programme operations',
     'KPI tracking dashboards',
-    'business analyst India',
-    'MIS executive',
+    'Power BI dashboards',
+    'SQL analytics',
     'Gautam Buddha University',
-    'Noida product operations',
+    'Noida data analyst',
   ],
   alternates: {
     canonical: '/',
@@ -96,15 +99,15 @@ export const metadata = {
     locale: 'en_IN',
     url: SITE,
     siteName: 'Siddharth Kumar',
-    title: 'Siddharth Kumar — Product & Operations',
+    title: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
     description: DESCRIPTION,
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Siddharth Kumar' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Siddharth Kumar — Product & Operations',
+    title: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
     description:
-      'Two shipped products, a four-person build led end to end, KPIs and dashboards for a logistics operation, and a ten-person team run for a national hackathon.',
+      'Data Analysis (SQL, Power BI), Business Analytics, Product Prototyping (Gnosis AI & DocuMind AI), and Peer-Reviewed Machine Learning Research.',
   },
   robots: {
     index: true,
@@ -134,7 +137,7 @@ function schema() {
     '@type': 'Person',
     '@id': `${SITE}/#person`,
     name: profile.name,
-    jobTitle: 'Product & Operations',
+    jobTitle: 'Data Analyst · Business Analyst · Product Analyst',
     description: DESCRIPTION,
     url: SITE,
     email: `mailto:${profile.contact.email}`,
@@ -148,24 +151,25 @@ function schema() {
       addressCountry: 'IN',
     },
     knowsAbout: [
-      'Product management',
-      'Product operations',
-      'Problem framing',
-      'Prototyping',
-      'Cross-functional coordination',
-      'Operations analysis',
-      'KPI definition and tracking',
-      'Process analysis',
-      'Business analysis',
+      'Data analysis',
       'SQL',
+      'Microsoft Excel',
       'Power BI',
+      'Business analysis',
+      'KPI tracking and dashboards',
+      'Product management',
+      'Product analytics',
+      'Digital growth',
+      'SEO content strategy',
       'Machine learning',
+      'Artificial intelligence',
     ],
     sameAs: [
       profile.social.linkedin,
       profile.social.github,
       profile.social.medium,
       profile.social.instagram,
+      profile.social.instagramPersonal,
     ].filter(Boolean),
     worksFor: experience
       .filter((r) => r.current)

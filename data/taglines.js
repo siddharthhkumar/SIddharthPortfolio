@@ -22,12 +22,12 @@ export const tagline = {
   greetingName: 'I’m Siddharth Kumar',
 
   // Read as: [before] [phrase]
-  before: 'I figure out',
+  before: 'I work across',
   after: '',
 
   // The one rendered into the HTML and read aloud. Keep it the plainest of
   // the set — it is what a search engine and a screen reader see.
-  anchor: 'what to build.',
+  anchor: 'data analysis, business analysis and product.',
 
   // Keep these to roughly 22 characters. The hero reserves exactly one line
   // for this slot, so a longer phrase would wrap and push the page down —
@@ -42,18 +42,18 @@ export const tagline = {
   // bottlenecks found at Top Talent Bridge, the teams run at the hackathon
   // and the film society, and the KPIs defined at GAINT.
   phrases: [
-    { text: 'what to build.', tone: 'product' },
-    { text: 'who it is for.', tone: 'product' },
-    { text: 'where a process leaks.', tone: 'people' },
-    { text: 'what to do next.', tone: 'people' },
-    { text: 'what to measure.', tone: 'data' },
-    { text: 'what the numbers mean.', tone: 'data' },
+    { text: 'data analysis.', tone: 'data' },
+    { text: 'business analysis.', tone: 'people' },
+    { text: 'product workflows.', tone: 'product' },
+    { text: 'growth campaigns.', tone: 'growth' },
+    { text: 'research questions.', tone: 'research' },
+    { text: 'technology projects.', tone: 'product' },
   ],
 
   // The plain-English follow-up. What he is applying for, and the three
   // pieces of evidence for it, in one sentence and no jargon.
   plain:
-    'Product and operations, in Noida, India. I’ve led a four-person product build from prototype to delivery, tracked the KPIs and built the dashboards for a logistics operation, and run a ten-person media team for a national hackathon.',
+    'B.Tech Information Technology graduate in Noida, India, looking for Data Analyst, Business Analyst, Product Analyst / APM and Digital Marketing / Growth roles. I have worked with SQL, Power BI, product prototypes, SEO content, campaign data and machine-learning research.',
 
   // Milliseconds a phrase holds before the next one takes over. Long enough
   // to finish reading it twice — this is not a typing effect.
