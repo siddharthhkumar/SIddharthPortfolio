@@ -7,348 +7,321 @@
   font-size: 1rem;
   line-height: 1.55;
   color: var(--ink-3);
-  max-width: 56ch;
-  margin-bottom: clamp(28px, 4vw, 44px);
+  max-width: 58ch;
+  margin-bottom: clamp(30px, 4vw, 46px);
 }
 
-/* ── The chat card ─────────────────────────────────────────────────── */
+/* ── The desk: one surface, everything sits on it ─────────────────────── */
 
-.chatCard {
+.desk {
   max-width: 760px;
   margin: 0 auto;
-  background: var(--card);
-  border: 1px solid var(--rule);
-  border-radius: var(--r-l);
-  box-shadow: var(--shadow-m);
-  overflow: hidden;
 }
 
-.chatHeader {
-  display: flex;
+/* ── The question, ruled rather than boxed — a line on a card, not a
+   chat-app pill. */
+.inputRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 14px;
-  padding: 18px 22px;
-  background: var(--paper-2);
-  border-bottom: 1px solid var(--rule);
 }
 
-.avatar {
+.inputStamp {
   flex: none;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--ink-3);
   border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
   font-family: var(--elegant);
   font-weight: 700;
-  font-size: 0.9375rem;
-  letter-spacing: 0.02em;
-}
-
-.chatHeaderText {
-  min-width: 0;
-  flex: 1;
-}
-
-.chatName {
-  font-family: var(--elegant);
-  font-weight: 600;
-  font-size: 1.0625rem;
-  color: var(--ink);
-  line-height: 1.2;
-}
-
-.chatStatus {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--label);
-  font-size: 0.75rem;
+  font-style: italic;
+  font-size: 1rem;
   color: var(--ink-3);
-  margin-top: 2px;
-}
-
-.liveDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--live);
-  flex: none;
-}
-
-.reset {
-  flex: none;
-  font-family: var(--label);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--ink-3);
-  padding: 7px 13px;
-  border: 1px solid var(--rule-2);
-  border-radius: 999px;
-  transition: border-color 220ms var(--ease-soft), color 220ms var(--ease-soft);
-}
-
-.reset:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* ── Messages ──────────────────────────────────────────────────────── */
-
-.messages {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 22px;
-  max-height: 440px;
-  min-height: 200px;
-  overflow-y: auto;
-  scroll-behavior: smooth;
-}
-
-.messages::-webkit-scrollbar {
-  width: 6px;
-}
-
-.messages::-webkit-scrollbar-thumb {
-  background: var(--rule-2);
-  border-radius: 3px;
-}
-
-.bubbleRow {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  animation: arrive 380ms var(--ease);
-}
-
-@keyframes arrive {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.userRow {
-  justify-content: flex-end;
-}
-
-.botMark {
-  flex: none;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--elegant);
-  font-weight: 700;
-  font-size: 0.625rem;
-}
-
-.bubble {
-  position: relative;
-  max-width: 78%;
-  padding: 12px 16px;
-  border-radius: 16px;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-}
-
-.botBubble {
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  border-bottom-left-radius: 4px;
-  color: var(--ink-2);
-  border-left: 3px solid var(--tone);
-}
-
-.userBubble {
-  background: var(--ink);
-  color: var(--paper);
-  border-bottom-right-radius: 4px;
-}
-
-.bubbleTag {
-  display: block;
-  font-family: var(--label);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--tone);
-  margin-bottom: 5px;
-}
-
-.bubble p {
-  margin: 0;
-}
-
-/* ── Typing indicator ─────────────────────────────────────────────── */
-
-.typingBubble {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 14px 16px;
-}
-
-.typingDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--ink-3);
-  animation: bounce 1200ms ease-in-out infinite;
-}
-
-.typingDot:nth-child(2) {
-  animation-delay: 160ms;
-}
-
-.typingDot:nth-child(3) {
-  animation-delay: 320ms;
-}
-
-@keyframes bounce {
-  0%, 60%, 100% {
-    transform: translateY(0);
-    opacity: 0.5;
-  }
-  30% {
-    transform: translateY(-4px);
-    opacity: 1;
-  }
-}
-
-/* ── Suggestion chips ──────────────────────────────────────────────── */
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 22px 18px;
-}
-
-.chip {
-  font-size: 0.8125rem;
-  padding: 8px 14px;
-  background: var(--card);
-  border: 1px solid var(--rule-2);
-  border-radius: 999px;
-  color: var(--ink-2);
-  transition:
-    border-color 220ms var(--ease-soft),
-    color 220ms var(--ease-soft),
-    background-color 220ms var(--ease-soft),
-    transform 220ms var(--ease);
-}
-
-.chip:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-wash);
-  transform: translateY(-1px);
-}
-
-/* ── Input row ─────────────────────────────────────────────────────── */
-
-.inputRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 22px;
-  border-top: 1px solid var(--rule);
-  background: var(--paper-2);
+  transform: rotate(-6deg);
 }
 
 .input {
-  flex: 1;
   min-width: 0;
-  padding: 12px 16px;
-  background: var(--card);
-  border: 1px solid var(--rule-2);
-  border-radius: 999px;
-  font-size: 0.9375rem;
+  padding: 10px 2px;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--rule-2);
+  font-family: var(--elegant);
+  font-size: 1.1rem;
+  font-style: italic;
   color: var(--ink);
-  transition: border-color 220ms var(--ease-soft), box-shadow 220ms var(--ease-soft);
+  transition: border-color 220ms var(--ease-soft);
 }
 
 .input::placeholder {
   color: var(--ink-3);
+  opacity: 0.7;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-wash);
+  border-bottom-color: var(--accent);
 }
 
-.send {
+.pull {
   flex: none;
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 11px 18px;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-s);
+  transition:
+    background-color 220ms var(--ease-soft),
+    color 220ms var(--ease-soft),
+    transform 200ms var(--ease);
+}
+
+.pull:hover:not(:disabled) {
   background: var(--ink);
   color: var(--paper);
-  transition: background-color 220ms var(--ease-soft), transform 220ms var(--ease), opacity 220ms;
 }
 
-.send:hover:not(:disabled) {
-  background: var(--accent);
-  transform: scale(1.05);
+.pull:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
-.send:active:not(:disabled) {
-  transform: scale(0.94);
-}
-
-.send:disabled {
+.pull:disabled {
   opacity: 0.35;
   cursor: default;
+}
+
+/* ── Index tabs — torn-edge suggestions, not rounded chat chips ──────── */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 8px;
+  margin-top: 18px;
+}
+
+.tab {
+  position: relative;
+  font-family: var(--label);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
+  padding: 6px 12px 6px 0;
+  border-bottom: 1px dashed var(--rule-2);
+  transition: color 220ms var(--ease-soft), border-color 220ms var(--ease-soft);
+}
+
+.tab::before {
+  content: '+';
+  display: inline-block;
+  margin-right: 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.tab:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── The stack head ────────────────────────────────────────────────── */
+
+.stackHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: clamp(30px, 4vw, 44px);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule-2);
+}
+
+.reset {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  transition: color 220ms var(--ease-soft);
+}
+
+.reset:hover {
+  color: var(--accent);
+}
+
+/* ── The stack of cards ───────────────────────────────────────────── */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  max-height: 620px;
+  overflow-y: auto;
+  padding: 4px 4px 8px;
+}
+
+.stack::-webkit-scrollbar {
+  width: 6px;
+}
+
+.stack::-webkit-scrollbar-thumb {
+  background: var(--rule-2);
+  border-radius: 3px;
+}
+
+/* An index card — placed at a hand-cut tilt, the same trick as the taped
+   print in Recognition and the paper scraps in the world layers. It flips
+   into place in 3D rather than sliding up, because it is being pulled from
+   a drawer, not delivered as a message. */
+.card {
+  position: relative;
+  padding: clamp(18px, 2.2vw, 24px);
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-m);
+  box-shadow: var(--shadow-s);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 320ms var(--ease), box-shadow 320ms var(--ease);
+}
+
+.card:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: var(--shadow-m);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: pull-card 520ms var(--ease) both;
+  }
+}
+
+@keyframes pull-card {
+  from {
+    opacity: 0;
+    transform: perspective(var(--perspective)) rotateY(-18deg) rotateX(4deg) translateX(-14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(var(--tilt, 0deg));
+  }
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.serial {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.category {
+  font-family: var(--label);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.cardQuestion {
+  font-family: var(--elegant);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.rule {
+  display: block;
+  height: 1px;
+  margin: 14px 0;
+  background: repeating-linear-gradient(to right, var(--rule-2) 0 6px, transparent 6px 11px);
+}
+
+.cardAnswer {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.fallbackAnswer {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--label);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+}
+
+.pendingDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--tone, var(--ink-3));
+  animation: pulse-dot 1100ms ease-in-out infinite;
+}
+
+.pendingDot:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+.pendingDot:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+@keyframes pulse-dot {
+  0%, 60%, 100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
 }
 
 /* ── Responsive ────────────────────────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .chatHeader {
-    padding: 14px 16px;
-  }
-
-  .messages {
-    padding: 16px;
-    max-height: 380px;
-  }
-
-  .chips,
   .inputRow {
-    padding-left: 16px;
-    padding-right: 16px;
+    grid-template-columns: auto 1fr;
+    row-gap: 14px;
   }
 
-  .bubble {
-    max-width: 88%;
+  .pull {
+    grid-column: 1 / -1;
   }
 
-  .reset {
-    display: none;
+  .stack {
+    max-height: 520px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bubbleRow {
+  .card {
     animation: none;
   }
 
-  .typingDot {
+  .pendingDot {
     animation: none;
     opacity: 0.7;
   }

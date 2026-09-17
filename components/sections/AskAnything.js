@@ -2,71 +2,69 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { findAnswer, starterQuestions, knowledgeBase } from '@/data/knowledge'
-import profile from '@/data/profile'
 import styles from './AskAnything.module.css'
 
 let seq = 0
-const nextId = () => `m-${++seq}`
+const nextId = () => ++seq
+
+// A fixed, small set of static tilts so every card looks placed by hand
+// rather than computed — the same trick Recognition's taped print and the
+// paper scraps in components/world use.
+const TILTS = [-0.6, 0.5, -0.4, 0.7, -0.5, 0.4]
 
 /**
  * Ask me anything.
  *
- * A real chat, not a card grid — type a question or pick one, and the
- * answer comes back from data/knowledge.js, which is built entirely from
- * fields already asserted in faq.js, projects.js, skills.js and research.js.
- * There is no model behind it: a question is scored against a small, honest
- * knowledge base and the best match wins, or the bot says plainly that it
- * does not have that on record.
+ * Not a chat widget — a record you pull a card from. Ask a question and a
+ * card drops in already carrying it, stamped with a serial and a category,
+ * the way a ledger row or a contact-sheet frame is. The answer fills in a
+ * beat later, the way an index card takes a moment to find.
+ *
+ * The matching underneath is the same honest kind as before: a small
+ * knowledge base built from fields already asserted in faq.js, projects.js,
+ * skills.js and research.js (see data/knowledge.js), scored against free
+ * text. No model, no network call — it cannot answer with anything that is
+ * not already recorded on this page.
  */
 export default function AskAnything() {
-  const [messages, setMessages] = useState([])
+  const [turns, setTurns] = useState([])
   const [input, setInput] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
   const [askedIds, setAskedIds] = useState(() => new Set())
-  const scrollRef = useRef(null)
+  const stackRef = useRef(null)
 
   useEffect(() => {
-    setMessages([{ id: nextId(), role: 'bot', text: profile.opening, intro: true }])
-  }, [])
-
-  useEffect(() => {
-    const node = scrollRef.current
+    const node = stackRef.current
     if (!node) return
     node.scrollTo({ top: node.scrollHeight, behavior: 'smooth' })
-  }, [messages, isTyping])
+  }, [turns])
 
   function ask(question) {
     const text = question.trim()
-    if (!text || isTyping) return
+    if (!text) return
 
-    setMessages((m) => [...m, { id: nextId(), role: 'user', text }])
+    const id = nextId()
+    setTurns((t) => [...t, { id, q: text, a: null, pending: true }])
     setInput('')
-    setIsTyping(true)
 
     const match = findAnswer(text)
-    // A short, length-proportional pause — long enough to read as a real
-    // reply being composed, capped so nobody waits on a long answer.
-    const delay = match ? Math.min(1300, 420 + match.a.length * 5) : 650
+    const delay = match ? Math.min(1200, 380 + match.a.length * 4) : 600
 
     window.setTimeout(() => {
-      setIsTyping(false)
-      if (match) {
-        setAskedIds((prev) => new Set(prev).add(match.id))
-        setMessages((m) => [
-          ...m,
-          { id: nextId(), role: 'bot', text: match.a, tone: match.tone, category: match.category },
-        ])
-      } else {
-        setMessages((m) => [
-          ...m,
-          {
-            id: nextId(),
-            role: 'bot',
-            text: "That one's not on the record yet — try a question about the projects, the research, the toolkit or how to reach him.",
-            fallback: true,
-          },
-        ])
-      }
+      setTurns((t) =>
+        t.map((turn) =>
+          turn.id !== id
+            ? turn
+            : match
+              ? { ...turn, a: match.a, tone: match.tone, category: match.category, pending: false }
+              : {
+                  ...turn,
+                  a: "That one's not on the record — try a question about the projects, the research, the toolkit or how to reach him.",
+                  fallback: true,
+                  pending: false,
+                }
+        )
+      )
+      if (match) setAskedIds((prev) => new Set(prev).add(match.id))
     }, delay)
   }
 
@@ -77,13 +75,13 @@ export default function AskAnything() {
 
   function reset() {
     seq = 0
+    setTurns([])
     setAskedIds(new Set())
-    setMessages([{ id: nextId(), role: 'bot', text: profile.opening, intro: true }])
     setInput('')
   }
 
   const suggestions =
-    messages.length <= 1
+    turns.length === 0
       ? starterQuestions
       : knowledgeBase
           .filter((k) => !askedIds.has(k.id))
@@ -95,100 +93,83 @@ export default function AskAnything() {
       <div className="wrap">
         <div className="marker">
           <span className="dot" />
-          <p className="m-label">Ask anything</p>
+          <p className="m-label">The record</p>
         </div>
 
         <h2 className={`d-title ${styles.title}`} data-reveal>
           Ask me anything.
         </h2>
         <p className={styles.subtitle} data-reveal>
-          Type a real question. Every answer is pulled from this page — nothing invented, nothing off-record.
+          Type a real question and pull the card for it. Every answer is sourced from the record above —
+          nothing guessed, nothing off it.
         </p>
 
-        <div className={styles.chatCard} data-reveal>
-          <div className={styles.chatHeader}>
-            <span className={styles.avatar} aria-hidden="true">
-              SK
+        <div className={styles.desk} data-reveal>
+          <form className={styles.inputRow} onSubmit={handleSubmit}>
+            <span className={styles.inputStamp} aria-hidden="true">
+              Q
             </span>
-            <div className={styles.chatHeaderText}>
-              <p className={styles.chatName}>Siddharth's record</p>
-              <p className={styles.chatStatus}>
-                <span className={styles.liveDot} aria-hidden="true" />
-                Answering from the data on this page
-              </p>
-            </div>
-            {messages.length > 1 && (
-              <button type="button" className={styles.reset} onClick={reset}>
-                Start over
-              </button>
-            )}
-          </div>
+            <input
+              type="text"
+              className={styles.input}
+              placeholder="Ask about the projects, the research, the toolkit, how to reach him…"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              aria-label="Ask a question about Siddharth Kumar"
+            />
+            <button type="submit" className={styles.pull} disabled={!input.trim()}>
+              Pull the card
+            </button>
+          </form>
 
-          <div className={styles.messages} ref={scrollRef} aria-live="polite">
-            {messages.map((m) => (
-              <div
-                key={m.id}
-                className={`${styles.bubbleRow} ${m.role === 'user' ? styles.userRow : styles.botRow}`}
-              >
-                {m.role === 'bot' && (
-                  <span className={styles.botMark} aria-hidden="true">
-                    SK
-                  </span>
-                )}
-                <div
-                  className={`${styles.bubble} ${m.role === 'user' ? styles.userBubble : styles.botBubble}`}
-                  data-tone={m.tone}
-                >
-                  {m.category && <span className={styles.bubbleTag}>{m.category}</span>}
-                  <p>{m.text}</p>
-                </div>
-              </div>
-            ))}
-
-            {isTyping && (
-              <div className={`${styles.bubbleRow} ${styles.botRow}`}>
-                <span className={styles.botMark} aria-hidden="true">
-                  SK
-                </span>
-                <div className={`${styles.bubble} ${styles.botBubble} ${styles.typingBubble}`}>
-                  <span className={styles.typingDot} />
-                  <span className={styles.typingDot} />
-                  <span className={styles.typingDot} />
-                </div>
-              </div>
-            )}
-          </div>
-
-          {suggestions.length > 0 && !isTyping && (
-            <div className={styles.chips}>
+          {suggestions.length > 0 && (
+            <div className={styles.tabs}>
               {suggestions.map((q) => (
-                <button key={q} type="button" className={styles.chip} onClick={() => ask(q)}>
+                <button key={q} type="button" className={styles.tab} onClick={() => ask(q)}>
                   {q}
                 </button>
               ))}
             </div>
           )}
 
-          <form className={styles.inputRow} onSubmit={handleSubmit}>
-            <input
-              type="text"
-              className={styles.input}
-              placeholder="Ask about projects, research, skills, contact…"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              aria-label="Ask a question about Siddharth Kumar"
-            />
-            <button
-              type="submit"
-              className={styles.send}
-              disabled={!input.trim() || isTyping}
-              aria-label="Send question"
-            >
-              <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
-                <path d="M2.5 10 17 3l-5.5 7L17 17Z" fill="currentColor" />
-              </svg>
-            </button>
-          </form>
+          {turns.length > 0 && (
+            <div className={styles.stackHead}>
+              <p className="m-label">Pulled so far</p>
+              <button type="button" className={styles.reset} onClick={reset}>
+                Clear the drawer
+              </button>
+            </div>
+          )}
+
+          <div className={styles.stack} ref={stackRef}>
+            {turns.map((t, i) => (
+              <article
+                key={t.id}
+                className={styles.card}
+                data-tone={t.tone}
+                style={{ '--tilt': `${TILTS[i % TILTS.length]}deg` }}
+              >
+                <div className={styles.cardHead}>
+                  <span className={styles.serial}>N&deg; {String(i + 1).padStart(2, '0')}</span>
+                  {t.category && <span className={styles.category}>{t.category}</span>}
+                </div>
+
+                <p className={styles.cardQuestion}>{t.q}</p>
+                <span className={styles.rule} aria-hidden="true" />
+
+                {t.pending ? (
+                  <p className={styles.pending}>
+                    <span className={styles.pendingDot} />
+                    <span className={styles.pendingDot} />
+                    <span className={styles.pendingDot} />
+                    finding it in the record
+                  </p>
+                ) : (
+                  <p className={`${styles.cardAnswer} ${t.fallback ? styles.fallbackAnswer : ''}`}>{t.a}</p>
+                )}
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>

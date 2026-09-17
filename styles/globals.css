@@ -832,6 +832,10 @@ html[data-switching='true'] body::before {
   }
 }
 
+[data-reveal-3d] {
+  opacity: 1;
+}
+
 html.reveal-ready [data-reveal-3d] {
   opacity: 0;
   transform: rotateX(-6deg) translateZ(-40px);
@@ -844,6 +848,15 @@ html.reveal-ready [data-reveal-3d] {
 html.reveal-ready [data-reveal-3d].in {
   opacity: 1;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal-3d],
+  html.reveal-ready [data-reveal-3d].in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

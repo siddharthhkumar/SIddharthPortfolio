@@ -33,7 +33,7 @@ export default function RevealRoot() {
       { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
     )
 
-    const items = document.querySelectorAll('[data-reveal]')
+    const items = document.querySelectorAll('[data-reveal], [data-reveal-3d]')
     items.forEach((el) => io.observe(el))
 
     return () => {

@@ -50,10 +50,13 @@ export const tagline = {
     { text: 'technology projects.', tone: 'product' },
   ],
 
-  // The plain-English follow-up. What he is applying for, and the three
-  // pieces of evidence for it, in one sentence and no jargon.
+  // The plain-English follow-up. Leads with the habit, not the résumé — a
+  // stranger should meet the person before the job titles. The three
+  // examples are the same ones named in profile.js's own comment on
+  // `opening`: the stress scale, the GDSC message, the slow document search.
+  // Only then the practical facts: degree, city, the roles he is after.
   plain:
-    'B.Tech Information Technology graduate in Noida, India, looking for Data Analyst, Business Analyst, Product Analyst / APM and Digital Marketing / Growth roles. I have worked with SQL, Power BI, product prototypes, SEO content, campaign data and machine-learning research.',
+    'Most of my work starts where an assumption stops holding — a stress scale students didn’t trust, a message nobody had tested, a document search that was slower than it should be. B.Tech IT graduate in Noida, India, looking for Data Analyst, Business Analyst, Product Analyst / APM and Digital Marketing roles.',
 
   // Milliseconds a phrase holds before the next one takes over. Long enough
   // to finish reading it twice — this is not a typing effect.
