@@ -5,6 +5,12 @@
 // nothing else: every file below already existed, and none of the copy inside
 // them is written here.
 //
+// `tone` is the same five-discipline colour used everywhere else on the page
+// (data / product / research / growth / people) — not a new system, just this
+// file joining the one that already marks the Ledger rows, the Selected Work
+// margin and the hero's spine. A résumé filed under "Data" and the ledger row
+// it backs up are the same blue on purpose.
+//
 // Each `file` must exist in public/resumes/ — see the README note in that folder.
 
 export const resumeGroups = [
@@ -16,6 +22,8 @@ export const resumeGroups = [
     resumes: [
       {
         id: 'data-analyst',
+        tone: 'data',
+        disciplineLabel: 'Data',
         role: 'Data Analyst',
         downloadLabel: 'Data & Analytics Resume',
         targets: 'Data Analyst · BI Analyst · Reporting Analyst · MIS Executive',
@@ -25,6 +33,8 @@ export const resumeGroups = [
       },
       {
         id: 'business-analyst-mis',
+        tone: 'data',
+        disciplineLabel: 'Data',
         role: 'Business Analyst / MIS',
         downloadLabel: 'Business Analyst Resume',
         targets: 'Business Analyst · Business Data Analyst · Insights Analyst',
@@ -34,6 +44,8 @@ export const resumeGroups = [
       },
       {
         id: 'product-manager',
+        tone: 'product',
+        disciplineLabel: 'Product',
         role: 'Product Manager / APM',
         downloadLabel: 'Product Manager Resume',
         targets: 'APM · Product Analyst · Associate PM · Product Operations',
@@ -51,6 +63,8 @@ export const resumeGroups = [
     resumes: [
       {
         id: 'social-media-manager',
+        tone: 'growth',
+        disciplineLabel: 'Growth',
         role: 'Digital Marketing & Community Manager',
         downloadLabel: 'Digital Marketing Resume',
         targets: 'Digital Marketing · Social Media Manager · Community Lead',
@@ -60,6 +74,8 @@ export const resumeGroups = [
       },
       {
         id: 'seo-content-writer',
+        tone: 'growth',
+        disciplineLabel: 'Growth',
         role: 'SEO & Content Strategist',
         downloadLabel: 'SEO & Content Resume',
         targets: 'SEO Content Writer · Content Strategist · Digital Copywriter',
@@ -69,6 +85,8 @@ export const resumeGroups = [
       },
       {
         id: 'operations',
+        tone: 'people',
+        disciplineLabel: 'Operations',
         role: 'Operations Analyst',
         downloadLabel: 'Operations Resume',
         targets: 'Operations Analyst · Business Operations · Programme Operations',

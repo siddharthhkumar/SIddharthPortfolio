@@ -36,10 +36,15 @@ export default function Resume() {
 
               <ul className={styles.files}>
                 {g.resumes.map((r) => (
-                  <li key={r.id}>
+                  <li key={r.id} className={styles.fileWrap}>
+                    <span className={styles.folderTab} data-tone={r.tone} aria-hidden="true">
+                      {r.disciplineLabel}
+                    </span>
+
                     <a
                       href={r.file}
                       className={styles.file}
+                      data-tone={r.tone}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Download ${r.downloadLabel || r.role} (PDF)`}

@@ -16,9 +16,9 @@
 }
 
 .groupTitle {
-  font-family: var(--display);
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-family: var(--elegant);
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--ink);
   margin-bottom: 8px;
 }
@@ -30,11 +30,53 @@
   max-width: 46ch;
 }
 
+/* Extra top room and a wider gap than a plain list needs — every card after
+   the first has a folder tab poking up out of the gap above it, the way a
+   hanging file actually sits behind the one in front. */
 .files {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 28px;
+  padding-top: 16px;
+}
+
+.fileWrap {
+  position: relative;
+}
+
+/* The tab. Not decoration — this is the same five-discipline colour that
+   marks the Ledger row and the Selected Work margin for the same skill, so
+   a "Data" tab here and a blue figure two sections up are the same claim in
+   two places. Sits at a small hand-placed angle, like a real one would. */
+.folderTab {
+  position: absolute;
+  top: -13px;
+  left: 20px;
+  z-index: 1;
+  padding: 5px 12px 4px;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid color-mix(in srgb, var(--tone) 45%, var(--rule));
+  border-bottom: none;
+  background: color-mix(in srgb, var(--tone) 15%, var(--card));
+  font-family: var(--label);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tone);
+  transform: rotate(-1.4deg);
+  transition: transform 280ms var(--ease);
+}
+
+.fileWrap:nth-child(even) .folderTab {
+  left: auto;
+  right: 24px;
+  transform: rotate(1.2deg);
+}
+
+.fileWrap:hover .folderTab {
+  transform: rotate(0deg) translateY(-2px);
 }
 
 /* A file in a drawer: a coloured tab down the left edge, the label, and the
@@ -62,7 +104,7 @@
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .file:hover {
     transform: translateX(3px) rotateY(-2deg) translateZ(var(--lift-z));
-    border-color: var(--rule-2);
+    border-color: color-mix(in srgb, var(--tone) 45%, var(--rule-2));
     box-shadow: var(--shadow-s);
   }
 }
@@ -70,7 +112,7 @@
 @media (pointer: coarse) {
   .file:hover {
     transform: translateX(3px);
-    border-color: var(--rule-2);
+    border-color: color-mix(in srgb, var(--tone) 45%, var(--rule-2));
     box-shadow: var(--shadow-s);
   }
 }
@@ -79,12 +121,12 @@
   width: 3px;
   align-self: stretch;
   border-radius: 2px;
-  background: var(--rule-2);
+  background: color-mix(in srgb, var(--tone) 50%, var(--rule-2));
   transition: background-color 150ms var(--ease-soft);
 }
 
 .file:hover .tab {
-  background: var(--accent);
+  background: var(--tone);
 }
 
 .fileMain {
@@ -95,8 +137,9 @@
 }
 
 .role {
-  font-size: 1.0625rem;
-  font-weight: 500;
+  font-family: var(--elegant);
+  font-size: 1.125rem;
+  font-weight: 600;
   color: var(--ink);
 }
 
@@ -126,5 +169,5 @@
 }
 
 .file:hover .get {
-  color: var(--accent);
+  color: var(--tone);
 }
