@@ -108,6 +108,13 @@
      family. --mono is kept for the two places that genuinely need fixed
      advance widths: the cassette timecode and the keyboard card. */
   --label: var(--display);
+
+  /* Elegant serif for h3 and tables — premium, royal, refined. */
+  --elegant:
+    var(--font-elegant, 'Playfair Display'),
+    'Georgia',
+    'Garamond',
+    serif;
 }
 
 /* ── Charcoal, for a dark OS — unless light was explicitly chosen ─── */
@@ -337,6 +344,95 @@ img {
   color: var(--ink-2);
   max-width: var(--measure);
   text-wrap: pretty;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ELEGANT HEADINGS & TABLES
+   Playfair Display serif for royal, premium aesthetic on h3 and tables
+   ═════════════════════════════════════════════════════════════════════ */
+
+h3 {
+  font-family: var(--elegant);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+h4 {
+  font-family: var(--elegant);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h5, h6 {
+  font-family: var(--elegant);
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Elegant table styling ────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+thead {
+  background: var(--paper-2);
+  border-top: 2px solid var(--ink-3);
+  border-bottom: 2px solid var(--accent);
+}
+
+thead th {
+  font-family: var(--elegant);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem;
+  text-align: left;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  border: none;
+}
+
+tbody td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+tbody tr {
+  transition: background-color 200ms var(--ease-soft);
+}
+
+tbody tr:hover {
+  background: var(--accent-wash);
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid var(--ink-3);
+}
+
+/* Alternating rows for better readability */
+tbody tr:nth-child(odd) {
+  background: rgba(176, 54, 35, 0.02);
+}
+
+tbody tr:nth-child(odd):hover {
+  background: var(--accent-wash);
 }
 
 /* Anything stamped, printed or punched rather than written. */
