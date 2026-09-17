@@ -77,7 +77,7 @@ export const selectedWork = [
     kind: 'analytics',
     id: 'dashboards',
     field: 'Data · Visualisation',
-    hook: 'Two dashboards where the point was making the story visible, not the tool.',
+    hook: 'Everyone watching the final saw a scoreline. I see the data that explains it.',
     href: null,
     image: '/images/fifawc2022.png',
     imageAlt: 'A Power BI dashboard analysing FIFA World Cup 2022 match data.',

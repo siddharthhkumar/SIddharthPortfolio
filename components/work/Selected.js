@@ -124,16 +124,31 @@ function Visual({ entry, piece }) {
       <div className={styles.pair}>
         {piece.shots.map((s) => (
           <figure key={s.src} className={styles.shot}>
-            <Image
-              src={s.src}
-              alt={s.alt}
-              width={s.w}
-              height={s.h}
-              sizes="(max-width: 900px) 92vw, 42vw"
-              loading="lazy"
-              className={styles.shotImg}
-            />
-            <figcaption className={styles.shotCap}>{s.caption}</figcaption>
+            <div className={styles.shotChrome}>
+              <span className={styles.shotDots} aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+              <span className={styles.shotLabel}>{s.label}</span>
+            </div>
+
+            <div className={styles.shotMat}>
+              <Image
+                src={s.src}
+                alt={s.alt}
+                width={s.w}
+                height={s.h}
+                sizes="(max-width: 900px) 92vw, 42vw"
+                loading="lazy"
+                className={styles.shotImg}
+              />
+            </div>
+
+            <figcaption className={styles.shotCap}>
+              <span className={styles.shotCapTitle}>{s.caption}</span>
+              <span className={styles.shotCapReads}>{s.reads}</span>
+            </figcaption>
           </figure>
         ))}
       </div>
@@ -218,7 +233,7 @@ function resolve(entry) {
       subtitle: 'Power BI · FIFA World Cup 2022 and Wimbledon Finals',
       period: '2025',
       blurb:
-        'Sport is a good place to practise this, because everyone already knows what happened — so the only thing being judged is whether the report makes it visible. Finishing measured against expected goals in one; serve efficiency and match momentum, player against player, in the other.',
+        'Where a fan sees a scoreline, I see the data that explains it. Sport is the best place to prove that, because everyone already knows what happened — so the only thing being judged is whether the report makes the real story visible. Finishing measured against expected goals in one; serve efficiency and match momentum, player against player, in the other.',
       stack: ['Power BI', 'Data modelling', 'DAX', 'KPI selection', 'Report design'],
       anatomy: null,
       shots: [
@@ -227,14 +242,18 @@ function resolve(entry) {
           w: 1283,
           h: 724,
           alt: 'A Power BI report of FIFA World Cup 2022 showing total goals against total expected goals, finishing difference, and a per-player performance table.',
-          caption: 'FIFA World Cup 2022 — goals against expected goals',
+          label: 'Report 01',
+          caption: 'FIFA World Cup 2022',
+          reads: 'Goals measured against expected goals — who created more, not just who scored.',
         },
         {
           src: wim.image,
           w: 1155,
           h: 646,
           alt: 'A Power BI report comparing two Wimbledon finalists on aces, first-serve percentage, net points and games won.',
-          caption: 'Wimbledon Finals — serve efficiency, side by side',
+          label: 'Report 02',
+          caption: 'Wimbledon Finals',
+          reads: 'Serve efficiency and match momentum, player against player.',
         },
       ],
     }

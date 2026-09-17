@@ -219,20 +219,93 @@
 
 .pair {
   display: grid;
-  gap: 18px;
+  gap: clamp(20px, 2.4vw, 28px);
 }
 
+/* Presented as a report, not a raw screenshot: a chrome strip so it reads as
+   a live instrument, matting so the export's white background never touches
+   the card edge, then a proper caption plate — not a figcaption's afterthought. */
 .shot {
   overflow: hidden;
   border-radius: var(--r-m);
-  background: var(--paper-2);
+  background: var(--card);
   border: 1px solid var(--rule);
   box-shadow: var(--shadow-s);
+  transition: transform 320ms var(--ease), box-shadow 320ms var(--ease), border-color 320ms var(--ease-soft);
+}
+
+.shot:hover {
+  border-color: var(--rule-2);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-3px);
+}
+
+.shotChrome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.shotDots {
+  display: flex;
+  gap: 5px;
+}
+
+.shotDots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rule-2);
+}
+
+.shotDots span:first-child {
+  background: var(--tone);
+  opacity: 0.7;
+}
+
+.shotLabel {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+/* The mat. Power BI exports are white on white — this is the border of warm
+   paper that keeps the report from cutting straight into the card edge. */
+.shotMat {
+  padding: clamp(10px, 1.6vw, 16px);
+  background: var(--paper-2);
 }
 
 .shotImg {
+  display: block;
   width: 100%;
   height: auto;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(20, 16, 8, 0.14);
+}
+
+.shotCap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 13px 16px 15px;
+}
+
+.shotCapTitle {
+  font-family: var(--elegant);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ink);
+}
+
+.shotCapReads {
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-3);
 }
 
 .shotCap {
