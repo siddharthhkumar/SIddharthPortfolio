@@ -28,6 +28,7 @@ import styles from './Rail.module.css'
 const SECTIONS = [
   { id: 'resume', label: 'Résumé' },
   { id: 'ledger', label: 'The ledger' },
+  { id: 'ask-me', label: 'Ask anything' },
   { id: 'work', label: 'Selected work' },
   { id: 'thinking', label: 'How I think' },
   { id: 'experience', label: 'Experience' },

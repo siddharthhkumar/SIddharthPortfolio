@@ -1,7 +1,7 @@
 import Hero from '@/components/hero/Hero'
 import Selected from '@/components/work/Selected'
 import Ledger from '@/components/sections/Ledger'
-import AskMeAbout from '@/components/sections/AskMeAbout'
+import AskAnything from '@/components/sections/AskAnything'
 import Experience from '@/components/sections/Experience'
 import Toolkit from '@/components/sections/Toolkit'
 import Thinking from '@/components/sections/Thinking'
@@ -46,7 +46,7 @@ export default function Home() {
       <TableOfContents />
       <Resume />
       <Ledger />
-      <AskMeAbout />
+      <AskAnything />
       <Selected />
       <Thinking />
       <Experience />
