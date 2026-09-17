@@ -67,7 +67,7 @@
 .verb {
   position: relative;
   z-index: 1;
-  font-family: var(--elegant);
+  font-family: var(--label);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -85,9 +85,10 @@
 /* Scaled for card layout — the wider (span-3) cards get the ceiling raised
    a little in the tablet/desktop clamp so the figure still owns the card. */
 .figure {
-  font-family: var(--elegant);
+  font-family: var(--display);
   font-size: clamp(1.9rem, 3.4vw, 3.1rem);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--tone);
   line-height: 1;
 }

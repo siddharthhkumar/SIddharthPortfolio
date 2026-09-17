@@ -296,8 +296,9 @@
 }
 
 .shotCapTitle {
-  font-family: var(--elegant);
-  font-weight: 600;
+  font-family: var(--display);
+  font-weight: 700;
+  letter-spacing: -0.012em;
   font-size: 0.9375rem;
   color: var(--ink);
 }

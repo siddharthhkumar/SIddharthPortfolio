@@ -1,4 +1,4 @@
-import { Inter, JetBrains_Mono, Playfair_Display } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Nav from '@/components/chrome/Nav'
 import Footer from '@/components/chrome/Footer'
@@ -47,15 +47,6 @@ const mono = JetBrains_Mono({
   // browser synthesises a bold, which smears at 12px.
   weight: ['400', '500', '700'],
   // Same reasoning as above: SF Mono resolves first on Apple platforms.
-  preload: false,
-})
-
-const elegant = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-elegant',
-  display: 'swap',
-  // Classic serif for elegant h3 and table headers
-  weight: ['400', '500', '600', '700'],
   preload: false,
 })
 
@@ -243,7 +234,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${text.variable} ${mono.variable} ${elegant.variable}`}
+      className={`${text.variable} ${mono.variable}`}
       suppressHydrationWarning
     >
       <head>
