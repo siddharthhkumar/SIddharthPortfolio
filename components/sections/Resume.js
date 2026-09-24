@@ -1,18 +1,26 @@
-import { resumeGroups } from '@/data/resumes'
+import { resumeGroups, resumes } from '@/data/resumes'
 import styles from './Resume.module.css'
 
 /**
- * Six résumés, filed.
+ * Résumés, filed.
  *
- * One document describing everything describes nothing, so there are six and
- * each one is written for the role it is going to. The note under each says
- * when to use it — which is really an instruction to a recruiter, so it is
- * written as one.
+ * One document describing everything describes nothing, so there are several
+ * and each one is written for the role it is going to. The note under each
+ * says when to use it — which is really an instruction to a recruiter, so it
+ * is written as one.
+ *
+ * The count in the headline is read from the data, not typed — a résumé
+ * removed from data/resumes.js (a broken PDF link, say) can't leave a stale
+ * "six" behind.
  *
  * Every file exists in public/resumes/. Nothing here links to a document that
  * has not been produced.
  */
+const NUMBER_WORDS = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight']
+
 export default function Resume() {
+  const count = NUMBER_WORDS[resumes.length] || String(resumes.length)
+
   return (
     <section className="band" id="resume">
       <div className="wrap">
@@ -23,7 +31,7 @@ export default function Resume() {
         </div>
 
         <h2 className={`d-title ${styles.title}`} data-reveal>
-          Six of them, because one would be vague.
+          {count} of them, because one would be vague.
         </h2>
 
         <div className={styles.groups}>

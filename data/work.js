@@ -10,10 +10,13 @@
  * `tone` is the discipline colour, and it is not a rotation — the two shipped
  * products carry the same hue because they are both products.
  *
- * They also open the sequence. The roles being applied for are product and
- * operations, so the two things he built lead, the community and hackathon
- * work follows as the operations evidence, and the paper sits third as the
- * most independently checkable thing on the page.
+ * The content/digital-marketing positioning moved the community page from
+ * fourth to second: it is the strongest single piece of growth evidence on
+ * the page (500K+ organic reach, built from zero), and under the new
+ * positioning it shouldn't sit behind both products before a reader reaches
+ * it. Gnosis AI still opens — it's the single strongest piece of work he's
+ * shipped, and product is a named supporting pillar, not the thing being
+ * de-emphasised.
  */
 export const selectedWork = [
   {
@@ -28,6 +31,21 @@ export const selectedWork = [
   },
   {
     n: '02',
+    tone: 'growth',
+    kind: 'leadership',
+    id: 'gbu-community',
+    field: 'Content · Digital Marketing · Community',
+    hook: 'A university page with no budget, no mandate and 500,000 people who read it anyway.',
+    href: null,
+    image: '/images/gdg-cloud-genai.jpeg',
+    imageAlt: 'Students seated at a Google Developer Groups Cloud and Gen AI session on campus.',
+    imageW: 1280,
+    imageH: 960,
+    // Its own shape. Nothing to crop.
+    imageRatio: '4 / 3',
+  },
+  {
+    n: '03',
     tone: 'product',
     kind: 'project',
     id: 'documind-ai',
@@ -37,7 +55,7 @@ export const selectedWork = [
     image: null,
   },
   {
-    n: '03',
+    n: '04',
     tone: 'research',
     kind: 'research',
     id: 'research',
@@ -55,21 +73,6 @@ export const selectedWork = [
     // crop takes the floor, not his head.
     imageRatio: '3 / 4',
     imageFocus: 'center 18%',
-  },
-  {
-    n: '04',
-    tone: 'growth',
-    kind: 'leadership',
-    id: 'gbu-community',
-    field: 'Social · Community · Content',
-    hook: 'A university page with no budget, no mandate and 500,000 people who read it anyway.',
-    href: null,
-    image: '/images/gdg-cloud-genai.jpeg',
-    imageAlt: 'Students seated at a Google Developer Groups Cloud and Gen AI session on campus.',
-    imageW: 1280,
-    imageH: 960,
-    // Its own shape. Nothing to crop.
-    imageRatio: '4 / 3',
   },
   {
     n: '05',

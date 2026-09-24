@@ -1,9 +1,16 @@
-// Six role-specific resumes, grouped into two tracks.
+// Five role-specific resumes, grouped into two tracks.
 //
-// The first group is the one being applied for; the second is the rest of the
-// range. Regrouping changes which document a recruiter reaches for first, and
-// nothing else: every file below already existed, and none of the copy inside
-// them is written here.
+// The first group is the one being applied for; the second is available but
+// not leading. Regrouping changes which document a recruiter reaches for
+// first, and nothing else: every file below already existed, and none of the
+// copy inside them is written here.
+//
+// A sixth résumé — Digital Marketing & Community Manager — used to sit in
+// the second group, linked to SiddharthKumarDM.pdf. That file (and its
+// earlier working name, siddharth-social-media-manager.pdf) is no longer in
+// public/resumes/ — deleted outside of an edit here, per git status. Rather
+// than link a dead PDF, that card was removed. Re-add it once a real file
+// exists again; see public/resumes/README.md for the expected filename.
 //
 // `tone` is the same five-discipline colour used everywhere else on the page
 // (data / product / research / growth / people) — not a new system, just this
@@ -15,10 +22,51 @@
 
 export const resumeGroups = [
   {
-    id: 'analytics-product',
-    label: 'Data, Business & Product Resumes',
+    id: 'content-product-operations',
+    label: 'Content, Product & Operations Résumés',
     blurb:
-      'Specialized résumés for data-driven roles: SQL analytics, BI dashboards, business insights, and product management across analytics, data science, and product operations.',
+      'Role-specific résumés for the roles being applied for — SEO content writing, product management and prototyping, and business operations.',
+    resumes: [
+      {
+        id: 'seo-content-writer',
+        tone: 'growth',
+        disciplineLabel: 'Content',
+        role: 'SEO & Content Strategist',
+        downloadLabel: 'SEO & Content Resume',
+        targets: 'SEO Content Writer · Content Strategist · Digital Copywriter',
+        when:
+          'Perfect for content-focused positions: SEO optimization, keyword research, blog strategy, content calendars, and digital storytelling.',
+        file: '/resumes/siddharth-seo-content-writer.pdf',
+      },
+      {
+        id: 'product-manager',
+        tone: 'product',
+        disciplineLabel: 'Product',
+        role: 'Product Manager / APM',
+        downloadLabel: 'Product Manager Resume',
+        targets: 'APM · Product Analyst · Associate PM · Product Operations',
+        when:
+          'Perfect for product-focused positions: problem discovery, feature roadmap, user research, prototyping, and cross-functional leadership.',
+        file: '/resumes/siddharthpm.pdf',
+      },
+      {
+        id: 'operations',
+        tone: 'people',
+        disciplineLabel: 'Operations',
+        role: 'Operations Analyst',
+        downloadLabel: 'Operations & Business Resume',
+        targets: 'Operations Analyst · Business Operations · Programme Operations',
+        when:
+          'Best for operations roles: process optimization, workflow management, KPI tracking, supply chain, and operational efficiency.',
+        file: '/resumes/siddharth-operations.pdf',
+      },
+    ],
+  },
+  {
+    id: 'data-analytics',
+    label: 'Data & Analytics Résumés',
+    blurb:
+      'Available on request rather than leading — SQL, Excel, Power BI and business-analysis fundamentals behind the work above.',
     resumes: [
       {
         id: 'data-analyst',
@@ -41,58 +89,6 @@ export const resumeGroups = [
         when:
           'Ideal for roles analyzing business performance: trend identification, stakeholder reporting, performance metrics, and data-driven recommendations.',
         file: '/resumes/siddharth-business-analyst-mis.pdf',
-      },
-      {
-        id: 'product-manager',
-        tone: 'product',
-        disciplineLabel: 'Product',
-        role: 'Product Manager / APM',
-        downloadLabel: 'Product Manager Resume',
-        targets: 'APM · Product Analyst · Associate PM · Product Operations',
-        when:
-          'Perfect for product-focused positions: problem discovery, feature roadmap, user research, prototyping, and cross-functional leadership.',
-        file: '/resumes/siddharthpm.pdf',
-      },
-    ],
-  },
-  {
-    id: 'growth-operations',
-    label: 'Growth, Marketing & Operations Resumes',
-    blurb:
-      'Tailored résumés for marketing and growth roles: digital marketing strategy, audience growth, SEO content, social media campaigns, and operational execution.',
-    resumes: [
-      {
-        id: 'social-media-manager',
-        tone: 'growth',
-        disciplineLabel: 'Growth',
-        role: 'Digital Marketing & Community Manager',
-        downloadLabel: 'Digital Marketing Resume',
-        targets: 'Digital Marketing · Social Media Manager · Community Lead',
-        when:
-          'Ideal for marketing and growth roles: social media strategy, campaign management, audience growth, community engagement, and marketing analytics.',
-        file: '/resumes/SiddharthKumarDM.pdf',
-      },
-      {
-        id: 'seo-content-writer',
-        tone: 'growth',
-        disciplineLabel: 'Growth',
-        role: 'SEO & Content Strategist',
-        downloadLabel: 'SEO & Content Resume',
-        targets: 'SEO Content Writer · Content Strategist · Digital Copywriter',
-        when:
-          'Perfect for content-focused positions: SEO optimization, keyword research, blog strategy, content calendars, and digital storytelling.',
-        file: '/resumes/siddharth-seo-content-writer.pdf',
-      },
-      {
-        id: 'operations',
-        tone: 'people',
-        disciplineLabel: 'Operations',
-        role: 'Operations Analyst',
-        downloadLabel: 'Operations Resume',
-        targets: 'Operations Analyst · Business Operations · Programme Operations',
-        when:
-          'Best for operations roles: process optimization, workflow management, KPI tracking, supply chain, and operational efficiency.',
-        file: '/resumes/siddharth-operations.pdf',
       },
     ],
   },

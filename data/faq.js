@@ -15,15 +15,23 @@
 export const faqs = [
   {
     q: 'Who is Siddharth Kumar?',
-    a: 'Siddharth Kumar is an early-career technology and business professional based in Noida, Uttar Pradesh, India. He holds a B.Tech in Information Technology from Gautam Buddha University (2022–2026). His work spans data analysis, business analytics, product prototyping, digital growth, and applied AI research. He led a four-person build of an AI financial intelligence platform (Gnosis AI), created a document intelligence RAG platform (DocuMind AI), tracked KPIs and built Power BI dashboards for logistics and edtech operations, and is lead author of a peer-reviewed machine-learning paper on student stress classification.',
+    a: 'Siddharth Kumar is an SEO content writer and digital marketing professional based in Noida, Uttar Pradesh, India, with a B.Tech in Information Technology from Gautam Buddha University (2022–2026). His work spans SEO content and campaign writing, digital marketing and social media, product prototyping, and business operations, backed by a data-analysis and applied-research background. He wrote SEO-focused content and campaign creative across three internships, grew a university community page to 500,000+ organic reach from zero, led a four-person build of an AI financial intelligence platform (Gnosis AI), and is lead author of a peer-reviewed machine-learning paper on student stress classification.',
+  },
+  {
+    q: 'What SEO and content writing experience does Siddharth Kumar have?',
+    a: 'He has written SEO-focused blogs, social content and marketing creatives across three internships: at Jumpy Jargons (SEO writing and content strategy, combining research and storytelling into brand content), CollegePur (content coordination and campaign performance for educational communities), and currently at BrightRays, where he is building practical, live-commercial-setting understanding of how SEO and digital systems actually behave. He maintains a dedicated SEO & Content résumé.',
+  },
+  {
+    q: 'What digital marketing and social media experience does Siddharth Kumar have?',
+    a: 'He founded and managed the Gautam Buddha University community page, growing it to 500,000+ organic reach from zero through content planning and brand collaborations, and served as Management Lead for Google Developer Student Clubs (GDSC GBU), where he designed and A/B tested campaign messaging, lifting event registrations by 25%. He also supported campaign planning and digital outreach at Mindenious, ran social-impact campaigns at the Marpu Foundation, and acted as Head of Public Relations for the Smart India Hackathon, reaching 1,000+ participants with a 10-person media team.',
+  },
+  {
+    q: 'What roles is Siddharth Kumar targeting?',
+    a: 'Siddharth Kumar is targeting early-career roles in SEO Content, Digital Marketing, Product (Product Analyst / Associate Product Manager), and Business Operations. He maintains role-specific résumés tailored for SEO & Content, Product Management, Operations & Business, and — kept available rather than leading — Data & Analytics.',
   },
   {
     q: 'What is Siddharth Kumar’s educational background?',
     a: 'Siddharth Kumar completed his Bachelor of Technology (B.Tech) in Information Technology at Gautam Buddha University, Greater Noida, India (September 2022 – May 2026). His academic work combines software engineering fundamentals, data analytics, and machine-learning research, supported by a formal Letter of Recommendation from the university.',
-  },
-  {
-    q: 'What roles is Siddharth Kumar targeting?',
-    a: 'Siddharth Kumar is targeting early-career roles including Data Analyst, Business Analyst, Product Analyst / Associate Product Manager (APM), and Digital Growth / Marketing Specialist. He maintains role-specific résumés tailored for Data & Analytics, Business Analysis / MIS, Product Management, and Digital Marketing.',
   },
   {
     q: 'What data analysis and business tools does Siddharth Kumar use?',
@@ -39,11 +47,7 @@ export const faqs = [
   },
   {
     q: 'What work and internship experience does Siddharth Kumar have?',
-    a: 'He currently works at BrightRays in Noida across digital growth, data analytics, and AI workflows. Previously, he interned at Top Talent Bridge LLP (business & recruitment data analysis with SQL and client reporting for an edtech startup), GAINT Logistic (KPI tracking, lead analysis, and Power BI dashboards), Mindenious (marketing & business development), CollegePur (content coordination & campaign analytics), and Jumpy Jargons (SEO writing & content strategy).',
-  },
-  {
-    q: 'What community and leadership initiatives has Siddharth Kumar led?',
-    a: 'He founded and managed the Gautam Buddha University community page (growing organic reach to 500,000+), served as Management Lead for Google Developer Student Clubs (GDSC GBU), acted as Head of Public Relations for the Smart India Hackathon, and founded Mirage, the university’s film and photography society.',
+    a: 'He currently works at BrightRays in Noida across digital growth, data analytics, and AI workflows. Previously, he interned at Jumpy Jargons (SEO writing & content strategy), CollegePur (content coordination & campaign analytics), Top Talent Bridge LLP (business & recruitment data analysis with SQL and client reporting for an edtech startup), GAINT Logistic (KPI tracking, lead analysis, and Power BI dashboards), and Mindenious (marketing & business development).',
   },
   {
     q: 'How can I contact Siddharth Kumar?',

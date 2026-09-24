@@ -53,12 +53,12 @@ const mono = JetBrains_Mono({
 const SITE = 'https://s-iddharth-portfolio.vercel.app'
 
 const DESCRIPTION =
-  'Siddharth Kumar is an early-career technology and business professional (B.Tech IT, Gautam Buddha University) in Noida, India. Specializing in Data Analysis (SQL, Excel, Power BI), Business Analysis, Product Analytics / APM, and Digital Growth.'
+  'Siddharth Kumar is an SEO content writer and digital marketing professional (B.Tech IT, Gautam Buddha University) based in Noida, India — writing search-focused content and running campaigns and social channels, with product and business-operations experience alongside a data-analysis and applied-research background.'
 
 export const metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
+    default: 'Siddharth Kumar — SEO Content Writer & Digital Marketing',
     template: '%s — Siddharth Kumar',
   },
   description: DESCRIPTION,
@@ -69,21 +69,19 @@ export const metadata = {
   category: 'portfolio',
   keywords: [
     'Siddharth Kumar',
-    'Siddharth Kumar data analyst',
-    'Siddharth Kumar business analyst',
-    'Siddharth Kumar product manager',
+    'Siddharth Kumar SEO',
+    'Siddharth Kumar content writer',
     'Siddharth Kumar digital marketing',
+    'Siddharth Kumar social media',
+    'Siddharth Kumar product management',
+    'Siddharth Kumar operations',
+    'SEO content writer India',
+    'digital marketing Noida',
+    'content strategist portfolio',
     'Siddharth Kumar BTech IT',
-    'data analyst portfolio',
-    'business analyst India',
-    'associate product manager',
-    'APM portfolio India',
-    'product analyst',
-    'KPI tracking dashboards',
-    'Power BI dashboards',
-    'SQL analytics',
     'Gautam Buddha University',
-    'Noida data analyst',
+    'Siddharth Kumar data analyst',
+    'Siddharth Kumar product manager',
   ],
   alternates: {
     canonical: '/',
@@ -99,15 +97,15 @@ export const metadata = {
     locale: 'en_IN',
     url: SITE,
     siteName: 'Siddharth Kumar',
-    title: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
+    title: 'Siddharth Kumar — SEO Content Writer & Digital Marketing',
     description: DESCRIPTION,
     images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Siddharth Kumar' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Siddharth Kumar — Data Analyst, Business Analyst & Product Analyst',
+    title: 'Siddharth Kumar — SEO Content Writer & Digital Marketing',
     description:
-      'Data Analysis (SQL, Power BI), Business Analytics, Product Prototyping (Gnosis AI & DocuMind AI), and Peer-Reviewed Machine Learning Research.',
+      'SEO content and digital marketing, with product thinking (Gnosis AI & DocuMind AI), business operations and peer-reviewed machine-learning research.',
   },
   robots: {
     index: true,
@@ -137,7 +135,7 @@ function schema() {
     '@type': 'Person',
     '@id': `${SITE}/#person`,
     name: profile.name,
-    jobTitle: 'Data Analyst · Business Analyst · Product Analyst',
+    jobTitle: 'SEO Content Writer · Digital Marketing · Product',
     description: DESCRIPTION,
     url: SITE,
     email: `mailto:${profile.contact.email}`,
@@ -151,18 +149,18 @@ function schema() {
       addressCountry: 'IN',
     },
     knowsAbout: [
+      'SEO content strategy',
+      'Content writing',
+      'Digital marketing',
+      'Social media management',
+      'Campaign planning',
+      'Product management',
+      'Product thinking',
+      'Business operations',
       'Data analysis',
       'SQL',
-      'Microsoft Excel',
       'Power BI',
-      'Business analysis',
-      'KPI tracking and dashboards',
-      'Product management',
-      'Product analytics',
-      'Digital growth',
-      'SEO content strategy',
       'Machine learning',
-      'Artificial intelligence',
     ],
     sameAs: [
       profile.social.linkedin,

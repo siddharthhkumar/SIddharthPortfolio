@@ -131,7 +131,12 @@ export const experience = [
   },
 ]
 
-// The three roles shown expanded by default; the rest collapse into a compact list.
-export const featuredExperienceIds = ['brightrays', 'top-talent-bridge', 'gaint']
+// The three roles shown expanded by default; the rest collapse into a
+// compact list. Jumpy Jargons — the literal "SEO Content & Creative" role —
+// replaces GAINT here under the content/digital-marketing positioning; GAINT
+// is unchanged and still fully visible in the compact list below, just not
+// expanded. Top Talent Bridge stays featured so the data/business-analysis
+// background remains genuinely represented, not erased.
+export const featuredExperienceIds = ['brightrays', 'top-talent-bridge', 'jumpy-jargons']
 
 export default experience

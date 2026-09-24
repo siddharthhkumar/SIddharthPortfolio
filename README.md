@@ -1,6 +1,7 @@
 # Siddharth Kumar — portfolio
 
-A personal site positioned for **product and operations** roles. Next.js App
+A personal site positioned for **SEO content and digital marketing** roles,
+with product and business operations as supporting pillars. Next.js App
 Router, no CSS framework, no animation library, and no 3D.
 
     npm install
@@ -12,18 +13,22 @@ Router, no CSS framework, no animation library, and no 3D.
 
 **A stranger should understand it in five seconds.** The first screen says
 who he is, what he does and where he is, in words with no jargon in them:
-*Hello — **I'm Siddharth Kumar**. I figure out **what to build**.* Then one
-sentence naming the two roles and the three pieces of evidence for them.
-Everything clever is further down.
+*Hello — **I'm Siddharth Kumar**. I work across **SEO content**.* — the word
+rotates through digital marketing, product, operations, data and research,
+data/taglines.js. Then one sentence naming the habit behind the work and the
+roles he's after. Everything clever is further down.
 
 **The positioning is an edit, not a rewrite.** Nothing was invented to aim the
-site at product and operations — the sequence was reordered and the framing
-changed. The two shipped products open Selected Work; the ledger leads with
-what was shipped and what was run before the audience and research figures;
-the résumés are regrouped so *Product & Operations* is the first drawer; the
-toolkit leads with Product and Operations; and the metadata, structured data
-and share card say the same thing. Every figure and claim still traces to the
-same file in `data/` it always did.
+site at content and digital marketing — the sequence was reordered and the
+framing changed. The community page (500K+ organic reach, built from zero)
+moved up to second in Selected Work; the toolkit leads with Content & Digital
+Marketing, and its own skill list was reordered so the SEO-specific entries
+render within the six shown rather than past the cut-off; the résumés are
+regrouped so *Content, Product & Operations* is the first drawer; Jumpy
+Jargons — the literal "SEO Content & Creative" internship — is featured in
+Experience instead of collapsing into the compact list; and the metadata,
+structured data and FAQ all say the same thing. Every figure and claim still
+traces to the same file in `data/` it always did.
 
 The screen is the whole screen: a rail of printed facts across the top, the
 disciplines set vertically up the left margin, the sentence at full measure

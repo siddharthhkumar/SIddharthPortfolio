@@ -1,17 +1,38 @@
-// What he works with, grouped by the job it does and ordered so the two
-// disciplines being applied for come first.
+// What he works with, grouped by the job it does and ordered so content and
+// digital marketing — the primary positioning — come first.
 //
 // Nothing here is a new claim. Every entry appears somewhere in the record
-// already: the product terms are the disciplines recorded against Gnosis AI
-// and DocuMind AI in projects.js and the capability described in
-// profile.about.pillars; the operations and data terms come from the work at
-// GAINT and Top Talent Bridge; the growth terms from the agency, NGO and
-// campus roles.
+// already: the content and growth terms come from the agency, NGO and campus
+// roles (Jumpy Jargons, CollegePur, the GBU community, GDSC); the product
+// terms are the disciplines recorded against Gnosis AI and DocuMind AI in
+// projects.js; the operations and data terms come from the work at GAINT and
+// Top Talent Bridge.
 //
 // Deliberately no proficiency bars, percentages or star ratings — none of
 // them would mean anything, and a recruiter reading this knows it.
 
 export const skillGroups = [
+  {
+    id: 'growth',
+    title: 'Content & Digital Marketing',
+    caption:
+      'SEO-focused writing, a message tested rather than guessed at, and an audience grown from zero.',
+    // Toolkit.js shows the first six of each group — SEO content writing and
+    // content strategy lead here on purpose, not past the cut-off.
+    skills: [
+      'SEO content writing',
+      'Content strategy',
+      'Copywriting & scripting',
+      'Campaign planning',
+      'A/B tested messaging',
+      'Digital outreach',
+      'Community management',
+      'Public relations',
+      'Brand collaborations',
+      'Market & customer research',
+      'Photography & videography',
+    ],
+  },
   {
     id: 'product',
     title: 'Product',
@@ -45,7 +66,7 @@ export const skillGroups = [
   {
     id: 'data',
     title: 'Data',
-    caption: 'The evidence underneath both of the above.',
+    caption: 'The evidence underneath the work above.',
     skills: [
       'SQL',
       'Microsoft Excel',
@@ -68,25 +89,6 @@ export const skillGroups = [
       'AI & RAG Workflows',
       'System Architecture',
       'Version Control (Git)',
-    ],
-  },
-  {
-    id: 'growth',
-    title: 'Digital marketing',
-    caption:
-      'An audience grown from zero, a message tested rather than guessed at, and a hackathon’s media desk run end to end.',
-    skills: [
-      'Campaign planning',
-      'Digital outreach',
-      'A/B tested messaging',
-      'Community management',
-      'Public relations',
-      'Brand collaborations',
-      'Market & customer research',
-      'SEO content writing',
-      'Content strategy',
-      'Copywriting & scripting',
-      'Photography & videography',
     ],
   },
 ]

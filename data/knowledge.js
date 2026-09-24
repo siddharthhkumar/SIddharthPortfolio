@@ -15,20 +15,23 @@ import { thinking } from './thinking'
 // FAQ, tagged so free-text questions can find each answer from more than one
 // phrasing. The tags are search terms, not new claims — they point at words
 // already inside the paired answer.
+// Order and length must match data/faq.js exactly — both arrays are walked
+// by position, not id.
 const faqTags = [
   ['who', 'about', 'introduce', 'bio', 'background', 'siddharth', 'yourself'],
-  ['education', 'degree', 'college', 'university', 'study', 'gbu', 'btech', 'school', 'academic'],
+  ['seo', 'content', 'writing', 'writer', 'blog', 'copywriting', 'content strategy', 'jumpy jargons'],
+  ['digital marketing', 'social media', 'marketing', 'campaign', 'community', 'gdsc', 'audience', 'founded', 'leadership'],
   ['role', 'job', 'hire', 'looking', 'career', 'position', 'apply', 'opportunity'],
+  ['education', 'degree', 'college', 'university', 'study', 'gbu', 'btech', 'school', 'academic'],
   ['tools', 'stack', 'sql', 'excel', 'power bi', 'python', 'tech', 'software', 'technology', 'use'],
   ['project', 'build', 'built', 'gnosis', 'documind', 'app', 'made', 'portfolio', 'shipped'],
-  ['research', 'paper', 'study', 'stress', 'publish', 'ml', 'machine learning', 'thesis', 'paper'],
+  ['research', 'paper', 'study', 'stress', 'publish', 'ml', 'machine learning', 'thesis'],
   ['experience', 'work', 'intern', 'internship', 'company', 'brightrays', 'history', 'job'],
-  ['leadership', 'community', 'lead', 'founded', 'gdsc', 'hackathon', 'mirage', 'club', 'organise'],
   ['contact', 'email', 'phone', 'reach', 'linkedin', 'github', 'connect', 'hire'],
 ]
-const faqTones = ['people', 'people', 'growth', 'data', 'product', 'research', 'data', 'growth', 'people']
+const faqTones = ['people', 'growth', 'growth', 'growth', 'people', 'data', 'product', 'research', 'data', 'people']
 const faqCategories = [
-  'About', 'Education', 'Career goals', 'Toolkit', 'Projects', 'Research', 'Experience', 'Leadership', 'Contact',
+  'About', 'SEO & Content', 'Digital Marketing', 'Career goals', 'Education', 'Toolkit', 'Projects', 'Research', 'Experience', 'Contact',
 ]
 
 const faqEntries = faqs.map((f, i) => ({
@@ -96,10 +99,10 @@ export const knowledgeBase = [
 // question.
 export const starterQuestions = [
   'Who is Siddharth Kumar?',
+  'What SEO and content writing experience does Siddharth Kumar have?',
+  'What digital marketing and social media experience does Siddharth Kumar have?',
   'Tell me about Gnosis AI.',
-  'What did your research actually find?',
   'What roles is Siddharth Kumar targeting?',
-  'How can I contact Siddharth Kumar?',
 ]
 
 /**

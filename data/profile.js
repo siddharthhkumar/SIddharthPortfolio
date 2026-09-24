@@ -22,18 +22,22 @@ export const profile = {
     'A paper on why students misjudge their own stress.',
   ],
 
-  // About section
+  // About section. Bullets lead with content/SEO and digital marketing —
+  // the primary positioning — then product, then data & operations folded
+  // into one supporting line. Research isn't repeated here: it already has
+  // its own case study, Ledger rows and Recognition section, so restating
+  // it a fourth time would be padding rather than evidence.
   about: {
     tag: 'About',
-    title: 'Analyst by training,',
-    titleEm: 'builder by habit',
+    title: 'Content-first,',
+    titleEm: 'analyst by training',
     image: '/images/podium.jpeg',
     imageAlt: 'Siddharth Kumar presenting at Gautam Buddha University',
     bullets: [
-      '**Data & Business Analysis**: Analyzing real business data (SQL, Excel, Power BI), tracking KPIs, and building dashboards to help teams make fast decisions.',
+      '**Content & SEO**: Writing SEO-focused blogs and campaign content built on research and search intent, sharpened across paid internships in content writing and now applied at BrightRays.',
+      '**Digital Marketing & Social**: Running campaigns and community channels end to end — testing a message before trusting it, and growing a university page to 500,000+ organic reach from zero.',
       '**Product & Prototyping**: Figuring out product mechanics, building initial prototypes, designing interfaces, and guiding teams to launch.',
-      '**Digital Growth**: Writing SEO-optimized content, running campaigns, and building online communities from the ground up.',
-      '**Applied AI & Research**: Building AI search tools and publishing research papers to solve practical business problems rather than following technical trends.'
+      '**Data & Operations**: Reading business data closely enough to act on it — SQL, Excel and Power BI dashboards for recruitment and logistics operations.',
     ],
   },
 
@@ -51,7 +55,7 @@ export const profile = {
     phoneHref: 'tel:+916202969798',
     location: 'Noida, Uttar Pradesh, India',
     availability:
-      'Seeking roles in Data Analysis, Business Analysis, Product Analytics / APM, and Digital Growth.',
+      'Seeking roles in SEO Content, Digital Marketing, Product, or Business Operations.',
   },
 
   social: {
