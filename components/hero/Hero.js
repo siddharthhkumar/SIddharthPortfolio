@@ -58,11 +58,13 @@ export default function Hero() {
 
       {/* ── The middle ─────────────────────────────────────────────────── */}
       <div className={`wrap ${styles.main}`}>
-        {/* Printed up the spine. Three words, and the order is the argument. */}
+        {/* Printed up the spine. Four words, and the order is the argument —
+            same order as the About bullets and the Toolkit groups: content
+            and marketing lead, product and operations support. */}
         <p className={styles.spine} aria-hidden="true">
-          Data <span className={styles.slash}>/</span> Business{' '}
+          Content <span className={styles.slash}>/</span> Marketing{' '}
           <span className={styles.slash}>/</span> Product{' '}
-          <span className={styles.slash}>/</span> Growth
+          <span className={styles.slash}>/</span> Operations
         </p>
 
         <div className={styles.left}>
